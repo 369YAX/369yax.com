@@ -31,7 +31,7 @@
                 <a href="#about" data-i18n="nav_about">About</a>
                 <a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a>
             </nav>
-            <!-- Перемикач мов -->
+            <!-- Language switcher -->
             <div class="links-grid" style="margin-left:16px;">
                 <button class="link-pill lang-btn" data-lang="en">EN</button>
                 <button class="link-pill lang-btn" data-lang="it">IT</button>
@@ -188,10 +188,10 @@
         <section class="section" id="macros">
             <div class="container">
                 <h2 class="section-title" data-i18n="macros_title">369YAX – SolidWorks automation</h2>
-            <p class="section-subtitle" data-i18n="macros_subtitle">
-                A growing ecosystem of custom tools built around real daily needs in SolidWorks:
-                parts, drawings, BOM, standards and project management.
-            </p>
+                <p class="section-subtitle" data-i18n="macros_subtitle">
+                    A growing ecosystem of custom tools built around real daily needs in SolidWorks:
+                    parts, drawings, BOM, standards and project management.
+                </p>
 
                 <div class="cards-grid">
                     <article class="card">
@@ -283,8 +283,8 @@
                 <div class="contact-grid">
                     <div>
                         <h3 data-i18n="contact_direct_title">Direct contact</h3>
-                        <p class="contact-line" data-i18n="contact_email_line">
-                            Email:
+                        <p class="contact-line">
+                            <span data-i18n="contact_email_label">Email:</span>
                             <a href="mailto:369yax@gmail.com">369yax@gmail.com</a>
                         </p>
                         <p class="contact-line" data-i18n="contact_location">
@@ -309,6 +309,34 @@
                         </p>
                     </div>
                 </div>
+
+                <!-- CONTACT FORM -->
+                <div class="contact-form-wrapper" style="margin-top:32px;">
+                    <h3 data-i18n="contact_form_title">Contact form</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <label for="cfName" data-i18n="contact_form_name_label">Your name</label>
+                            <input type="text" id="cfName" name="name" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="cfEmail" data-i18n="contact_form_email_label">Your email</label>
+                            <input type="email" id="cfEmail" name="email" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="cfSubject" data-i18n="contact_form_subject_label">Project type / subject</label>
+                            <input type="text" id="cfSubject" name="subject" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="cfMessage" data-i18n="contact_form_message_label">Project details</label>
+                            <textarea id="cfMessage" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary" data-i18n="contact_form_submit">Send message</button>
+                        <p class="contact-note small" data-i18n="contact_form_hint">
+                            The form will open your email client with a pre-filled message to 369yax@gmail.com –
+                            you can review and send it.
+                        </p>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
@@ -321,7 +349,7 @@
     </footer>
 
     <!-- =========================
-         MULTILANGUAGE SCRIPT
+         MULTILANGUAGE + CONTACT SCRIPT
          ========================= -->
     <script>
         const translations = {
@@ -424,11 +452,19 @@
                 contact_title: "Let’s work together",
                 contact_subtitle: "Tell me a bit about your project – stairs, sheet metal, welded frame or SolidWorks automation – and I’ll come back with a clear, practical way to move forward.",
                 contact_direct_title: "Direct contact",
-                contact_email_line: 'Email: <a href="mailto:369yax@gmail.com">369yax@gmail.com</a>',
+                contact_email_label: "Email:",
                 contact_location: "Location: Italy · Working remotely worldwide",
                 contact_note: "For a faster start, please include: project type (stairs, frame, sheet metal, macro), approximate dimensions, material, and what deliverables you need (3D, drawings, DXF, STEP, BOM).",
                 contact_platforms_title: "Freelance platforms",
                 contact_platforms_note: 'You can also contact me directly via freelance platforms – just search for <strong>“369YAX”</strong> and send a short description of your idea.',
+
+                contact_form_title: "Contact form",
+                contact_form_name_label: "Your name",
+                contact_form_email_label: "Your email",
+                contact_form_subject_label: "Project type / subject",
+                contact_form_message_label: "Project details",
+                contact_form_submit: "Send message",
+                contact_form_hint: "The form will open your email client with a pre-filled message to 369yax@gmail.com – you can review and send it.",
 
                 footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys",
                 footer_right: "SolidWorks · Metal structures · Spiral stairs · Automation"
@@ -533,11 +569,19 @@
                 contact_title: "Lavoriamo insieme",
                 contact_subtitle: "Descrivimi brevemente il tuo progetto – scale, lamiera, carpenteria o automazione SolidWorks – e ti proporrò un modo chiaro e concreto per procedere.",
                 contact_direct_title: "Contatto diretto",
-                contact_email_line: 'Email: <a href="mailto:369yax@gmail.com">369yax@gmail.com</a>',
+                contact_email_label: "Email:",
                 contact_location: "Sede: Italia · Lavoro da remoto in tutto il mondo",
                 contact_note: "Per partire più velocemente, indica: tipo di progetto (scala, telaio, lamiera, macro), dimensioni indicative, materiale e quali deliverable ti servono (3D, disegni, DXF, STEP, BOM).",
                 contact_platforms_title: "Piattaforme freelance",
                 contact_platforms_note: 'Puoi contattarmi anche tramite le piattaforme freelance – cerca semplicemente <strong>“369YAX”</strong> e inviami una breve descrizione del tuo progetto.',
+
+                contact_form_title: "Modulo di contatto",
+                contact_form_name_label: "Il tuo nome",
+                contact_form_email_label: "La tua email",
+                contact_form_subject_label: "Tipo di progetto / oggetto",
+                contact_form_message_label: "Dettagli del progetto",
+                contact_form_submit: "Invia messaggio",
+                contact_form_hint: "Il modulo aprirà il tuo programma di posta con un messaggio già compilato verso 369yax@gmail.com – puoi controllarlo e inviarlo.",
 
                 footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys",
                 footer_right: "SolidWorks · Carpenteria metallica · Scale a chiocciola · Automazione"
@@ -642,11 +686,19 @@
                 contact_title: "Давайте працювати разом",
                 contact_subtitle: "Розкажіть коротко про свій проєкт – сходи, листовий метал, зварну раму чи автоматизацію SolidWorks – і я запропоную зрозумілий та реалістичний варіант рішення.",
                 contact_direct_title: "Прямий контакт",
-                contact_email_line: 'Email: <a href="mailto:369yax@gmail.com">369yax@gmail.com</a>',
+                contact_email_label: "Email:",
                 contact_location: "Локація: Італія · Працюю віддалено по всьому світу",
                 contact_note: "Щоб швидше стартувати, напишіть: тип проєкту (сходи, рама, листовий метал, макрос), приблизні габарити, матеріал та які файли вам потрібні (3D, креслення, DXF, STEP, BOM).",
                 contact_platforms_title: "Фриланс-платформи",
                 contact_platforms_note: 'Також ви можете написати мені через фриланс-платформи – просто знайдіть <strong>“369YAX”</strong> і коротко опишіть задачу.',
+
+                contact_form_title: "Форма контакту",
+                contact_form_name_label: "Ваше ім’я",
+                contact_form_email_label: "Ваша email-адреса",
+                contact_form_subject_label: "Тип проєкту / тема",
+                contact_form_message_label: "Деталі проєкту",
+                contact_form_submit: "Надіслати повідомлення",
+                contact_form_hint: "Форма відкриє ваш поштовий клієнт із готовим листом на 369yax@gmail.com – ви зможете перевірити та надіслати його.",
 
                 footer_left: "© 369YAX – Automation &amp; Design · Віталій Борис",
                 footer_right: "SolidWorks · Металеві конструкції · Спіральні сходи · Автоматизація"
@@ -665,6 +717,7 @@
             });
         }
 
+        // Language buttons
         document.querySelectorAll(".lang-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 const lang = btn.getAttribute("data-lang");
@@ -672,7 +725,36 @@
             });
         });
 
+        // Default language
         setLanguage("en");
+
+        // Contact form handler (mailto)
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+            contactForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById("cfName").value.trim();
+                const email = document.getElementById("cfEmail").value.trim();
+                const subject = document.getElementById("cfSubject").value.trim();
+                const message = document.getElementById("cfMessage").value.trim();
+
+                const mailSubject = "New project from 369YAX website – " + subject;
+                const mailBody =
+                    "Name: " + name + "%0D%0A" +
+                    "Email: " + email + "%0D%0A" +
+                    "Subject: " + subject + "%0D%0A" +
+                    "----------------------------------------%0D%0A" +
+                    "Project details:%0D%0A" + encodeURIComponent(message);
+
+                const mailtoLink = "mailto:369yax@gmail.com?subject=" +
+                    encodeURIComponent(mailSubject) +
+                    "&body=" + mailBody;
+
+                window.location.href = mailtoLink;
+            });
+        }
     </script>
 </body>
 </html>
+
