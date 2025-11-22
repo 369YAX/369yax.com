@@ -2,25 +2,24 @@
    369YAX – GLOBAL STYLES (LIGHT THEME DEFAULT)
    ====================================================== */
 
-/* ---------- Base ---------- */
+/* Base */
 
 html, body {
     margin: 0;
     padding: 0;
     font-family: "Inter", "Segoe UI", Arial, sans-serif;
-    background: #ffffff;              /* 🌟 WHITE BACKGROUND */
-    color: #111111;                   /* Dark text for readability */
+    background: #ffffff;              /* WHITE BACKGROUND */
+    color: #111111;                   /* Dark text */
     line-height: 1.6;
 }
 
-/* Container */
 .container {
     width: 92%;
     max-width: 1200px;
     margin: auto;
 }
 
-/* ---------- Header ---------- */
+/* Header */
 
 .top-bar {
     background: #ffffff;
@@ -35,9 +34,11 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
 }
 
 /* Logo */
+
 .logo {
     display: flex;
     align-items: center;
@@ -72,16 +73,24 @@ html, body {
     opacity: 0.7;
 }
 
-/* Navigation */
+/* Nav */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .main-nav a {
     margin-left: 18px;
     text-decoration: none;
     color: #111111;
     font-weight: 500;
+    font-size: 14px;
 }
 
 .main-nav a:hover {
-    color: #b30000;   /* accent red */
+    color: #b30000;
 }
 
 .nav-cta {
@@ -96,11 +105,47 @@ html, body {
     background: #d10000;
 }
 
-/* ---------- HERO ---------- */
+/* Header controls (lang + theme) */
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0;
+}
+
+.link-pill {
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #f3f3f3;
+    color: #111;
+    text-decoration: none;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.link-pill:hover {
+    background: #ffe8e8;
+    border-color: #b30000;
+}
+
+.theme-toggle {
+    min-width: 42px;
+    text-align: center;
+}
+
+/* HERO */
 
 .hero {
     padding: 80px 0;
-    background: #ffffff; /* white hero */
+    background: #ffffff;
 }
 
 .hero-inner {
@@ -134,6 +179,7 @@ html, body {
     margin-top: 24px;
     display: flex;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
 .btn {
@@ -142,11 +188,14 @@ html, body {
     text-decoration: none;
     font-weight: 600;
     display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 .btn.primary {
     background: #b30000;
     color: white;
+    border: none;
 }
 
 .btn.primary:hover {
@@ -156,6 +205,7 @@ html, body {
 .btn.ghost {
     border: 2px solid #b30000;
     color: #b30000;
+    background: transparent;
 }
 
 .btn.ghost:hover {
@@ -180,14 +230,15 @@ html, body {
     min-width: 280px;
 }
 
-/* ---------- Sections ---------- */
+/* Sections */
 
 .section {
     padding: 80px 0;
+    background: #ffffff;
 }
 
 .section-alt {
-    background: #fafafa;  /* very light grey */
+    background: #fafafa;
 }
 
 .section-title {
@@ -205,7 +256,7 @@ html, body {
     opacity: 0.7;
 }
 
-/* ---------- Cards ---------- */
+/* Cards & grids */
 
 .cards-grid {
     margin-top: 40px;
@@ -225,11 +276,15 @@ html, body {
     margin-top: 0;
 }
 
+.card-list {
+    padding-left: 18px;
+}
+
 .card-list li {
     margin-bottom: 6px;
 }
 
-/* ---------- Portfolio ---------- */
+/* Portfolio */
 
 .portfolio-grid {
     margin-top: 40px;
@@ -253,7 +308,27 @@ html, body {
     font-size: 12px;
 }
 
-/* ---------- Contact ---------- */
+/* About */
+
+.about-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: minmax(0,2fr) minmax(0,1.5fr);
+    gap: 24px;
+}
+
+.about-box {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e2e2;
+    padding: 22px;
+}
+
+.about-list {
+    padding-left: 18px;
+}
+
+/* Contact */
 
 .contact-grid {
     margin-top: 40px;
@@ -262,29 +337,20 @@ html, body {
     gap: 32px;
 }
 
-.links-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 12px;
+.contact-line {
+    margin-bottom: 6px;
 }
 
-.link-pill {
-    padding: 8px 14px;
-    border-radius: 20px;
-    background: #f3f3f3;
-    color: #111;
-    text-decoration: none;
+.contact-note {
     font-size: 14px;
-    border: 1px solid #ddd;
+    opacity: 0.8;
 }
 
-.link-pill:hover {
-    background: #ffe8e8;
-    border-color: #b30000;
+.contact-note.small {
+    font-size: 13px;
 }
 
-/* ---------- Contact Form ---------- */
+/* Contact form */
 
 .contact-form {
     margin-top: 24px;
@@ -300,6 +366,7 @@ html, body {
 
 .contact-form label {
     font-weight: 600;
+    font-size: 14px;
 }
 
 .contact-form input,
@@ -309,6 +376,8 @@ html, body {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 .contact-form input:focus,
@@ -317,7 +386,7 @@ html, body {
     border-color: #b30000;
 }
 
-/* ---------- Footer ---------- */
+/* Footer */
 
 .site-footer {
     background: #ffffff;
@@ -332,29 +401,178 @@ html, body {
     margin-top: 4px;
 }
 
-/* ---------- DARK MODE (optional) ---------- */
+/* Responsive */
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 60px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .top-bar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .main-nav {
+        margin-top: 10px;
+    }
+
+    .main-nav a {
+        margin-left: 0;
+        margin-right: 14px;
+        margin-bottom: 6px;
+    }
+
+    .header-controls {
+        margin-top: 10px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======================================================
+   DARK MODE
+   ====================================================== */
 
 .dark-mode {
-    background: #111 !important;
-    color: #eee !important;
+    background: #111111 !important;
+    color: #eeeeee !important;
+}
+
+/* Backgrounds */
+
+.dark-mode .top-bar {
+    background: #111111;
+    border-bottom-color: #333333;
+}
+
+.dark-mode .hero {
+    background: #111111;
+}
+
+.dark-mode .section {
+    background: #111111;
 }
 
 .dark-mode .section-alt {
-    background: #222 !important;
+    background: #181818 !important;
 }
+
+/* Text */
+
+.dark-mode .section-title,
+.dark-mode .hero h1 {
+    color: #ffffff;
+}
+
+.dark-mode .section-subtitle,
+.dark-mode .hero-sub,
+.dark-mode .contact-note,
+.dark-mode .contact-note.small {
+    color: #cccccc;
+    opacity: 0.9;
+}
+
+/* Cards / boxes */
 
 .dark-mode .card,
 .dark-mode .portfolio-item,
+.dark-mode .about-box,
 .dark-mode .contact-form {
     background: #1a1a1a !important;
-    border-color: #333 !important;
+    border-color: #333333 !important;
 }
 
-.dark-mode a {
-    color: #ff7777 !important;
-}
+/* Logo */
 
 .dark-mode .logo-hex {
-    background: #fff !important;
-    color: #111 !important;
+    background: #ffffff;
+    color: #111111;
+}
+
+/* Buttons / pills */
+
+.dark-mode .link-pill {
+    background: #222222;
+    color: #eeeeee;
+    border-color: #444444;
+}
+
+.dark-mode .link-pill:hover {
+    background: #332222;
+    border-color: #ff7777;
+}
+
+.dark-mode .btn.ghost {
+    border-color: #ff7777;
+    color: #ff7777;
+}
+
+.dark-mode .btn.ghost:hover {
+    background: #331111;
+}
+
+.dark-mode .btn.primary {
+    background: #ff4444;
+}
+
+.dark-mode .btn.primary:hover {
+    background: #ff6666;
+}
+
+/* Hero tags & card */
+
+.dark-mode .hero-tags span {
+    background: #222222;
+    color: #eeeeee;
+}
+
+.dark-mode .hero-card {
+    background: #181818;
+    border-color: #333333;
+}
+
+/* Portfolio tag */
+
+.dark-mode .tag {
+    background: #331111;
+    color: #ffaaaa;
+}
+
+/* Footer */
+
+.dark-mode .site-footer {
+    background: #111111;
+    border-top-color: #333333;
+    color: #aaaaaa;
+}
+
+/* Links */
+
+.dark-mode a {
+    color: #ff7777;
+}
+
+.dark-mode a:hover {
+    color: #ffaaaa;
+}
+
+/* Inputs */
+
+.dark-mode .contact-form input,
+.dark-mode .contact-form textarea {
+    background: #111111;
+    color: #eeeeee;
+    border-color: #444444;
+}
+
+.dark-mode .contact-form input:focus,
+.dark-mode .contact-form textarea:focus {
+    border-color: #ff7777;
 }
