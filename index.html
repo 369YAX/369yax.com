@@ -15,8 +15,12 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <!-- =========================
+         HEADER
+         ========================= -->
     <header class="top-bar">
         <div class="container top-bar-inner">
+            <!-- Logo -->
             <div class="logo">
                 <div class="logo-hex">369</div>
                 <div class="logo-text">
@@ -30,7 +34,9 @@
                 class="nav-toggle"
                 id="navToggle"
                 type="button"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="mainNav">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -64,16 +70,19 @@
     </header>
 
     <main>
-        <!-- HERO -->
+        <!-- =========================
+             HERO
+             ========================= -->
         <section class="hero" id="top">
             <div class="container hero-inner">
+                <!-- Left: text -->
                 <div class="hero-text">
                     <h1 data-i18n="hero_title">
                         Production-ready design for<br />
                         <span class="accent">metal structures &amp; staircases</span>
                     </h1>
                     <p class="hero-sub" data-i18n="hero_sub">
-                        I’m <strong>Vitalii Borys</strong>, mechanical designer based in Italy.  
+                        I’m <strong>Vitalii Borys</strong>, mechanical designer based in Italy.
                         Under the brand <strong>369YAX – Automation &amp; Design</strong> I help workshops and
                         fabrication companies turn ideas into <strong>SolidWorks models, drawings,
                         DXF, STEP &amp; BOM</strong> ready for real production – with a strong focus on
@@ -90,22 +99,20 @@
                     </div>
                 </div>
 
-                <!-- HERO CARD WITH TWO PHOTOS -->
-               <div class="hero-photos">
-    <div class="hero-photo-frame hero-photo-main">
-        <img
-            src="https://raw.githubusercontent.com/YourUser/369YAX-photos/main/vitalii-portrait.jpg"
-            alt="Vitalii Borys – mechanical designer 369YAX"
-        />
-    </div>
-    <div class="hero-photo-frame hero-photo-workshop">
-        <img
-            src="https://raw.githubusercontent.com/YourUser/369YAX-photos/main/vitalii-workshop.jpg"
-            alt="Vitalii Borys cutting a steel tube in the workshop"
-        />
-    </div>
-</div>
-
+                <!-- Right: hero card with photos -->
+                <aside class="hero-card">
+                    <div class="hero-photos">
+                        <div class="hero-photo-frame hero-photo-main">
+                            <img
+                                src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/369YAX-photos/main/vitalii-portrait.jpg"
+                                alt="Vitalii Borys – mechanical designer 369YAX" />
+                        </div>
+                        <div class="hero-photo-frame hero-photo-workshop">
+                            <img
+                                src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/369YAX-photos/main/vitalii-workshop.jpg"
+                                alt="Vitalii Borys cutting a steel tube in the workshop" />
+                        </div>
+                    </div>
 
                     <h2 data-i18n="hero_card_title">What you get with 369YAX</h2>
                     <ul>
@@ -118,11 +125,13 @@
                     <div class="hero-note" data-i18n="hero_note">
                         Based in Italy · Remote worldwide · English / Italian / Ukrainian
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
 
-        <!-- SERVICES -->
+        <!-- =========================
+             SERVICES
+             ========================= -->
         <section class="section" id="services">
             <div class="container">
                 <h2 class="section-title" data-i18n="services_title">Services</h2>
@@ -173,7 +182,9 @@
             </div>
         </section>
 
-        <!-- PORTFOLIO -->
+        <!-- =========================
+             PORTFOLIO
+             ========================= -->
         <section class="section section-alt" id="portfolio">
             <div class="container">
                 <h2 class="section-title" data-i18n="portfolio_title">Selected projects</h2>
@@ -224,7 +235,9 @@
             </div>
         </section>
 
-        <!-- SOLIDWORKS MACROS SECTION -->
+        <!-- =========================
+             SOLIDWORKS MACROS
+             ========================= -->
         <section class="section" id="macros">
             <div class="container">
                 <h2 class="section-title" data-i18n="macros_title">369YAX – SolidWorks automation</h2>
@@ -276,7 +289,9 @@
             </div>
         </section>
 
-        <!-- ABOUT -->
+        <!-- =========================
+             ABOUT
+             ========================= -->
         <section class="section" id="about">
             <div class="container about-grid">
                 <div>
@@ -298,7 +313,7 @@
                         <li data-i18n="about_li_5">Focus on simple, robust and workshop-friendly solutions</li>
                     </ul>
                 </div>
-                <div class="about-box">
+                <aside class="about-box">
                     <h3 data-i18n="about_box_title">How I work</h3>
                     <ul class="about-list">
                         <li data-i18n="about_box_li_1">Start from your idea, sketch, photos or existing 3D/drawings</li>
@@ -307,11 +322,13 @@
                         <li data-i18n="about_box_li_4">Deliver production-ready files: DXF, DWG, STEP, PDF, BOM</li>
                         <li data-i18n="about_box_li_5">Communicate in English, Italian or Ukrainian as you prefer</li>
                     </ul>
-                </div>
+                </aside>
             </div>
         </section>
 
-        <!-- CONTACT -->
+        <!-- =========================
+             CONTACT
+             ========================= -->
         <section class="section section-alt" id="contact">
             <div class="container">
                 <h2 class="section-title" data-i18n="contact_title">Let’s work together</h2>
@@ -381,6 +398,9 @@
         </section>
     </main>
 
+    <!-- =========================
+         FOOTER
+         ========================= -->
     <footer class="site-footer">
         <div class="container footer-inner">
             <span data-i18n="footer_left">© 369YAX – Automation &amp; Design · Vitalii Borys</span>
@@ -559,7 +579,7 @@
                 portfolio_item1_tag: "Scale a chiocciola",
 
                 portfolio_item2_title: "Mensola inox formato A4",
-                portfolio_item2_text: "Mensola minimalista in lamiera inox per taglio laser e piega, ottimizzata per una produzione pulita con disegни chiari, sviluppi e tutti i dettagli di fissaggio preparati.",
+                portfolio_item2_text: "Mensola minimalista in lamiera inox per taglio laser e piega, ottimizzata per una produzione pulita con disegni chiari, sviluppi e tutti i dettagli di fissaggio preparati.",
                 portfolio_item2_tag: "Lamiera",
 
                 portfolio_item3_title: "Telaio di supporto industriale",
@@ -812,64 +832,69 @@
          THEME TOGGLE SCRIPT
          ========================= -->
     <script>
-      (function () {
-        const btn = document.getElementById("themeToggle");
-        if (!btn) return;
+        (function () {
+            const btn = document.getElementById("themeToggle");
+            if (!btn) return;
 
-        function setTheme(theme) {
-          if (theme === "dark") {
-            document.body.classList.add("dark-mode");
-            btn.textContent = "🌙";
-          } else {
-            document.body.classList.remove("dark-mode");
-            btn.textContent = "🌞";
-          }
-          try {
-            localStorage.setItem("369yax_theme", theme);
-          } catch (e) {}
-        }
+            function setTheme(theme) {
+                if (theme === "dark") {
+                    document.body.classList.add("dark-mode");
+                    btn.textContent = "🌙";
+                } else {
+                    document.body.classList.remove("dark-mode");
+                    btn.textContent = "🌞";
+                }
+                try {
+                    localStorage.setItem("369yax_theme", theme);
+                } catch (e) {}
+            }
 
-        let saved = "light";
-        try {
-          saved = localStorage.getItem("369yax_theme") || "light";
-        } catch (e) {}
-        setTheme(saved);
+            let saved = "light";
+            try {
+                saved = localStorage.getItem("369yax_theme") || "light";
+            } catch (e) {}
+            setTheme(saved);
 
-        btn.addEventListener("click", function () {
-          const next = document.body.classList.contains("dark-mode")
-            ? "light"
-            : "dark";
-          setTheme(next);
-        });
-      })();
+            btn.addEventListener("click", function () {
+                const next = document.body.classList.contains("dark-mode")
+                    ? "light"
+                    : "dark";
+                setTheme(next);
+            });
+        })();
     </script>
 
     <!-- =========================
          BURGER MENU SCRIPT
          ========================= -->
     <script>
-      (function () {
-        const navToggle = document.getElementById("navToggle");
-        const mainNav = document.getElementById("mainNav");
+        (function () {
+            const navToggle = document.getElementById("navToggle");
+            const mainNav = document.getElementById("mainNav");
 
-        if (!navToggle || !mainNav) return;
+            if (!navToggle || !mainNav) return;
 
-        navToggle.addEventListener("click", function () {
-          document.body.classList.toggle("nav-open");
-        });
+            navToggle.addEventListener("click", function () {
+                const isOpen = document.body.classList.toggle("nav-open");
+                navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
 
-        mainNav.querySelectorAll("a").forEach(link => {
-          link.addEventListener("click", () => {
-            document.body.classList.remove("nav-open");
-          });
-        });
+            // Close menu on link click (mobile)
+            mainNav.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    document.body.classList.remove("nav-open");
+                    navToggle.setAttribute("aria-expanded", "false");
+                });
+            });
 
-        window.addEventListener("resize", () => {
-          if (window.innerWidth > 900) {
-            document.body.classList.remove("nav-open");
-          }
-        });
-      })();
+            // Reset state on resize
+            window.addEventListener("resize", () => {
+                if (window.innerWidth > 900) {
+                    document.body.classList.remove("nav-open");
+                    navToggle.setAttribute("aria-expanded", "false");
+                }
+            });
+        })();
     </script>
 </body>
 </html>
