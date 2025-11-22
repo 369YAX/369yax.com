@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <!-- Бургер-кнопка (мобільна навігація) -->
+            <!-- Burger button (mobile) -->
             <button
                 class="nav-toggle"
                 id="navToggle"
@@ -36,7 +36,7 @@
                 <span></span>
             </button>
 
-            <!-- Навігація -->
+            <!-- Navigation -->
             <nav class="main-nav" id="mainNav">
                 <a href="#services" data-i18n="nav_services">Services</a>
                 <a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a>
@@ -45,7 +45,7 @@
                 <a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a>
             </nav>
 
-            <!-- Мови + тема -->
+            <!-- Language + theme -->
             <div class="header-controls">
                 <div class="links-grid">
                     <button class="link-pill lang-btn" data-lang="en" type="button">EN</button>
@@ -89,7 +89,24 @@
                         <span data-i18n="hero_tag_3">SolidWorks automation &amp; macros</span>
                     </div>
                 </div>
+
+                <!-- HERO CARD WITH TWO PHOTOS -->
                 <div class="hero-card">
+                    <div class="hero-photos">
+                        <div class="hero-photo-frame hero-photo-main">
+                            <img
+                                src="img/vitalii-portrait.jpg"
+                                alt="Vitalii Borys – mechanical designer 369YAX"
+                            />
+                        </div>
+                        <div class="hero-photo-frame hero-photo-workshop">
+                            <img
+                                src="img/vitalii-workshop.jpg"
+                                alt="Vitalii Borys cutting a steel tube in the workshop"
+                            />
+                        </div>
+                    </div>
+
                     <h2 data-i18n="hero_card_title">What you get with 369YAX</h2>
                     <ul>
                         <li data-i18n="hero_card_li_1">3D models (SolidWorks, STEP)</li>
@@ -542,7 +559,7 @@
                 portfolio_item1_tag: "Scale a chiocciola",
 
                 portfolio_item2_title: "Mensola inox formato A4",
-                portfolio_item2_text: "Mensola minimalista in lamiera inox per taglio laser e piega, ottimizzata per una produzione pulita con disegni chiari, sviluppi e tutti i dettagli di fissaggio preparati.",
+                portfolio_item2_text: "Mensola minimalista in lamiera inox per taglio laser e piega, ottimizzata per una produzione pulita con disegни chiari, sviluppi e tutti i dettagli di fissaggio preparati.",
                 portfolio_item2_tag: "Lamiera",
 
                 portfolio_item3_title: "Telaio di supporto industriale",
@@ -752,7 +769,7 @@
             });
         });
 
-        // Default language (з урахуванням попереднього вибору)
+        // Default language with saved value
         (function () {
             let savedLang = "en";
             try {
@@ -856,5 +873,3 @@
     </script>
 </body>
 </html>
-
-
