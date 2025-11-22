@@ -4,15 +4,847 @@
     <meta charset="UTF-8" />
     <title>369YAX – Automation &amp; Design | Vitalii Borys</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="369YAX – Automation & Design by Vitalii Borys. Production-ready design for spiral stairs, sheet metal, welded steel structures and SolidWorks automation. Deliverables: 3D models, drawings, DXF, STEP, BOM." />
+    <meta
+        name="description"
+        content="369YAX – Automation & Design by Vitalii Borys. Production-ready design for spiral stairs, sheet metal, welded steel structures and SolidWorks automation. Deliverables: 3D models, drawings, DXF, STEP, BOM."
+    />
 
     <!-- Open Graph / Social -->
     <meta property="og:title" content="369YAX – Automation &amp; Design | Vitalii Borys" />
-    <meta property="og:description" content="Mechanical design, spiral stairs, sheet metal, welded frames and SolidWorks automation with real workshop experience." />
+    <meta
+        property="og:description"
+        content="Mechanical design, spiral stairs, sheet metal, welded frames and SolidWorks automation with real workshop experience."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://369yax.com" />
 
-    <link rel="stylesheet" href="styles.css" />
+    <!-- =========================
+         INLINE CSS (ALL-IN-ONE)
+         ========================= -->
+    <style>
+        /* ==========
+           RESET / BASE
+           ========== */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ==========
+           COLOR SYSTEM – LIGHT THEME (DEFAULT)
+           ========== */
+
+        :root {
+            --bg-main: #ffffff;
+            --bg-alt: #f5f5f7;
+            --card-bg: #ffffff;
+            --border-soft: #d0d3dd;
+            --accent: #d60000;
+            --accent-soft: rgba(214, 0, 0, 0.1);
+            --text-main: #111111;
+            --text-muted: #5f6470;
+            --pill-bg: #f0f1f5;
+            --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.08);
+            --radius-lg: 18px;
+            --radius-pill: 999px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        /* Utility containers */
+
+        .container {
+            width: min(1120px, 100% - 32px);
+            margin-inline: auto;
+        }
+
+        .section {
+            padding: 80px 0;
+            background: var(--bg-main);
+        }
+
+        .section-alt {
+            background: var(--bg-alt);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            max-width: 620px;
+            margin-bottom: 32px;
+        }
+
+        /* ==========
+           HEADER
+           ========== */
+
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(12px);
+        }
+
+        .top-bar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            gap: 16px;
+        }
+
+        /* Logo */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-hex {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 0, #ff3b3b, #931010);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 25px rgba(214, 0, 0, 0.4);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo-main {
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Nav (desktop) */
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 0.9rem;
+        }
+
+        .main-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 999px;
+            transition: color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+        }
+
+        .main-nav a:hover {
+            color: #000000;
+            background: rgba(0, 0, 0, 0.04);
+            transform: translateY(-1px);
+        }
+
+        .main-nav .nav-cta {
+            border: 1px solid rgba(214, 0, 0, 0.8);
+            color: #ffffff;
+            background: linear-gradient(135deg, #ff3b3b, #a01010);
+        }
+
+        /* Header right controls (lang + theme) */
+
+        .header-controls {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .link-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            background: var(--pill-bg);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: background 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .link-pill:hover {
+            background: rgba(214, 0, 0, 0.08);
+            border-color: rgba(214, 0, 0, 0.7);
+            transform: translateY(-1px);
+        }
+
+        .theme-toggle {
+            min-width: 42px;
+            text-align: center;
+            padding-inline: 10px;
+        }
+
+        /* ==========
+           BURGER (MOBILE NAV TOGGLE)
+           ========== */
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--text-main);
+            transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-toggle span + span {
+            margin-top: 4px;
+        }
+
+        /* Transform burger into "X" when menu is open */
+
+        body.nav-open .nav-toggle span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        body.nav-open .nav-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        body.nav-open .nav-toggle span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        body.dark-mode .nav-toggle span {
+            background: #f5f5f5;
+        }
+
+        /* ==========
+           HERO
+           ========== */
+
+        .hero {
+            padding: 72px 0 64px;
+            background: var(--bg-main);
+        }
+
+        .hero-inner {
+            display: grid;
+            gap: 32px;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.2rem, 3vw, 2.8rem);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .accent {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            color: var(--text-muted);
+            max-width: 640px;
+            margin-bottom: 22px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            border-radius: var(--radius-pill);
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition:
+                background 0.2s ease,
+                transform 0.1s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, #ff3b3b, #a01010);
+            color: #ffffff;
+            box-shadow: 0 10px 26px rgba(214, 0, 0, 0.35);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 40px rgba(214, 0, 0, 0.5);
+        }
+
+        .btn.ghost {
+            border-color: rgba(0, 0, 0, 0.15);
+            color: #111111;
+            background: transparent;
+        }
+
+        .btn.ghost:hover {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .hero-tags span {
+            border-radius: var(--radius-pill);
+            padding: 6px 12px;
+            background: #f0f0f3;
+        }
+
+        /* ==========
+           HERO CARD + PHOTOS (STABLE VERSION)
+           ========== */
+
+        .hero-card {
+            background: #f9f9fb;
+            border-radius: 22px;
+            padding: 22px 20px 18px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+            border-color: rgba(214, 0, 0, 0.65);
+        }
+
+        .hero-photos {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            max-width: 420px;
+            margin-bottom: 16px;
+        }
+
+        .hero-photo-frame {
+            position: absolute;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #000;
+            border: 1px solid rgba(214, 0, 0, 0.6);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+            transition: box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .hero-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* показує всю фотку, не ріже */
+            object-position: center;
+            display: block;
+            background: #000;
+        }
+
+        .hero-photo-main {
+            width: 58%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        .hero-photo-workshop {
+            width: 52%;
+            height: 72%;
+            right: 0;
+            bottom: 0;
+            transform: translateY(8px);
+        }
+
+        /* Легкий ефект тільки по тіні (без руху фото) */
+
+        .hero-card:hover .hero-photo-frame {
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero-card h2 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-card ul {
+            list-style: none;
+            margin-bottom: 12px;
+        }
+
+        .hero-card li {
+            font-size: 0.9rem;
+            padding: 4px 0;
+            color: var(--text-muted);
+        }
+
+        .hero-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            padding-top: 8px;
+            margin-top: 6px;
+        }
+
+        /* ==========
+           CARDS (SERVICES & MACROS)
+           ========== */
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 18px 18px 16px;
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .card-list {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        .card-list li {
+            padding-left: 12px;
+            position: relative;
+            margin-bottom: 5px;
+        }
+
+        .card-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent);
+        }
+
+        /* ==========
+           PORTFOLIO
+           ========== */
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px 14px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .portfolio-item h3 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .portfolio-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 0.75rem;
+            background: var(--accent-soft);
+            color: #b01010;
+        }
+
+        /* ==========
+           ABOUT
+           ========== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+            gap: 24px;
+        }
+
+        .about-list {
+            list-style: none;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
+        .about-list li {
+            margin-bottom: 6px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .about-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        .about-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px 14px;
+        }
+
+        /* ==========
+           CONTACT
+           ========== */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+            gap: 24px;
+        }
+
+        .contact-line a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(214, 0, 0, 0.5);
+        }
+
+        .contact-line a:hover {
+            border-bottom-color: #000000;
+        }
+
+        .contact-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        .contact-note.small {
+            font-size: 0.8rem;
+        }
+
+        .contact-form {
+            margin-top: 24px;
+            background: var(--card-bg);
+            padding: 18px 18px 16px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
+        }
+
+        .contact-form .form-row {
+            margin-bottom: 16px;
+        }
+
+        .contact-form label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            margin-top: 6px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #c6cad6;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            background: #ffffff;
+            color: #111111;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* ==========
+           FOOTER
+           ========== */
+
+        .site-footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            background: #f7f7fa;
+            padding: 14px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========
+           RESPONSIVE
+           ========== */
+
+        @media (max-width: 900px) {
+            .hero-inner,
+            .cards-grid,
+            .portfolio-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-inner {
+                padding-top: 8px;
+            }
+
+            .hero-card {
+                order: -1;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            .top-bar-inner {
+                gap: 10px;
+            }
+
+            .header-controls {
+                gap: 6px;
+            }
+
+            .main-nav {
+                position: fixed;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background: var(--bg-main);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                display: flex;
+                flex-direction: column;
+                padding: 12px 16px 16px;
+                gap: 4px;
+                transform: translateY(-120%);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 0.2s ease, opacity 0.2s ease;
+                z-index: 40;
+            }
+
+            body.nav-open .main-nav {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .main-nav a {
+                padding: 10px 12px;
+                border-radius: 8px;
+            }
+
+            .main-nav .nav-cta {
+                text-align: center;
+                margin-top: 6px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 4px;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-photos {
+                max-width: 100%;
+                aspect-ratio: 4 / 3;
+                margin-bottom: 14px;
+            }
+
+            .hero-photo-main {
+                width: 62%;
+            }
+
+            .hero-photo-workshop {
+                width: 56%;
+                height: 72%;
+            }
+        }
+
+        /* ==========
+           DARK MODE – RED STEEL STYLE
+           ========== */
+
+        body.dark-mode {
+            --bg-main: #07080b;
+            --bg-alt: #0d0f14;
+            --card-bg: #11141b;
+            --border-soft: #272b36;
+            --accent: #d60000;
+            --accent-soft: rgba(214, 0, 0, 0.12);
+            --text-main: #f5f5f5;
+            --text-muted: #a4a8b3;
+            --pill-bg: #181b24;
+            --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
+
+            background: radial-gradient(circle at top, #161923 0, #05060a 55%, #020308 100%);
+            color: var(--text-main);
+        }
+
+        body.dark-mode .top-bar {
+            background: linear-gradient(to bottom, rgba(5, 6, 10, 0.96), rgba(5, 6, 10, 0.85));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        body.dark-mode .hero {
+            background: transparent;
+        }
+
+        body.dark-mode .section {
+            background: transparent;
+        }
+
+        body.dark-mode .section-alt {
+            background: var(--bg-alt);
+        }
+
+        body.dark-mode .site-footer {
+            background: #05060a;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        body.dark-mode .main-nav a {
+            color: var(--text-muted);
+        }
+
+        body.dark-mode .main-nav a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        body.dark-mode .main-nav .nav-cta {
+            border-color: rgba(214, 0, 0, 0.7);
+        }
+
+        body.dark-mode .hero-tags span {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        body.dark-mode .hero-card {
+            background: radial-gradient(circle at top, #202331, #10121a 60%);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        body.dark-mode .link-pill {
+            background: var(--pill-bg);
+            color: var(--text-main);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        body.dark-mode .link-pill:hover {
+            background: rgba(214, 0, 0, 0.18);
+            border-color: rgba(214, 0, 0, 0.7);
+        }
+
+        body.dark-mode .contact-form input,
+        body.dark-mode .contact-form textarea {
+            background: #05060a;
+            border-color: #272b36;
+            color: #f5f5f5;
+        }
+    </style>
 </head>
 <body>
     <!-- =========================
@@ -104,12 +936,12 @@
                     <div class="hero-photos">
                         <div class="hero-photo-frame hero-photo-main">
                             <img
-                                src="https://raw.githubusercontent.com/369YAX/369YAX-photos/main/vitalii-portrait.jpg"
+                                src="https://raw.githubusercontent.com/369YAX/369YAX-photos/refs/heads/main/vitalii-portrait.jpg"
                                 alt="Vitalii Borys – mechanical designer 369YAX" />
                         </div>
                         <div class="hero-photo-frame hero-photo-workshop">
                             <img
-                                src="https://raw.githubusercontent.com/369YAX/369YAX-photos/main/vitalii-workshop.jpg"
+                                src="https://raw.githubusercontent.com/369YAX/369YAX-photos/refs/heads/main/vitalii-workshop.jpg"
                                 alt="Vitalii Borys cutting a steel tube in the workshop" />
                         </div>
                     </div>
@@ -357,8 +1189,16 @@
                         <div class="links-grid">
                             <a href="https://www.fiverr.com/s/8z807R4" target="_blank" rel="noopener" class="link-pill">Fiverr</a>
                             <a href="https://www.upwork.com/freelancers/~01c409c24cf51377c9?mp_source=share" target="_blank" rel="noopener" class="link-pill">Upwork</a>
-                            <a href="https://www.addlance.com/profili/vitaliiborys/ingegneri/udine/MTA1NjQw" target="_blank" rel="noopener" class="link-pill">Addlance</a>
-                            <a href="https://www.linkedin.com/in/vitalii-borys-01a51b2a8/" target="_blank" rel="noopener" class="link-pill">LinkedIn</a>
+                            <a
+                                href="https://www.addlance.com/profili/vitaliiborys/ingegneri/udine/MTA1NjQw"
+                                target="_blank"
+                                rel="noopener"
+                                class="link-pill">Addlance</a>
+                            <a
+                                href="https://www.linkedin.com/in/vitalii-borys-01a51b2a8/"
+                                target="_blank"
+                                rel="noopener"
+                                class="link-pill">LinkedIn</a>
                         </div>
                         <p class="contact-note small" data-i18n="contact_platforms_note">
                             You can also contact me directly via freelance platforms –
@@ -456,46 +1296,56 @@
                 services_card3_li_3: "Project libraries and property automation",
 
                 portfolio_title: "Selected projects",
-                portfolio_subtitle: "A few examples of how I combine SolidWorks, standards and real metalworking experience. More detailed references available on request.",
+                portfolio_subtitle:
+                    "A few examples of how I combine SolidWorks, standards and real metalworking experience. More detailed references available on request.",
                 portfolio_item1_title: "Indoor spiral staircase – compliant configuration",
-                portfolio_item1_text: "Parametric spiral stair designed around local regulations with checked walkline, headroom and comfortable riser/tread combination. Deliverables included complete 3D model, production drawings, DXF for laser cutting and detailed BOM.",
+                portfolio_item1_text:
+                    "Parametric spiral stair designed around local regulations with checked walkline, headroom and comfortable riser/tread combination. Deliverables included complete 3D model, production drawings, DXF for laser cutting and detailed BOM.",
                 portfolio_item1_tag: "Spiral stairs",
 
                 portfolio_item2_title: "Stainless steel A4 shelf",
-                portfolio_item2_text: "Minimalistic sheet metal shelf for laser cutting and bending, optimized for clean manufacturing with clear drawings, flat patterns and all fixing details prepared.",
+                portfolio_item2_text:
+                    "Minimalistic sheet metal shelf for laser cutting and bending, optimized for clean manufacturing with clear drawings, flat patterns and all fixing details prepared.",
                 portfolio_item2_tag: "Sheet metal",
 
                 portfolio_item3_title: "Industrial support frame",
-                portfolio_item3_text: "Welded steel frame with correctly dimensioned profiles, connection details and workshop-ready drawings including cut lists, welding notes and assembly views.",
+                portfolio_item3_text:
+                    "Welded steel frame with correctly dimensioned profiles, connection details and workshop-ready drawings including cut lists, welding notes and assembly views.",
                 portfolio_item3_tag: "Welded structure",
 
                 portfolio_item4_title: "Custom automation tools – 369YAX macros",
-                portfolio_item4_text: "Internal macro pack for SolidWorks: automatic creation of parts and drawings, project property population, BOM export and standard note libraries used daily to accelerate design work.",
+                portfolio_item4_text:
+                    "Internal macro pack for SolidWorks: automatic creation of parts and drawings, project property population, BOM export and standard note libraries used daily to accelerate design work.",
                 portfolio_item4_tag: "Automation",
 
                 macros_title: "369YAX – SolidWorks automation",
-                macros_subtitle: "A growing ecosystem of custom tools built around real daily needs in SolidWorks: parts, drawings, BOM, standards and project management.",
+                macros_subtitle:
+                    "A growing ecosystem of custom tools built around real daily needs in SolidWorks: parts, drawings, BOM, standards and project management.",
                 macros_card1_title: "IntelliPack / project tools",
-                macros_card1_text: "Tools for organizing project structure, standardizing naming and automating repetitive actions related to drawings and BOM export.",
+                macros_card1_text:
+                    "Tools for organizing project structure, standardizing naming and automating repetitive actions related to drawings and BOM export.",
                 macros_card1_li_1: "Automatic creation of project folders and files",
                 macros_card1_li_2: "Batch update of model properties",
                 macros_card1_li_3: "Smart export of BOM and cut lists",
 
                 macros_card2_title: "IntelliStandards &amp; note libraries",
-                macros_card2_text: "Macro-driven libraries of technical notes, welding symbols and standard texts aligned with ISO/UNI/EN practices, ready to drop into your drawings.",
+                macros_card2_text:
+                    "Macro-driven libraries of technical notes, welding symbols and standard texts aligned with ISO/UNI/EN practices, ready to drop into your drawings.",
                 macros_card2_li_1: "Bilingual notes (IT / EN, and more when needed)",
                 macros_card2_li_2: "Standardized welding and tolerance notes",
                 macros_card2_li_3: "Fast insertion into SolidWorks drawings",
 
                 macros_card3_title: "Stair generators",
-                macros_card3_text: "Dedicated tools to assist with spiral and straight stair configuration, checking comfort and key parameters against selected standards.",
+                macros_card3_text:
+                    "Dedicated tools to assist with spiral and straight stair configuration, checking comfort and key parameters against selected standards.",
                 macros_card3_li_1: "Parametric spiral stair configurations",
                 macros_card3_li_2: "Support for EU / US / AU rulesets",
                 macros_card3_li_3: "Export-ready geometry for further detailing",
 
                 about_title: "About 369YAX &amp; Vitalii",
                 about_subtitle: "Mechanical design with real workshop background – not just “nice CAD pictures”.",
-                about_text: "I’m <strong>Vitalii Borys</strong>, mechanical designer and SolidWorks power-user based in Italy, working under the brand <strong>369YAX – Automation &amp; Design</strong>. Before focusing on design and automation, I spent years directly in metal fabrication environments, which strongly influences the way I model and document projects.",
+                about_text:
+                    "I’m <strong>Vitalii Borys</strong>, mechanical designer and SolidWorks power-user based in Italy, working under the brand <strong>369YAX – Automation &amp; Design</strong>. Before focusing on design and automation, I spent years directly in metal fabrication environments, which strongly influences the way I model and document projects.",
                 about_li_1: "8+ years in metalworking (bending, rolling, MIG/MAG welding, TRUMPF laser)",
                 about_li_2: "3+ years professional SolidWorks work (Italian version, 3D &amp; drawings)",
                 about_li_3: "Experience in Italian companies: Metalinox, Gortani, OFFMA",
@@ -510,13 +1360,16 @@
                 about_box_li_5: "Communicate in English, Italian or Ukrainian as you prefer",
 
                 contact_title: "Let’s work together",
-                contact_subtitle: "Tell me a bit about your project – stairs, sheet metal, welded frame or SolidWorks automation – and I’ll come back with a clear, practical way to move forward.",
+                contact_subtitle:
+                    "Tell me a bit about your project – stairs, sheet metal, welded frame or SolidWorks automation – and I’ll come back with a clear, practical way to move forward.",
                 contact_direct_title: "Direct contact",
                 contact_email_label: "Email:",
                 contact_location: "Location: Italy · Working remotely worldwide",
-                contact_note: "For a faster start, please include: project type (stairs, frame, sheet metal, macro), approximate dimensions, material, and what deliverables you need (3D, drawings, DXF, STEP, BOM).",
+                contact_note:
+                    "For a faster start, please include: project type (stairs, frame, sheet metal, macro), approximate dimensions, material, and what deliverables you need (3D, drawings, DXF, STEP, BOM).",
                 contact_platforms_title: "Freelance platforms",
-                contact_platforms_note: 'You can also contact me directly via freelance platforms – just search for <strong>“369YAX”</strong> and send a short description of your idea.',
+                contact_platforms_note:
+                    'You can also contact me directly via freelance platforms – just search for <strong>“369YAX”</strong> and send a short description of your idea.',
 
                 contact_form_title: "Contact form",
                 contact_form_name_label: "Your name",
@@ -524,7 +1377,8 @@
                 contact_form_subject_label: "Project type / subject",
                 contact_form_message_label: "Project details",
                 contact_form_submit: "Send message",
-                contact_form_hint: "The form will open your email client with a pre-filled message to 369yax@gmail.com – you can review and send it.",
+                contact_form_hint:
+                    "The form will open your email client with a pre-filled message to 369yax@gmail.com – you can review and send it.",
 
                 footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys",
                 footer_right: "SolidWorks · Metal structures · Spiral stairs · Automation"
@@ -538,7 +1392,8 @@
                 nav_contact: "Contatti",
 
                 hero_title: 'Progettazione pronta per la produzione<br /><span class="accent">strutture metalliche e scale</span>',
-                hero_sub: 'Sono <strong>Vitalii Borys</strong>, disegnatore meccanico con base in Italia. Con il marchio <strong>369YAX – Automation &amp; Design</strong> aiuto officine e aziende metalmeccaniche a trasformare idee in <strong>modelli SolidWorks, disegni, DXF, STEP e distinte materiali</strong> pronti per la produzione reale – con un forte focus su scale a chiocciola, carpenteria e lamiera.',
+                hero_sub:
+                    'Sono <strong>Vitalii Borys</strong>, disegnatore meccanico con base in Italia. Con il marchio <strong>369YAX – Automation &amp; Design</strong> aiuto officine e aziende metalmeccaniche a trasformare idee in <strong>modelli SolidWorks, disegni, DXF, STEP e distinte materiali</strong> pronti per la produzione reale – con un forte focus su scale a chiocciola, carpenteria e lamiera.',
                 hero_btn_primary: "Inviami il tuo progetto",
                 hero_btn_secondary: "Guarda il portfolio",
                 hero_tag_1: "Scale a chiocciola (EU / US / AU)",
@@ -553,67 +1408,82 @@
                 hero_note: "Con base in Italia · Lavoro da remoto · Inglese / Italiano / Ucraino",
 
                 services_title: "Servizi",
-                services_subtitle: "Progettazione pratica, orientata all’officina, con attenzione a producibilità, norme e documentazione chiara.",
+                services_subtitle:
+                    "Progettazione pratica, orientata all’officina, con attenzione a producibilità, norme e documentazione chiara.",
                 services_card1_title: "Scale a chiocciola e scale rettilinee",
-                services_card1_text: "Progettazione di scale a chiocciola e scale rettilinee con verifica rispetto alle normative (EU / UK, US, AU), geometria chiara e comfort di utilizzo.",
+                services_card1_text:
+                    "Progettazione di scale a chiocciola e scale rettilinee con verifica rispetto alle normative (EU / UK, US, AU), geometria chiara e comfort di utilizzo.",
                 services_card1_li_1: "Scale a chiocciola con controllo linea di cammino e headroom",
                 services_card1_li_2: "Scale dritte, pianerottoli, parapetti e corrimano",
                 services_card1_li_3: "Pacchetto completo: modello 3D, disegni, DXF, BOM",
 
                 services_card2_title: "Lamiera e carpenteria metallica",
-                services_card2_text: "Progettazione e ottimizzazione di particolari in lamiera, elementi inox, telai e staffe industriali pronti per TRUMPF laser e piegatura.",
+                services_card2_text:
+                    "Progettazione e ottimizzazione di particolari in lamiera, elementi inox, telai e staffe industriali pronti per TRUMPF laser e piegatura.",
                 services_card2_li_1: "Sviluppi (DXF, DWG) con corretta compensazione di piega",
                 services_card2_li_2: "Telai saldati, piattaforme, staffe e supporti",
                 services_card2_li_3: "Simboli di saldatura, note e liste di taglio per l’officina",
 
                 services_card3_title: "Automazione e macro SolidWorks",
-                services_card3_text: "Strumenti personalizzati nell’ecosistema 369YAX per velocizzare il lavoro ripetitivo e standardizzare modelli e disegni.",
+                services_card3_text:
+                    "Strumenti personalizzati nell’ecosistema 369YAX per velocizzare il lavoro ripetitivo e standardizzare modelli e disegni.",
                 services_card3_li_1: "Creazione automatica di parti e disegni da template",
                 services_card3_li_2: "Esportazione distinta e liste di taglio in Excel",
                 services_card3_li_3: "Librerie di progetto e automatismi sulle proprietà",
 
                 portfolio_title: "Progetti selezionati",
-                portfolio_subtitle: "Alcuni esempi di come unisco SolidWorks, normative e esperienza reale in officina. Altri riferimenti disponibili su richiesta.",
+                portfolio_subtitle:
+                    "Alcuni esempi di come unisco SolidWorks, normative e esperienza reale in officina. Altri riferimenti disponibili su richiesta.",
                 portfolio_item1_title: "Scala a chiocciola interna – configurazione a norma",
-                portfolio_item1_text: "Scala a chiocciola parametrica progettata sulle normative locali, con controllo di linea di cammino, headroom e combinazione alzata/pedata confortevole. Inclusi modello 3D completo, disegni costruttivi, DXF per taglio laser e distinta dettagliata.",
+                portfolio_item1_text:
+                    "Scala a chiocciola parametrica progettata sulle normative locali, con controllo di linea di cammino, headroom e combinazione alzata/pedata confortevole. Inclusi modello 3D completo, disegni costruttivi, DXF per taglio laser e distinta dettagliata.",
                 portfolio_item1_tag: "Scale a chiocciola",
 
                 portfolio_item2_title: "Mensola inox formato A4",
-                portfolio_item2_text: "Mensola minimalista in lamiera inox per taglio laser e piega, ottimizzata per una produzione pulita con disegni chiari, sviluppi e tutti i dettagli di fissaggio preparati.",
+                portfolio_item2_text:
+                    "Mensola minimalista in lamiera inox per taglio laser e piega, ottimizzata per una produzione pulita con disegni chiari, sviluppi e tutti i dettagli di fissaggio preparati.",
                 portfolio_item2_tag: "Lamiera",
 
                 portfolio_item3_title: "Telaio di supporto industriale",
-                portfolio_item3_text: "Telaio saldato in acciaio con profili correttamente dimensionati, dettagli di collegamento e disegni da officina completi di liste di taglio, note di saldatura e viste di montaggio.",
+                portfolio_item3_text:
+                    "Telaio saldato in acciaio con profili correttamente dimensionati, dettagli di collegamento e disegni da officina completi di liste di taglio, note di saldatura e viste di montaggio.",
                 portfolio_item3_tag: "Carpenteria saldata",
 
                 portfolio_item4_title: "Strumenti di automazione – macro 369YAX",
-                portfolio_item4_text: "Pacchetto interno di macro per SolidWorks: creazione automatica di parti e disegni, compilazione proprietà di progetto, esportazione BOM e librerie di note standard usate quotidianamente.",
+                portfolio_item4_text:
+                    "Pacchetto interno di macro per SolidWorks: creazione automatica di parti e disegni, compilazione proprietà di progetto, esportazione BOM e librerie di note standard usate quotidianamente.",
                 portfolio_item4_tag: "Automazione",
 
                 macros_title: "369YAX – Automazione per SolidWorks",
-                macros_subtitle: "Un ecosistema in crescita di strumenti personalizzati costruiti su esigenze reali di lavoro in SolidWorks: parti, disegni, distinte, norme e gestione commesse.",
+                macros_subtitle:
+                    "Un ecosistema in crescita di strumenti personalizzati costruiti su esigenze reali di lavoro in SolidWorks: parti, disegni, distinte, norme e gestione commesse.",
                 macros_card1_title: "IntelliPack / strumenti di commessa",
-                macros_card1_text: "Strumenti per organizzare la struttura delle commesse, standardizzare le denominazioni e automatizzare azioni ripetitive legate a disegni e distinte.",
+                macros_card1_text:
+                    "Strumenti per organizzare la struttura delle commesse, standardizzare le denominazioni e automatizzare azioni ripetitive legate a disegni e distinte.",
                 macros_card1_li_1: "Creazione automatica di cartelle e file di commessa",
                 macros_card1_li_2: "Aggiornamento massivo delle proprietà dei modelli",
                 macros_card1_li_3: "Esportazione intelligente di distinte e liste di taglio",
 
                 macros_card2_title: "IntelliStandards &amp; librerie di note",
-                macros_card2_text: "Librerie guidate da macro per note tecniche, simboli di saldatura e testi standard allineati a ISO/UNI/EN, pronte da inserire nei disegni.",
+                macros_card2_text:
+                    "Librerie guidate da macro per note tecniche, simboli di saldatura e testi standard allineati a ISO/UNI/EN, pronte da inserire nei disegni.",
                 macros_card2_li_1: "Note bilingue (IT / EN, altre su richiesta)",
                 macros_card2_li_2: "Note standardizzate per saldature e tolleranze",
                 macros_card2_li_3: "Inserimento rapido nei disegni SolidWorks",
 
                 macros_card3_title: "Generatori di scale",
-                macros_card3_text: "Strumenti dedicati per assistere nella configurazione di scale a chiocciola e scale rettilinee, con controllo del comfort e dei parametri chiave secondo le norme scelte.",
+                macros_card3_text:
+                    "Strumenti dedicati per assistere nella configurazione di scale a chiocciola e scale rettilinee, con controllo del comfort e dei parametri chiave secondo le norme scelte.",
                 macros_card3_li_1: "Configurazioni parametriche di scale a chiocciola",
                 macros_card3_li_2: "Supporto per set di norme EU / US / AU",
                 macros_card3_li_3: "Geometria pronta per il dettaglio finale",
 
                 about_title: "Chi sono – 369YAX &amp; Vitalii",
                 about_subtitle: "Progettazione meccanica con vera esperienza d’officina – non solo “belle immagini CAD”.",
-                about_text: "Sono <strong>Vitalii Borys</strong>, disegnatore meccanico e power-user SolidWorks con base in Italia, attivo con il marchio <strong>369YAX – Automation &amp; Design</strong>. Prima di concentrarmi sulla progettazione e sull’automazione, ho lavorato per anni direttamente in officina, esperienza che influisce molto sul modo in cui modello e impagino i progetti.",
-                about_li_1: "Oltre 8 anni in lavorazioni metalliche (piegatura, calandratura, saldatura MIG/MAG, laser TRUMPF)",
+                about_text:
+                    "Sono <strong>Vitalii Borys</strong>, disegnatore meccanico e power-user SolidWorks con base in Italia, attivo con il marchio <strong>369YAX – Automation &amp; Design</strong>. Prima di concentrarmi sulla progettazione e sull’automazione, ho lavorato per anni direttamente in officina, esperienza che influisce molto sul modo in cui modello e impagino i progetti.",
+                about_li_1:
+                    "Oltre 8 anni in lavorazioni metalliche (piegatura, calandratura, saldatura MIG/MAG, laser TRUMPF)",
                 about_li_2: "Più di 3 anni di lavoro professionale in SolidWorks (versione italiana, 3D e tavole)",
                 about_li_3: "Esperienza presso aziende italiane: Metalinox, Gortani, OFFMA",
                 about_li_4: "Programmazione TRUMPF BOOST &amp; TruBend per taglio laser e piega",
@@ -627,13 +1497,16 @@
                 about_box_li_5: "Comunicazione in inglese, italiano o ucraino, come preferisci",
 
                 contact_title: "Lavoriamo insieme",
-                contact_subtitle: "Descrivimi brevemente il tuo progetto – scale, lamiera, carpenteria o automazione SolidWorks – e ti proporrò un modo chiaro e concreto per procedere.",
+                contact_subtitle:
+                    "Descrivimi brevemente il tuo progetto – scale, lamiera, carpenteria o automazione SolidWorks – e ti proporrò un modo chiaro e concreto per procedere.",
                 contact_direct_title: "Contatto diretto",
                 contact_email_label: "Email:",
                 contact_location: "Sede: Italia · Lavoro da remoto in tutto il mondo",
-                contact_note: "Per partire più velocemente, indica: tipo di progetto (scala, telaio, lamiera, macro), dimensioni indicative, materiale e quali deliverable ti servono (3D, disegni, DXF, STEP, BOM).",
+                contact_note:
+                    "Per partire più velocemente, indica: tipo di progetto (scala, telaio, lamiera, macro), dimensioni indicative, materiale e quali deliverable ti servono (3D, disegni, DXF, STEP, BOM).",
                 contact_platforms_title: "Piattaforme freelance",
-                contact_platforms_note: 'Puoi contattarmi anche tramite le piattaforme freelance – cerca semplicemente <strong>“369YAX”</strong> e inviami una breve descrizione del tuo progetto.',
+                contact_platforms_note:
+                    'Puoi contattarmi anche tramite le piattaforme freelance – cerca semplicemente <strong>“369YAX”</strong> e inviami una breve descrizione del tuo progetto.',
 
                 contact_form_title: "Modulo di contatto",
                 contact_form_name_label: "Il tuo nome",
@@ -641,7 +1514,8 @@
                 contact_form_subject_label: "Tipo di progetto / oggetto",
                 contact_form_message_label: "Dettagli del progetto",
                 contact_form_submit: "Invia messaggio",
-                contact_form_hint: "Il modulo aprirà il tuo programma di posta con un messaggio già compilato verso 369yax@gmail.com – puoi controllarlo e inviarlo.",
+                contact_form_hint:
+                    "Il modulo aprirà il tuo programma di posta con un messaggio già compilato verso 369yax@gmail.com – puoi controllarlo e inviarlo.",
 
                 footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys",
                 footer_right: "SolidWorks · Carpenteria metallica · Scale a chiocciola · Automazione"
@@ -655,7 +1529,8 @@
                 nav_contact: "Контакти",
 
                 hero_title: 'Конструкційний дизайн для виробництва<br /><span class="accent">металеві конструкції та сходи</span>',
-                hero_sub: 'Я <strong>Віталій Борис</strong>, інженер-конструктор, що живе та працює в Італії. Під брендом <strong>369YAX – Automation &amp; Design</strong> я допомагаю майстерням та виробникам перетворювати ідеї у <strong>3D-моделі SolidWorks, креслення, DXF, STEP та специфікації</strong>, готові до реального виробництва – з акцентом на спіральні сходи, листовий метал та зварні конструкції.',
+                hero_sub:
+                    'Я <strong>Віталій Борис</strong>, інженер-конструктор, що живе та працює в Італії. Під брендом <strong>369YAX – Automation &amp; Design</strong> я допомагаю майстерням та виробникам перетворювати ідеї у <strong>3D-моделі SolidWorks, креслення, DXF, STEP та специфікації</strong>, готові до реального виробництва – з акцентом на спіральні сходи, листовий метал та зварні конструкції.',
                 hero_btn_primary: "Написати щодо проєкту",
                 hero_btn_secondary: "Переглянути портфоліо",
                 hero_tag_1: "Спіральні сходи (EU / US / AU)",
@@ -670,67 +1545,83 @@
                 hero_note: "Базуюсь в Італії · Працюю віддалено · Англійська / Італійська / Українська",
 
                 services_title: "Послуги",
-                services_subtitle: "Практичний інженерний дизайн з орієнтацією на цех: технологічність, норми та зрозуміла документація.",
+                services_subtitle:
+                    "Практичний інженерний дизайн з орієнтацією на цех: технологічність, норми та зрозуміла документація.",
                 services_card1_title: "Проєктування спіральних та прямих сходів",
-                services_card1_text: "Проєктування спіральних та прямих сходів з урахуванням норм (EU / UK, US, AU), чіткою геометрією та комфортом користування.",
+                services_card1_text:
+                    "Проєктування спіральних та прямих сходів з урахуванням норм (EU / UK, US, AU), чіткою геометрією та комфортом користування.",
                 services_card1_li_1: "Спіральні сходи з контролем лінії ходу та висоти проходу",
                 services_card1_li_2: "Прямі сходи, площадки, поручні та огородження",
                 services_card1_li_3: "Повний пакет: 3D-модель, креслення, DXF, специфікація",
 
                 services_card2_title: "Листовий метал та зварні конструкції",
-                services_card2_text: "Розробка та оптимізація деталей з листового металу, нержавіючих елементів, рам та кронштейнів, готових до TRUMPF-різки та гнуття.",
+                services_card2_text:
+                    "Розробка та оптимізація деталей з листового металу, нержавіючих елементів, рам та кронштейнів, готових до TRUMPF-різки та гнуття.",
                 services_card2_li_1: "Розгортки (DXF, DWG) з коректними припусками на згин",
                 services_card2_li_2: "Зварні рами, платформи, кронштейни та опори",
                 services_card2_li_3: "Умовні позначення зварних швів, примітки та карти різу для цеху",
 
                 services_card3_title: "Автоматизація та макроси SolidWorks",
-                services_card3_text: "Кастомні інструменти в екосистемі 369YAX для прискорення рутини та стандартизації моделей і креслень.",
+                services_card3_text:
+                    "Кастомні інструменти в екосистемі 369YAX для прискорення рутини та стандартизації моделей і креслень.",
                 services_card3_li_1: "Автоматичне створення деталей і креслень із шаблонів",
                 services_card3_li_2: "Експорт специфікацій та карт різу в Excel",
                 services_card3_li_3: "Бібліотеки проєктів та автоматичне заповнення властивостей",
 
                 portfolio_title: "Обрані проєкти",
-                portfolio_subtitle: "Кілька прикладів того, як я поєдную SolidWorks, норми та реальний досвід роботи з металом. Детальніші кейси – за запитом.",
+                portfolio_subtitle:
+                    "Кілька прикладів того, як я поєдную SolidWorks, норми та реальний досвід роботи з металом. Детальніші кейси – за запитом.",
                 portfolio_item1_title: "Внутрішні спіральні сходи – конфігурація за нормами",
-                portfolio_item1_text: "Параметричні спіральні сходи, спроєктовані згідно з локальними нормами, з перевіреною лінією ходу, висотою проходу та комфортною комбінацією підйому/проступу. Включено повну 3D-модель, креслення, DXF-файли для лазерної різки та специфікацію.",
+                portfolio_item1_text:
+                    "Параметричні спіральні сходи, спроєктовані згідно з локальними нормами, з перевіреною лінією ходу, висотою проходу та комфортною комбінацією підйому/проступу. Включено повну 3D-модель, креслення, DXF-файли для лазерної різки та специфікацію.",
                 portfolio_item1_tag: "Спіральні сходи",
 
                 portfolio_item2_title: "Полиця з нержавіючої сталі формату A4",
-                portfolio_item2_text: "Мінімалістична полиця з листового металу для лазерної різки та гнуття, оптимізована під просте виготовлення з чіткими кресленнями, розгортками та продуманими кріпленнями.",
+                portfolio_item2_text:
+                    "Мінімалістична полиця з листового металу для лазерної різки та гнуття, оптимізована під просте виготовлення з чіткими кресленнями, розгортками та продуманими кріпленнями.",
                 portfolio_item2_tag: "Листовий метал",
 
                 portfolio_item3_title: "Промислова опорна рама",
-                portfolio_item3_text: "Зварна сталева рама з правильно підібраними профілями, вузлами з’єднання та кресленнями для цеху – з відомістю деталей, примітками по зварюванню та монтажними видами.",
+                portfolio_item3_text:
+                    "Зварна сталева рама з правильно підібраними профілями, вузлами з’єднання та кресленнями для цеху – з відомістю деталей, примітками по зварюванню та монтажними видами.",
                 portfolio_item3_tag: "Зварна конструкція",
 
                 portfolio_item4_title: "Інструменти автоматизації – макроси 369YAX",
-                portfolio_item4_text: "Внутрішній пакет макросів для SolidWorks: автоматичне створення моделей і креслень, заповнення властивостей проєкту, експорт специфікацій та бібліотеки стандартних приміток, які використовуються щодня.",
+                portfolio_item4_text:
+                    "Внутрішній пакет макросів для SolidWorks: автоматичне створення моделей і креслень, заповнення властивостей проєкту, експорт специфікацій та бібліотеки стандартних приміток, які використовуються щодня.",
                 portfolio_item4_tag: "Автоматизація",
 
                 macros_title: "369YAX – Автоматизація для SolidWorks",
-                macros_subtitle: "Екосистема власних інструментів, побудована на реальних щоденних задачах у SolidWorks: моделі, креслення, специфікації, норми та керування проєктами.",
+                macros_subtitle:
+                    "Екосистема власних інструментів, побудована на реальних щоденних задачах у SolidWorks: моделі, креслення, специфікації, норми та керування проєктами.",
                 macros_card1_title: "IntelliPack / інструменти для комісій",
-                macros_card1_text: "Інструменти для організації структури проєкту, стандартизації назв та автоматизації повторюваних дій, пов’язаних із кресленнями та специфікаціями.",
+                macros_card1_text:
+                    "Інструменти для організації структури проєкту, стандартизації назв та автоматизації повторюваних дій, пов’язаних із кресленнями та специфікаціями.",
                 macros_card1_li_1: "Автоматичне створення папок і файлів проєкту",
                 macros_card1_li_2: "Масове оновлення властивостей моделей",
                 macros_card1_li_3: "Розумний експорт специфікацій та карт різу",
 
                 macros_card2_title: "IntelliStandards та бібліотеки приміток",
-                macros_card2_text: "Бібліотеки приміток, символів зварювання та стандартних текстів, керовані макросами та узгоджені з ISO/UNI/EN – готові до вставки в креслення.",
+                macros_card2_text:
+                    "Бібліотеки приміток, символів зварювання та стандартних текстів, керовані макросами та узгоджені з ISO/UNI/EN – готові до вставки в креслення.",
                 macros_card2_li_1: "Двомовні примітки (IT / EN, інші за потреби)",
                 macros_card2_li_2: "Стандартизовані примітки для зварювання та допусків",
                 macros_card2_li_3: "Швидка вставка приміток у креслення SolidWorks",
 
                 macros_card3_title: "Генератори сходів",
-                macros_card3_text: "Спеціальні інструменти для налаштування спіральних та прямих сходів із контролем зручності та ключових параметрів за обраними нормами.",
+                macros_card3_text:
+                    "Спеціальні інструменти для налаштування спіральних та прямих сходів із контролем зручності та ключових параметрів за обраними нормами.",
                 macros_card3_li_1: "Параметричні конфігурації спіральних сходів",
                 macros_card3_li_2: "Підтримка наборів норм EU / US / AU",
                 macros_card3_li_3: "Геометрія, готова до деталювання",
 
                 about_title: "Про мене – 369YAX &amp; Віталій",
-                about_subtitle: "Машинобудівний дизайн з реальним цеховим бекграундом – не просто «красиві CAD-картинки».",
-                about_text: "Я – <strong>Віталій Борис</strong>, інженер-конструктор і power-user SolidWorks, живу та працюю в Італії під брендом <strong>369YAX – Automation &amp; Design</strong>. До того як зосередитися на конструюванні та автоматизації, я багато років працював безпосередньо у виробництві, що дуже впливає на те, як я будую моделі та оформляю документацію.",
-                about_li_1: "8+ років у металообробці (гнуття, вальцювання, зварювання MIG/MAG, лазер TRUMPF)",
+                about_subtitle:
+                    "Машинобудівний дизайн з реальним цеховим бекграундом – не просто «красиві CAD-картинки».",
+                about_text:
+                    "Я – <strong>Віталій Борис</strong>, інженер-конструктор і power-user SolidWorks, живу та працюю в Італії під брендом <strong>369YAX – Automation &amp; Design</strong>. До того як зосередитися на конструюванні та автоматизації, я багато років працював безпосередньо у виробництві, що дуже впливає на те, як я будую моделі та оформляю документацію.",
+                about_li_1:
+                    "8+ років у металообробці (гнуття, вальцювання, зварювання MIG/MAG, лазер TRUMPF)",
                 about_li_2: "3+ роки професійної роботи в SolidWorks (італійська версія, 3D та креслення)",
                 about_li_3: "Досвід на італійських підприємствах: Metalinox, Gortani, OFFMA",
                 about_li_4: "Програмування TRUMPF BOOST &amp; TruBend для лазерної різки та гнуття",
@@ -744,13 +1635,16 @@
                 about_box_li_5: "Спілкування українською, італійською або англійською",
 
                 contact_title: "Давайте працювати разом",
-                contact_subtitle: "Розкажіть коротко про свій проєкт – сходи, листовий метал, зварну раму чи автоматизацію SolidWorks – і я запропоную зрозумілий та реалістичний варіант рішення.",
+                contact_subtitle:
+                    "Розкажіть коротко про свій проєкт – сходи, листовий метал, зварну раму чи автоматизацію SolidWorks – і я запропоную зрозумілий та реалістичний варіант рішення.",
                 contact_direct_title: "Прямий контакт",
                 contact_email_label: "Email:",
                 contact_location: "Локація: Італія · Працюю віддалено по всьому світу",
-                contact_note: "Щоб швидше стартувати, напишіть: тип проєкту (сходи, рама, листовий метал, макрос), приблизні габарити, матеріал та які файли вам потрібні (3D, креслення, DXF, STEP, BOM).",
+                contact_note:
+                    "Щоб швидше стартувати, напишіть: тип проєкту (сходи, рама, листовий метал, макрос), приблизні габарити, матеріал та які файли вам потрібні (3D, креслення, DXF, STEP, BOM).",
                 contact_platforms_title: "Фриланс-платформи",
-                contact_platforms_note: 'Також ви можете написати мені через фриланс-платформи – просто знайдіть <strong>“369YAX”</strong> і коротко опишіть задачу.',
+                contact_platforms_note:
+                    'Також ви можете написати мені через фриланс-платформи – просто знайдіть <strong>“369YAX”</strong> і коротко опишіть задачу.',
 
                 contact_form_title: "Форма контакту",
                 contact_form_name_label: "Ваше ім’я",
@@ -758,7 +1652,8 @@
                 contact_form_subject_label: "Тип проєкту / тема",
                 contact_form_message_label: "Деталі проєкту",
                 contact_form_submit: "Надіслати повідомлення",
-                contact_form_hint: "Форма відкриє ваш поштовий клієнт із готовим листом на 369yax@gmail.com – ви зможете перевірити та надіслати його.",
+                contact_form_hint:
+                    "Форма відкриє ваш поштовий клієнт із готовим листом на 369yax@gmail.com – ви зможете перевірити та надіслати його.",
 
                 footer_left: "© 369YAX – Automation &amp; Design · Віталій Борис",
                 footer_right: "SolidWorks · Металеві конструкції · Спіральні сходи · Автоматизація"
@@ -776,17 +1671,11 @@
                 }
             });
 
-            // highlight active language button
-            document.querySelectorAll(".lang-btn").forEach(btn => {
-                btn.classList.toggle("is-active", btn.getAttribute("data-lang") === lang);
-            });
-
             try {
                 localStorage.setItem("369yax_lang", lang);
             } catch (e) {}
         }
 
-        // Language buttons
         document.querySelectorAll(".lang-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 const lang = btn.getAttribute("data-lang");
@@ -794,7 +1683,6 @@
             });
         });
 
-        // Default language with saved value
         (function () {
             let savedLang = "en";
             try {
@@ -861,9 +1749,7 @@
             setTheme(saved);
 
             btn.addEventListener("click", function () {
-                const next = document.body.classList.contains("dark-mode")
-                    ? "light"
-                    : "dark";
+                const next = document.body.classList.contains("dark-mode") ? "light" : "dark";
                 setTheme(next);
             });
         })();
@@ -884,7 +1770,6 @@
                 navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
             });
 
-            // Close menu on link click (mobile)
             mainNav.querySelectorAll("a").forEach(link => {
                 link.addEventListener("click", () => {
                     document.body.classList.remove("nav-open");
@@ -892,7 +1777,6 @@
                 });
             });
 
-            // Reset state on resize
             window.addEventListener("resize", () => {
                 if (window.innerWidth > 900) {
                     document.body.classList.remove("nav-open");
@@ -903,4 +1787,3 @@
     </script>
 </body>
 </html>
-
