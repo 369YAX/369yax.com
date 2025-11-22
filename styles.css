@@ -34,6 +34,7 @@ body {
     background: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
+    transition: background 0.25s ease, color 0.25s ease;
 }
 
 /* Utility */
@@ -156,6 +157,7 @@ body {
 /* Header right controls (lang + theme) */
 
 .header-controls {
+    margin-left: auto;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -192,6 +194,7 @@ body {
 .theme-toggle {
     min-width: 42px;
     text-align: center;
+    padding-inline: 10px;
 }
 
 /* ==========
@@ -566,12 +569,11 @@ body {
 }
 
 /* =====================================================
-   DARK MODE – ПОВЕРТАЄМО ТВІЙ "RED STEEL" СТИЛЬ
-   КЛАС додається до <body>: body.dark-mode
+   DARK MODE – RED STEEL STYLE
+   Клас додається до <body>: body.dark-mode
    ===================================================== */
 
-.dark-mode {
-    /* Темні значення змінних */
+body.dark-mode {
     --bg-main: #07080b;
     --bg-alt: #0d0f14;
     --card-bg: #11141b;
@@ -589,63 +591,63 @@ body {
 
 /* Уточнення де фон задається напряму */
 
-.dark-mode .top-bar {
+body.dark-mode .top-bar {
     background: linear-gradient(to bottom, rgba(5, 6, 10, 0.96), rgba(5, 6, 10, 0.85));
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.dark-mode .hero {
+body.dark-mode .hero {
     background: transparent;
 }
 
-.dark-mode .section {
+body.dark-mode .section {
     background: transparent;
 }
 
-.dark-mode .section-alt {
+body.dark-mode .section-alt {
     background: var(--bg-alt);
 }
 
-.dark-mode .site-footer {
+body.dark-mode .site-footer {
     background: #05060a;
     border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.dark-mode .main-nav a {
+body.dark-mode .main-nav a {
     color: var(--text-muted);
 }
 
-.dark-mode .main-nav a:hover {
+body.dark-mode .main-nav a:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.03);
 }
 
-.dark-mode .main-nav .nav-cta {
+body.dark-mode .main-nav .nav-cta {
     border-color: rgba(214, 0, 0, 0.7);
 }
 
-.dark-mode .hero-tags span {
+body.dark-mode .hero-tags span {
     background: rgba(255, 255, 255, 0.03);
 }
 
-.dark-mode .hero-card {
+body.dark-mode .hero-card {
     background: radial-gradient(circle at top, #202331, #10121a 60%);
     border-color: rgba(255, 255, 255, 0.06);
 }
 
-.dark-mode .link-pill {
+body.dark-mode .link-pill {
     background: var(--pill-bg);
     color: var(--text-main);
     border-color: rgba(255, 255, 255, 0.06);
 }
 
-.dark-mode .link-pill:hover {
+body.dark-mode .link-pill:hover {
     background: rgba(214, 0, 0, 0.18);
     border-color: rgba(214, 0, 0, 0.7);
 }
 
-.dark-mode .contact-form input,
-.dark-mode .contact-form textarea {
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
     background: #05060a;
     border-color: #272b36;
     color: #f5f5f5;
