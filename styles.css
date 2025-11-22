@@ -198,6 +198,51 @@ body {
 }
 
 /* ==========
+   BURGER (MOBILE NAV TOGGLE)
+   ========== */
+
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--text-main);
+    transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+}
+
+.nav-toggle span + span {
+    margin-top: 4px;
+}
+
+/* Анімація в іконку "Х" */
+
+body.nav-open .nav-toggle span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+body.nav-open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+body.nav-open .nav-toggle span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+body.dark-mode .nav-toggle span {
+    background: #f5f5f5;
+}
+
+/* ==========
    HERO
    ========== */
 
@@ -553,8 +598,53 @@ body {
         order: -1;
     }
 
+    /* Показуємо бургер */
+    .nav-toggle {
+        display: inline-flex;
+    }
+
+    /* Шапка трохи компактніша */
+    .top-bar-inner {
+        gap: 10px;
+    }
+
+    .header-controls {
+        gap: 6px;
+    }
+
+    /* Мобільне меню як дропдаун */
     .main-nav {
-        display: none; /* спростимо для мобільної версії */
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: var(--bg-main);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        padding: 12px 16px 16px;
+        gap: 4px;
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        z-index: 40;
+    }
+
+    body.nav-open .main-nav {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .main-nav a {
+        padding: 10px 12px;
+        border-radius: 8px;
+    }
+
+    .main-nav .nav-cta {
+        text-align: center;
+        margin-top: 6px;
     }
 
     .section {
@@ -570,7 +660,6 @@ body {
 
 /* =====================================================
    DARK MODE – RED STEEL STYLE
-   Клас додається до <body>: body.dark-mode
    ===================================================== */
 
 body.dark-mode {
