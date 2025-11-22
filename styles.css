@@ -1,7 +1,7 @@
 /* =====================================================
    369YAX – Automation & Design
-   Global styles (light + dark theme, responsive, hero photos, burger menu)
-   PRO EDITION – with animations & 3D hover
+   Global styles (light + dark theme, responsive)
+   PRO – Clean static hero photos (no jumps)
    ===================================================== */
 
 /* ==========
@@ -20,6 +20,14 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
 /* ==========
    COLOR SYSTEM – LIGHT THEME (DEFAULT)
    ========== */
@@ -29,25 +37,23 @@ html {
     --bg-alt: #f5f5f7;
     --card-bg: #ffffff;
     --border-soft: #d0d3dd;
+
     --accent: #d60000;
     --accent-soft: rgba(214, 0, 0, 0.10);
+
     --text-main: #111111;
     --text-muted: #5f6470;
+
     --pill-bg: #f0f1f5;
     --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.08);
+
     --radius-lg: 18px;
     --radius-pill: 999px;
 }
 
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.6;
-    transition: background 0.25s ease, color 0.25s ease;
-}
-
-/* Utility containers */
+/* ==========
+   LAYOUT HELPERS
+   ========== */
 
 .container {
     width: min(1120px, 100% - 32px);
@@ -149,7 +155,10 @@ body {
     text-decoration: none;
     padding: 6px 10px;
     border-radius: 999px;
-    transition: color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.1s ease;
 }
 
 .main-nav a:hover {
@@ -191,7 +200,10 @@ body {
     text-decoration: none;
     font-size: 0.85rem;
     border: 1px solid rgba(0, 0, 0, 0.08);
-    transition: background 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease,
+        border-color 0.2s ease;
     cursor: pointer;
 }
 
@@ -199,6 +211,15 @@ body {
     background: rgba(214, 0, 0, 0.08);
     border-color: rgba(214, 0, 0, 0.7);
     transform: translateY(-1px);
+}
+
+/* Active language (current lang) */
+
+.lang-btn.is-active {
+    background: var(--accent-soft);
+    border-color: rgba(214, 0, 0, 0.7);
+    color: var(--accent);
+    font-weight: 600;
 }
 
 .theme-toggle {
@@ -227,7 +248,10 @@ body {
     height: 2px;
     border-radius: 999px;
     background: var(--text-main);
-    transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease,
+        background 0.2s ease;
 }
 
 .nav-toggle span + span {
@@ -248,12 +272,8 @@ body.nav-open .nav-toggle span:nth-child(3) {
     transform: translateY(-6px) rotate(-45deg);
 }
 
-body.dark-mode .nav-toggle span {
-    background: #f5f5f5;
-}
-
 /* ==========
-   HERO
+   HERO – TEXT + LAYOUT
    ========== */
 
 .hero {
@@ -266,9 +286,6 @@ body.dark-mode .nav-toggle span {
     gap: 32px;
     grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
     align-items: center;
-
-    /* Додаємо перспективу для 3D-ефекту картки */
-    perspective: 1100px;
 }
 
 .hero-text h1 {
@@ -304,7 +321,11 @@ body.dark-mode .nav-toggle span {
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .btn.primary {
@@ -343,7 +364,7 @@ body.dark-mode .nav-toggle span {
 }
 
 /* ==========
-   HERO CARD WITH TWO PHOTOS
+   HERO CARD + PHOTOS (СТАТИЧНО)
    ========== */
 
 .hero-card {
@@ -353,41 +374,32 @@ body.dark-mode .nav-toggle span {
     border: 1px solid var(--border-soft);
     box-shadow: var(--shadow-soft);
 
-    /* 3D + анімація */
-    transform-style: preserve-3d;
-    transform-origin: center center;
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.25s ease, background 0.25s ease;
-
-    /* початкова легка анімація появи */
-    opacity: 0;
-    transform: translateY(16px) scale(0.98);
-    animation: heroCardIn 0.8s ease-out 0.2s forwards;
+    transform: translateY(0);
+    opacity: 1;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
 }
 
-/* 3D-нахил при hover */
-
 .hero-card:hover {
-    transform: rotateX(-5deg) rotateY(4deg) translateY(-4px);
-    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.32);
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
     border-color: rgba(214, 0, 0, 0.65);
 }
 
-/* Two-photo collage */
+/* Контейнер з двома фото */
 
 .hero-photos {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3;          /* стабільна пропорція блока */
     max-width: 420px;
+    aspect-ratio: 4 / 3;
     margin-bottom: 16px;
-
-    /* анімація появи фото */
-    opacity: 0;
-    transform: translateY(10px) scale(0.97);
-    animation: heroPhotosIn 0.9s ease-out 0.3s forwards;
 }
 
-/* General frame style */
+/* Загальний стиль рамки */
 
 .hero-photo-frame {
     position: absolute;
@@ -396,19 +408,21 @@ body.dark-mode .nav-toggle span {
     background: #000;
     border: 1px solid rgba(214, 0, 0, 0.6);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.25s ease;
+    transition:
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .hero-photo-frame img {
     width: 100%;
     height: 100%;
-    object-fit: contain;      /* показує всю фотку, не ріже */
-    object-position: center;  /* по центру */
+    object-fit: contain;
+    object-position: center;
     display: block;
     background: #000;
 }
 
-/* Main portrait photo */
+/* Основне фото ліворуч */
 
 .hero-photo-main {
     width: 58%;
@@ -417,29 +431,23 @@ body.dark-mode .nav-toggle span {
     top: 0;
 }
 
-/* Workshop photo – slightly smaller and overlapped */
+/* Фото з майстерні – трохи нижче праворуч, без transform */
 
 .hero-photo-workshop {
     width: 52%;
     height: 72%;
     right: 0;
-    bottom: 0;
-    transform: translateY(8px);
+    bottom: -8px;
 }
 
-/* Паралакс-ефект при hover картки */
+/* При hover змінюємо тільки тіні, без будь-якого руху фото */
 
-.hero-card:hover .hero-photo-main {
-    transform: translateY(-4px) translateX(-2px) scale(1.03);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
-}
-
+.hero-card:hover .hero-photo-main,
 .hero-card:hover .hero-photo-workshop {
-    transform: translateY(2px) translateX(4px) scale(1.05);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
 }
 
-/* Text inside card */
+/* Текст в картці */
 
 .hero-card h2 {
     font-size: 1.1rem;
@@ -463,49 +471,6 @@ body.dark-mode .nav-toggle span {
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     padding-top: 8px;
     margin-top: 6px;
-}
-
-/* ==========
-   KEYFRAMES – ANIMATIONS
-   ========== */
-
-@keyframes heroCardIn {
-    from {
-        opacity: 0;
-        transform: translateY(22px) scale(0.96);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes heroPhotosIn {
-    from {
-        opacity: 0;
-        transform: translateY(16px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* Якщо користувач не любить анімації – все вимикаємо */
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-    }
-
-    .hero-card,
-    .hero-photos {
-        opacity: 1 !important;
-        transform: none !important;
-    }
 }
 
 /* ==========
@@ -739,12 +704,10 @@ body.dark-mode .nav-toggle span {
         padding-top: 8px;
     }
 
-    /* Move hero card above text on mobile if needed */
     .hero-card {
         order: -1;
     }
 
-    /* Show burger on mobile */
     .nav-toggle {
         display: inline-flex;
     }
@@ -757,7 +720,6 @@ body.dark-mode .nav-toggle span {
         gap: 6px;
     }
 
-    /* Mobile dropdown navigation */
     .main-nav {
         position: fixed;
         top: 56px;
@@ -772,7 +734,9 @@ body.dark-mode .nav-toggle span {
         transform: translateY(-120%);
         opacity: 0;
         pointer-events: none;
-        transition: transform 0.2s ease, opacity 0.2s ease;
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
         z-index: 40;
     }
 
@@ -803,8 +767,6 @@ body.dark-mode .nav-toggle span {
     }
 }
 
-/* Slight tweak for hero photos on very small screens */
-
 @media (max-width: 600px) {
     .hero-photos {
         max-width: 100%;
@@ -819,6 +781,20 @@ body.dark-mode .nav-toggle span {
     .hero-photo-workshop {
         width: 56%;
         height: 72%;
+        bottom: -6px;
+    }
+}
+
+/* ==========
+   REDUCED MOTION (опціонально, але без фанатизму)
+   ========== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }
 
@@ -897,45 +873,14 @@ body.dark-mode .link-pill:hover {
     border-color: rgba(214, 0, 0, 0.7);
 }
 
+body.dark-mode .nav-toggle span {
+    background: #f5f5f5;
+}
+
 body.dark-mode .contact-form input,
 body.dark-mode .contact-form textarea {
     background: #05060a;
     border-color: #272b36;
     color: #f5f5f5;
-}
-/* =========================================
-   369YAX – Hero photos: stable version
-   Без руху фото, тільки легкий ефект картки
-   ========================================= */
-
-/* Картка: легкий підйом, без 3D-кренів */
-.hero-card {
-    transform: none;
-    opacity: 1;
-    animation: none;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.hero-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
-}
-
-/* Блок із фото: без анімацій */
-.hero-photos {
-    opacity: 1;
-    transform: none;
-    animation: none;
-}
-
-/* Фото в рамках: ніякого руху при hover */
-.hero-photo-frame {
-    transition: box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.hero-card:hover .hero-photo-main,
-.hero-card:hover .hero-photo-workshop {
-    transform: none;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
 }
 
