@@ -511,6 +511,47 @@
     </a>
 
     <!-- =========================
+         369YAX CHAT WIDGET
+         ========================= -->
+    <button
+        id="chatToggle"
+        class="chat-toggle"
+        type="button"
+        aria-label="Open chat with 369YAX assistant">
+        🤖
+    </button>
+
+    <div id="chatWidget" class="chat-widget" aria-hidden="true">
+        <div class="chat-header">
+            <div>
+                <div class="chat-title">369YAX Assistant</div>
+                <div class="chat-subtitle">Ask about stairs, sheet metal or 369YAX services</div>
+            </div>
+            <button id="chatClose" class="chat-close" type="button" aria-label="Close chat">×</button>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+            <div class="chat-message chat-message-bot">
+                <div class="chat-bubble">
+                    Hi! I’m your 369YAX assistant in demo mode.<br />
+                    Ask me about spiral stairs, sheet metal or how cooperation works – or just say “Hello” 👋
+                </div>
+                <div class="chat-meta">bot · just now</div>
+            </div>
+        </div>
+        <form id="chatForm" class="chat-input-row">
+            <textarea
+                id="chatInput"
+                rows="2"
+                placeholder="Type your question here…"
+                aria-label="Your message"></textarea>
+            <button type="submit" class="btn chat-send-btn">Send</button>
+        </form>
+        <div class="chat-footer-note">
+            Demo mode: answers are generated locally. Later you can connect your own AI backend (OpenAI, etc.).
+        </div>
+    </div>
+
+    <!-- =========================
          MULTILANGUAGE + CONTACT SCRIPT
          ========================= -->
     <script>
@@ -1018,7 +1059,98 @@
             });
         })();
     </script>
+
+    <!-- =========================
+         369YAX CHAT WIDGET SCRIPT (DEMO MODE)
+         ========================= -->
+    <script>
+        (function () {
+            const chatToggle = document.getElementById("chatToggle");
+            const chatWidget = document.getElementById("chatWidget");
+            const chatClose = document.getElementById("chatClose");
+            const chatForm = document.getElementById("chatForm");
+            const chatInput = document.getElementById("chatInput");
+            const chatMessages = document.getElementById("chatMessages");
+
+            if (!chatToggle || !chatWidget || !chatClose || !chatForm || !chatInput || !chatMessages) return;
+
+            const DEMO_MODE = true; // later you can set this to false and call your backend
+
+            function toggleChat(open) {
+                const isOpen = (typeof open === "boolean") ? open : !chatWidget.classList.contains("is-open");
+                chatWidget.classList.toggle("is-open", isOpen);
+                chatWidget.setAttribute("aria-hidden", isOpen ? "false" : "true");
+                if (isOpen) {
+                    setTimeout(() => {
+                        chatInput.focus();
+                    }, 50);
+                }
+            }
+
+            function appendMessage(text, sender) {
+                const wrapper = document.createElement("div");
+                wrapper.className = "chat-message " + (sender === "user" ? "chat-message-user" : "chat-message-bot");
+
+                const bubble = document.createElement("div");
+                bubble.className = "chat-bubble";
+                bubble.innerText = text;
+
+                const meta = document.createElement("div");
+                meta.className = "chat-meta";
+                meta.textContent = (sender === "user" ? "you" : "bot") + " · now";
+
+                wrapper.appendChild(bubble);
+                wrapper.appendChild(meta);
+                chatMessages.appendChild(wrapper);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function demoAnswer(userText) {
+                const lower = userText.toLowerCase();
+                let answer = "Thanks for your message! In demo mode I can only reply with simple hints. Please describe your project and send it via the contact form or email: 369yax@gmail.com.";
+
+                if (lower.includes("stair") || lower.includes("scala")) {
+                    answer = "For stairs I usually need: total height, available diameter/length, indoor/outdoor, material, and some photos or sketches. Then I prepare a 3D model, drawings, DXF and BOM.";
+                } else if (lower.includes("sheet") || lower.includes("lamiera")) {
+                    answer = "For sheet metal projects, tell me thickness, material, approximate dimensions and if you use TRUMPF or other machines. I will prepare flat patterns (DXF), 3D model and drawings.";
+                } else if (lower.includes("macro") || lower.includes("autom")) {
+                    answer = "For SolidWorks automation, describe which repetitive operations take your time: file naming, drawings, BOM, properties, etc. I can suggest a 369YAX macro package.";
+                }
+
+                return answer;
+            }
+
+            chatToggle.addEventListener("click", () => toggleChat(true));
+            chatClose.addEventListener("click", () => toggleChat(false));
+
+            chatForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                appendMessage(text, "user");
+                chatInput.value = "";
+
+                if (DEMO_MODE) {
+                    const reply = demoAnswer(text);
+                    setTimeout(() => {
+                        appendMessage(reply, "bot");
+                    }, 400);
+                } else {
+                    // Example for future integration:
+                    // fetch("https://your-backend-url.example.com/api/chat", {
+                    //     method: "POST",
+                    //     headers: { "Content-Type": "application/json" },
+                    //     body: JSON.stringify({ message: text })
+                    // })
+                    //   .then(res => res.json())
+                    //   .then(data => appendMessage(data.reply, "bot"))
+                    //   .catch(() => appendMessage("Error contacting assistant. Please try again later.", "bot"));
+                    const fallback = "AI backend is not connected yet. Please use the contact form or email 369yax@gmail.com.";
+                    setTimeout(() => appendMessage(fallback, "bot"), 400);
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
-
-
