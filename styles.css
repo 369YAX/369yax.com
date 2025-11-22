@@ -1,6 +1,7 @@
 /* =====================================================
    369YAX – Automation & Design
    Global styles (light + dark theme, responsive, hero photos, burger menu)
+   PRO EDITION – with animations & 3D hover
    ===================================================== */
 
 /* ==========
@@ -265,6 +266,9 @@ body.dark-mode .nav-toggle span {
     gap: 32px;
     grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
     align-items: center;
+
+    /* Додаємо перспективу для 3D-ефекту картки */
+    perspective: 1100px;
 }
 
 .hero-text h1 {
@@ -348,6 +352,24 @@ body.dark-mode .nav-toggle span {
     padding: 22px 20px 18px;
     border: 1px solid var(--border-soft);
     box-shadow: var(--shadow-soft);
+
+    /* 3D + анімація */
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.25s ease, background 0.25s ease;
+
+    /* початкова легка анімація появи */
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    animation: heroCardIn 0.8s ease-out 0.2s forwards;
+}
+
+/* 3D-нахил при hover */
+
+.hero-card:hover {
+    transform: rotateX(-5deg) rotateY(4deg) translateY(-4px);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.32);
+    border-color: rgba(214, 0, 0, 0.65);
 }
 
 /* Two-photo collage */
@@ -355,10 +377,14 @@ body.dark-mode .nav-toggle span {
 .hero-photos {
     position: relative;
     width: 100%;
-    /* Контейнер із фіксованою пропорцією, без жорсткої висоти */
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 3;          /* стабільна пропорція блока */
     max-width: 420px;
     margin-bottom: 16px;
+
+    /* анімація появи фото */
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+    animation: heroPhotosIn 0.9s ease-out 0.3s forwards;
 }
 
 /* General frame style */
@@ -370,15 +396,16 @@ body.dark-mode .nav-toggle span {
     background: #000;
     border: 1px solid rgba(214, 0, 0, 0.6);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.25s ease;
 }
 
 .hero-photo-frame img {
     width: 100%;
     height: 100%;
-    object-fit: contain;      /* показує всю фотографію, не ріже */
-    object-position: center;  /* центрує зображення в рамці */
+    object-fit: contain;      /* показує всю фотку, не ріже */
+    object-position: center;  /* по центру */
     display: block;
-    background: #000;         /* фон, якщо будуть чорні поля */
+    background: #000;
 }
 
 /* Main portrait photo */
@@ -399,6 +426,20 @@ body.dark-mode .nav-toggle span {
     bottom: 0;
     transform: translateY(8px);
 }
+
+/* Паралакс-ефект при hover картки */
+
+.hero-card:hover .hero-photo-main {
+    transform: translateY(-4px) translateX(-2px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+}
+
+.hero-card:hover .hero-photo-workshop {
+    transform: translateY(2px) translateX(4px) scale(1.05);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Text inside card */
 
 .hero-card h2 {
     font-size: 1.1rem;
@@ -422,6 +463,49 @@ body.dark-mode .nav-toggle span {
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     padding-top: 8px;
     margin-top: 6px;
+}
+
+/* ==========
+   KEYFRAMES – ANIMATIONS
+   ========== */
+
+@keyframes heroCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes heroPhotosIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Якщо користувач не любить анімації – все вимикаємо */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-card,
+    .hero-photos {
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }
 
 /* ==========
