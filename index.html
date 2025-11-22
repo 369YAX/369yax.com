@@ -25,7 +25,19 @@
                 </div>
             </div>
 
-            <nav class="main-nav">
+            <!-- Бургер-кнопка (мобільна навігація) -->
+            <button
+                class="nav-toggle"
+                id="navToggle"
+                type="button"
+                aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Навігація -->
+            <nav class="main-nav" id="mainNav">
                 <a href="#services" data-i18n="nav_services">Services</a>
                 <a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a>
                 <a href="#macros" data-i18n="nav_macros">SW Macros</a>
@@ -33,14 +45,13 @@
                 <a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a>
             </nav>
 
+            <!-- Мови + тема -->
             <div class="header-controls">
-                <!-- Language switcher -->
                 <div class="links-grid">
                     <button class="link-pill lang-btn" data-lang="en" type="button">EN</button>
                     <button class="link-pill lang-btn" data-lang="it" type="button">IT</button>
                     <button class="link-pill lang-btn" data-lang="uk" type="button">UA</button>
                 </div>
-                <!-- Theme toggle -->
                 <button
                     id="themeToggle"
                     class="link-pill theme-toggle"
@@ -365,9 +376,356 @@
          ========================= -->
     <script>
         const translations = {
-            /* твій великий об'єкт translations – без змін,
-               я його тут не скорочую, просто встав той, що ти дав */
-            /* ... ВСТАВ УВЕСЬ translations (en, it, uk) СЮДИ ... */
+            en: {
+                nav_services: "Services",
+                nav_portfolio: "Portfolio",
+                nav_macros: "SW Macros",
+                nav_about: "About",
+                nav_contact: "Contact",
+
+                hero_title: 'Production-ready design for<br /><span class="accent">metal structures &amp; staircases</span>',
+                hero_sub: 'I’m <strong>Vitalii Borys</strong>, mechanical designer based in Italy. Under the brand <strong>369YAX – Automation &amp; Design</strong> I help workshops and fabrication companies turn ideas into <strong>SolidWorks models, drawings, DXF, STEP &amp; BOM</strong> ready for real production – with a strong focus on spiral stairs, sheet metal and welded steel structures.',
+                hero_btn_primary: "Send a project request",
+                hero_btn_secondary: "View portfolio",
+                hero_tag_1: "Spiral stairs (EU / US / AU)",
+                hero_tag_2: "Sheet metal &amp; welded frames",
+                hero_tag_3: "SolidWorks automation &amp; macros",
+                hero_card_title: "What you get with 369YAX",
+                hero_card_li_1: "3D models (SolidWorks, STEP)",
+                hero_card_li_2: "Manufacturing drawings (PDF, DWG, DXF)",
+                hero_card_li_3: "Cut lists &amp; BOM ready for fabrication",
+                hero_card_li_4: "Laser &amp; bending-ready sheet metal parts",
+                hero_card_li_5: "Custom SolidWorks macros for your workflow",
+                hero_note: "Based in Italy · Remote worldwide · English / Italian / Ukrainian",
+
+                services_title: "Services",
+                services_subtitle: "Practical, workshop-oriented design with focus on manufacturability, standards and clean documentation.",
+                services_card1_title: "Spiral &amp; straight stair design",
+                services_card1_text: "Design of spiral and straight stairs with compliance checks (EU / UK, US, AU), clear geometry and safe walking comfort.",
+                services_card1_li_1: "Spiral stairs with walkline &amp; headroom control",
+                services_card1_li_2: "Straight stairs, landings, railings and guardrails",
+                services_card1_li_3: "Full package: 3D model, drawings, DXF, BOM",
+
+                services_card2_title: "Sheet metal &amp; welded structures",
+                services_card2_text: "Design and optimization of sheet metal parts, stainless steel elements, support frames and industrial brackets ready for TRUMPF laser &amp; bending.",
+                services_card2_li_1: "Flat patterns (DXF, DWG) with correct bend allowances",
+                services_card2_li_2: "Welded frames, platforms, brackets and supports",
+                services_card2_li_3: "Welding symbols, notes and cut lists for the workshop",
+
+                services_card3_title: "SolidWorks automation &amp; macros",
+                services_card3_text: "Custom SolidWorks tools under the 369YAX ecosystem to speed up repetitive work and standardize your documentation and models.",
+                services_card3_li_1: "Automatic part &amp; drawing creation from templates",
+                services_card3_li_2: "BOM and cut-list export to Excel",
+                services_card3_li_3: "Project libraries and property automation",
+
+                portfolio_title: "Selected projects",
+                portfolio_subtitle: "A few examples of how I combine SolidWorks, standards and real metalworking experience. More detailed references available on request.",
+                portfolio_item1_title: "Indoor spiral staircase – compliant configuration",
+                portfolio_item1_text: "Parametric spiral stair designed around local regulations with checked walkline, headroom and comfortable riser/tread combination. Deliverables included complete 3D model, production drawings, DXF for laser cutting and detailed BOM.",
+                portfolio_item1_tag: "Spiral stairs",
+
+                portfolio_item2_title: "Stainless steel A4 shelf",
+                portfolio_item2_text: "Minimalistic sheet metal shelf for laser cutting and bending, optimized for clean manufacturing with clear drawings, flat patterns and all fixing details prepared.",
+                portfolio_item2_tag: "Sheet metal",
+
+                portfolio_item3_title: "Industrial support frame",
+                portfolio_item3_text: "Welded steel frame with correctly dimensioned profiles, connection details and workshop-ready drawings including cut lists, welding notes and assembly views.",
+                portfolio_item3_tag: "Welded structure",
+
+                portfolio_item4_title: "Custom automation tools – 369YAX macros",
+                portfolio_item4_text: "Internal macro pack for SolidWorks: automatic creation of parts and drawings, project property population, BOM export and standard note libraries used daily to accelerate design work.",
+                portfolio_item4_tag: "Automation",
+
+                macros_title: "369YAX – SolidWorks automation",
+                macros_subtitle: "A growing ecosystem of custom tools built around real daily needs in SolidWorks: parts, drawings, BOM, standards and project management.",
+                macros_card1_title: "IntelliPack / project tools",
+                macros_card1_text: "Tools for organizing project structure, standardizing naming and automating repetitive actions related to drawings and BOM export.",
+                macros_card1_li_1: "Automatic creation of project folders and files",
+                macros_card1_li_2: "Batch update of model properties",
+                macros_card1_li_3: "Smart export of BOM and cut lists",
+
+                macros_card2_title: "IntelliStandards &amp; note libraries",
+                macros_card2_text: "Macro-driven libraries of technical notes, welding symbols and standard texts aligned with ISO/UNI/EN practices, ready to drop into your drawings.",
+                macros_card2_li_1: "Bilingual notes (IT / EN, and more when needed)",
+                macros_card2_li_2: "Standardized welding and tolerance notes",
+                macros_card2_li_3: "Fast insertion into SolidWorks drawings",
+
+                macros_card3_title: "Stair generators",
+                macros_card3_text: "Dedicated tools to assist with spiral and straight stair configuration, checking comfort and key parameters against selected standards.",
+                macros_card3_li_1: "Parametric spiral stair configurations",
+                macros_card3_li_2: "Support for EU / US / AU rulesets",
+                macros_card3_li_3: "Export-ready geometry for further detailing",
+
+                about_title: "About 369YAX &amp; Vitalii",
+                about_subtitle: "Mechanical design with real workshop background – not just “nice CAD pictures”.",
+                about_text: "I’m <strong>Vitalii Borys</strong>, mechanical designer and SolidWorks power-user based in Italy, working under the brand <strong>369YAX – Automation &amp; Design</strong>. Before focusing on design and automation, I spent years directly in metal fabrication environments, which strongly influences the way I model and document projects.",
+                about_li_1: "8+ years in metalworking (bending, rolling, MIG/MAG welding, TRUMPF laser)",
+                about_li_2: "3+ years professional SolidWorks work (Italian version, 3D &amp; drawings)",
+                about_li_3: "Experience in Italian companies: Metalinox, Gortani, OFFMA",
+                about_li_4: "TRUMPF BOOST &amp; TruBend programming for laser cutting and bending",
+                about_li_5: "Focus on simple, robust and workshop-friendly solutions",
+
+                about_box_title: "How I work",
+                about_box_li_1: "Start from your idea, sketch, photos or existing 3D/drawings",
+                about_box_li_2: "Clarify constraints: standards, materials, processes, budget",
+                about_box_li_3: "Develop clear 3D models and engineering drawings",
+                about_box_li_4: "Deliver production-ready files: DXF, DWG, STEP, PDF, BOM",
+                about_box_li_5: "Communicate in English, Italian or Ukrainian as you prefer",
+
+                contact_title: "Let’s work together",
+                contact_subtitle: "Tell me a bit about your project – stairs, sheet metal, welded frame or SolidWorks automation – and I’ll come back with a clear, practical way to move forward.",
+                contact_direct_title: "Direct contact",
+                contact_email_label: "Email:",
+                contact_location: "Location: Italy · Working remotely worldwide",
+                contact_note: "For a faster start, please include: project type (stairs, frame, sheet metal, macro), approximate dimensions, material, and what deliverables you need (3D, drawings, DXF, STEP, BOM).",
+                contact_platforms_title: "Freelance platforms",
+                contact_platforms_note: 'You can also contact me directly via freelance platforms – just search for <strong>“369YAX”</strong> and send a short description of your idea.',
+
+                contact_form_title: "Contact form",
+                contact_form_name_label: "Your name",
+                contact_form_email_label: "Your email",
+                contact_form_subject_label: "Project type / subject",
+                contact_form_message_label: "Project details",
+                contact_form_submit: "Send message",
+                contact_form_hint: "The form will open your email client with a pre-filled message to 369yax@gmail.com – you can review and send it.",
+
+                footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys",
+                footer_right: "SolidWorks · Metal structures · Spiral stairs · Automation"
+            },
+
+            it: {
+                nav_services: "Servizi",
+                nav_portfolio: "Portfolio",
+                nav_macros: "SW Macros",
+                nav_about: "Chi sono",
+                nav_contact: "Contatti",
+
+                hero_title: 'Progettazione pronta per la produzione<br /><span class="accent">strutture metalliche e scale</span>',
+                hero_sub: 'Sono <strong>Vitalii Borys</strong>, disegnatore meccanico con base in Italia. Con il marchio <strong>369YAX – Automation &amp; Design</strong> aiuto officine e aziende metalmeccaniche a trasformare idee in <strong>modelli SolidWorks, disegni, DXF, STEP e distinte materiali</strong> pronti per la produzione reale – con un forte focus su scale a chiocciola, carpenteria e lamiera.',
+                hero_btn_primary: "Inviami il tuo progetto",
+                hero_btn_secondary: "Guarda il portfolio",
+                hero_tag_1: "Scale a chiocciola (EU / US / AU)",
+                hero_tag_2: "Lamiera e carpenteria saldata",
+                hero_tag_3: "Automazione e macro SolidWorks",
+                hero_card_title: "Cosa offre 369YAX",
+                hero_card_li_1: "Modelli 3D (SolidWorks, STEP)",
+                hero_card_li_2: "Disegni costruttivi (PDF, DWG, DXF)",
+                hero_card_li_3: "Distinte materiali e liste di taglio",
+                hero_card_li_4: "Sviluppi per laser e piega lamiera",
+                hero_card_li_5: "Macro SolidWorks personalizzate",
+                hero_note: "Con base in Italia · Lavoro da remoto · Inglese / Italiano / Ucraino",
+
+                services_title: "Servizi",
+                services_subtitle: "Progettazione pratica, orientata all’officina, con attenzione a producibilità, norme e documentazione chiara.",
+                services_card1_title: "Scale a chiocciola e scale rettilinee",
+                services_card1_text: "Progettazione di scale a chiocciola e scale rettilinee con verifica rispetto alle normative (EU / UK, US, AU), geometria chiara e comfort di utilizzo.",
+                services_card1_li_1: "Scale a chiocciola con controllo linea di cammino e headroom",
+                services_card1_li_2: "Scale dritte, pianerottoli, parapetti e corrimano",
+                services_card1_li_3: "Pacchetto completo: modello 3D, disegni, DXF, BOM",
+
+                services_card2_title: "Lamiera e carpenteria metallica",
+                services_card2_text: "Progettazione e ottimizzazione di particolari in lamiera, elementi inox, telai e staffe industriali pronti per TRUMPF laser e piegatura.",
+                services_card2_li_1: "Sviluppi (DXF, DWG) con corretta compensazione di piega",
+                services_card2_li_2: "Telai saldati, piattaforme, staffe e supporti",
+                services_card2_li_3: "Simboli di saldatura, note e liste di taglio per l’officina",
+
+                services_card3_title: "Automazione e macro SolidWorks",
+                services_card3_text: "Strumenti personalizzati nell’ecosistema 369YAX per velocizzare il lavoro ripetitivo e standardizzare modelli e disegni.",
+                services_card3_li_1: "Creazione automatica di parti e disegni da template",
+                services_card3_li_2: "Esportazione distinta e liste di taglio in Excel",
+                services_card3_li_3: "Librerie di progetto e automatismi sulle proprietà",
+
+                portfolio_title: "Progetti selezionati",
+                portfolio_subtitle: "Alcuni esempi di come unisco SolidWorks, normative e esperienza reale in officina. Altri riferimenti disponibili su richiesta.",
+                portfolio_item1_title: "Scala a chiocciola interna – configurazione a norma",
+                portfolio_item1_text: "Scala a chiocciola parametrica progettata sulle normative locali, con controllo di linea di cammino, headroom e combinazione alzata/pedata confortevole. Inclusi modello 3D completo, disegni costruttivi, DXF per taglio laser e distinta dettagliata.",
+                portfolio_item1_tag: "Scale a chiocciola",
+
+                portfolio_item2_title: "Mensola inox formato A4",
+                portfolio_item2_text: "Mensola minimalista in lamiera inox per taglio laser e piega, ottimizzata per una produzione pulita con disegni chiari, sviluppi e tutti i dettagli di fissaggio preparati.",
+                portfolio_item2_tag: "Lamiera",
+
+                portfolio_item3_title: "Telaio di supporto industriale",
+                portfolio_item3_text: "Telaio saldato in acciaio con profili correttamente dimensionati, dettagli di collegamento e disegni da officina completi di liste di taglio, note di saldatura e viste di montaggio.",
+                portfolio_item3_tag: "Carpenteria saldata",
+
+                portfolio_item4_title: "Strumenti di automazione – macro 369YAX",
+                portfolio_item4_text: "Pacchetto interno di macro per SolidWorks: creazione automatica di parti e disegni, compilazione proprietà di progetto, esportazione BOM e librerie di note standard usate quotidianamente.",
+                portfolio_item4_tag: "Automazione",
+
+                macros_title: "369YAX – Automazione per SolidWorks",
+                macros_subtitle: "Un ecosistema in crescita di strumenti personalizzati costruiti su esigenze reali di lavoro in SolidWorks: parti, disegni, distinte, norme e gestione commesse.",
+                macros_card1_title: "IntelliPack / strumenti di commessa",
+                macros_card1_text: "Strumenti per organizzare la struttura delle commesse, standardizzare le denominazioni e automatizzare azioni ripetitive legate a disegni e distinte.",
+                macros_card1_li_1: "Creazione automatica di cartelle e file di commessa",
+                macros_card1_li_2: "Aggiornamento massivo delle proprietà dei modelli",
+                macros_card1_li_3: "Esportazione intelligente di distinte e liste di taglio",
+
+                macros_card2_title: "IntelliStandards &amp; librerie di note",
+                macros_card2_text: "Librerie guidate da macro per note tecniche, simboli di saldatura e testi standard allineati a ISO/UNI/EN, pronte da inserire nei disegni.",
+                macros_card2_li_1: "Note bilingue (IT / EN, altre su richiesta)",
+                macros_card2_li_2: "Note standardizzate per saldature e tolleranze",
+                macros_card2_li_3: "Inserimento rapido nei disegni SolidWorks",
+
+                macros_card3_title: "Generatori di scale",
+                macros_card3_text: "Strumenti dedicati per assistere nella configurazione di scale a chiocciola e scale rettilinee, con controllo del comfort e dei parametri chiave secondo le norme scelte.",
+                macros_card3_li_1: "Configurazioni parametriche di scale a chiocciola",
+                macros_card3_li_2: "Supporto per set di norme EU / US / AU",
+                macros_card3_li_3: "Geometria pronta per il dettaglio finale",
+
+                about_title: "Chi sono – 369YAX &amp; Vitalii",
+                about_subtitle: "Progettazione meccanica con vera esperienza d’officina – non solo “belle immagini CAD”.",
+                about_text: "Sono <strong>Vitalii Borys</strong>, disegnatore meccanico e power-user SolidWorks con base in Italia, attivo con il marchio <strong>369YAX – Automation &amp; Design</strong>. Prima di concentrarmi sulla progettazione e sull’automazione, ho lavorato per anni direttamente in officina, esperienza che influisce molto sul modo in cui modello e impagino i progetti.",
+                about_li_1: "Oltre 8 anni in lavorazioni metalliche (piegatura, calandratura, saldatura MIG/MAG, laser TRUMPF)",
+                about_li_2: "Più di 3 anni di lavoro professionale in SolidWorks (versione italiana, 3D e tavole)",
+                about_li_3: "Esperienza presso aziende italiane: Metalinox, Gortani, OFFMA",
+                about_li_4: "Programmazione TRUMPF BOOST &amp; TruBend per taglio laser e piega",
+                about_li_5: "Focus su soluzioni semplici, robuste e adatte all’officina",
+
+                about_box_title: "Come lavoro",
+                about_box_li_1: "Parto dalla tua idea, schizzo, foto o modello/disegno esistente",
+                about_box_li_2: "Chiarisco i vincoli: norme, materiali, processi, budget",
+                about_box_li_3: "Sviluppo modelli 3D chiari e disegni tecnici completi",
+                about_box_li_4: "Consegno file pronti per la produzione: DXF, DWG, STEP, PDF, BOM",
+                about_box_li_5: "Comunicazione in inglese, italiano o ucraino, come preferisci",
+
+                contact_title: "Lavoriamo insieme",
+                contact_subtitle: "Descrivimi brevemente il tuo progetto – scale, lamiera, carpenteria o automazione SolidWorks – e ti proporrò un modo chiaro e concreto per procedere.",
+                contact_direct_title: "Contatto diretto",
+                contact_email_label: "Email:",
+                contact_location: "Sede: Italia · Lavoro da remoto in tutto il mondo",
+                contact_note: "Per partire più velocemente, indica: tipo di progetto (scala, telaio, lamiera, macro), dimensioni indicative, materiale e quali deliverable ti servono (3D, disegni, DXF, STEP, BOM).",
+                contact_platforms_title: "Piattaforme freelance",
+                contact_platforms_note: 'Puoi contattarmi anche tramite le piattaforme freelance – cerca semplicemente <strong>“369YAX”</strong> e inviami una breve descrizione del tuo progetto.',
+
+                contact_form_title: "Modulo di contatto",
+                contact_form_name_label: "Il tuo nome",
+                contact_form_email_label: "La tua email",
+                contact_form_subject_label: "Tipo di progetto / oggetto",
+                contact_form_message_label: "Dettagli del progetto",
+                contact_form_submit: "Invia messaggio",
+                contact_form_hint: "Il modulo aprirà il tuo programma di posta con un messaggio già compilato verso 369yax@gmail.com – puoi controllarlo e inviarlo.",
+
+                footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys",
+                footer_right: "SolidWorks · Carpenteria metallica · Scale a chiocciola · Automazione"
+            },
+
+            uk: {
+                nav_services: "Послуги",
+                nav_portfolio: "Портфоліо",
+                nav_macros: "SW Макроси",
+                nav_about: "Про мене",
+                nav_contact: "Контакти",
+
+                hero_title: 'Конструкційний дизайн для виробництва<br /><span class="accent">металеві конструкції та сходи</span>',
+                hero_sub: 'Я <strong>Віталій Борис</strong>, інженер-конструктор, що живе та працює в Італії. Під брендом <strong>369YAX – Automation &amp; Design</strong> я допомагаю майстерням та виробникам перетворювати ідеї у <strong>3D-моделі SolidWorks, креслення, DXF, STEP та специфікації</strong>, готові до реального виробництва – з акцентом на спіральні сходи, листовий метал та зварні конструкції.',
+                hero_btn_primary: "Написати щодо проєкту",
+                hero_btn_secondary: "Переглянути портфоліо",
+                hero_tag_1: "Спіральні сходи (EU / US / AU)",
+                hero_tag_2: "Листовий метал та зварні рами",
+                hero_tag_3: "Автоматизація та макроси SolidWorks",
+                hero_card_title: "Що ви отримуєте з 369YAX",
+                hero_card_li_1: "3D-моделі (SolidWorks, STEP)",
+                hero_card_li_2: "Креслення для виробництва (PDF, DWG, DXF)",
+                hero_card_li_3: "Відомості деталей та карти різу",
+                hero_card_li_4: "Деталі з листового металу, готові до різки та гнуття",
+                hero_card_li_5: "Індивідуальні макроси SolidWorks під ваш процес",
+                hero_note: "Базуюсь в Італії · Працюю віддалено · Англійська / Італійська / Українська",
+
+                services_title: "Послуги",
+                services_subtitle: "Практичний інженерний дизайн з орієнтацією на цех: технологічність, норми та зрозуміла документація.",
+                services_card1_title: "Проєктування спіральних та прямих сходів",
+                services_card1_text: "Проєктування спіральних та прямих сходів з урахуванням норм (EU / UK, US, AU), чіткою геометрією та комфортом користування.",
+                services_card1_li_1: "Спіральні сходи з контролем лінії ходу та висоти проходу",
+                services_card1_li_2: "Прямі сходи, площадки, поручні та огородження",
+                services_card1_li_3: "Повний пакет: 3D-модель, креслення, DXF, специфікація",
+
+                services_card2_title: "Листовий метал та зварні конструкції",
+                services_card2_text: "Розробка та оптимізація деталей з листового металу, нержавіючих елементів, рам та кронштейнів, готових до TRUMPF-різки та гнуття.",
+                services_card2_li_1: "Розгортки (DXF, DWG) з коректними припусками на згин",
+                services_card2_li_2: "Зварні рами, платформи, кронштейни та опори",
+                services_card2_li_3: "Умовні позначення зварних швів, примітки та карти різу для цеху",
+
+                services_card3_title: "Автоматизація та макроси SolidWorks",
+                services_card3_text: "Кастомні інструменти в екосистемі 369YAX для прискорення рутини та стандартизації моделей і креслень.",
+                services_card3_li_1: "Автоматичне створення деталей і креслень із шаблонів",
+                services_card3_li_2: "Експорт специфікацій та карт різу в Excel",
+                services_card3_li_3: "Бібліотеки проєктів та автоматичне заповнення властивостей",
+
+                portfolio_title: "Обрані проєкти",
+                portfolio_subtitle: "Кілька прикладів того, як я поєдную SolidWorks, норми та реальний досвід роботи з металом. Детальніші кейси – за запитом.",
+                portfolio_item1_title: "Внутрішні спіральні сходи – конфігурація за нормами",
+                portfolio_item1_text: "Параметричні спіральні сходи, спроєктовані згідно з локальними нормами, з перевіреною лінією ходу, висотою проходу та комфортною комбінацією підйому/проступу. Включено повну 3D-модель, креслення, DXF-файли для лазерної різки та специфікацію.",
+                portfolio_item1_tag: "Спіральні сходи",
+
+                portfolio_item2_title: "Полиця з нержавіючої сталі формату A4",
+                portfolio_item2_text: "Мінімалістична полиця з листового металу для лазерної різки та гнуття, оптимізована під просте виготовлення з чіткими кресленнями, розгортками та продуманими кріпленнями.",
+                portfolio_item2_tag: "Листовий метал",
+
+                portfolio_item3_title: "Промислова опорна рама",
+                portfolio_item3_text: "Зварна сталева рама з правильно підібраними профілями, вузлами з’єднання та кресленнями для цеху – з відомістю деталей, примітками по зварюванню та монтажними видами.",
+                portfolio_item3_tag: "Зварна конструкція",
+
+                portfolio_item4_title: "Інструменти автоматизації – макроси 369YAX",
+                portfolio_item4_text: "Внутрішній пакет макросів для SolidWorks: автоматичне створення моделей і креслень, заповнення властивостей проєкту, експорт специфікацій та бібліотеки стандартних приміток, які використовуються щодня.",
+                portfolio_item4_tag: "Автоматизація",
+
+                macros_title: "369YAX – Автоматизація для SolidWorks",
+                macros_subtitle: "Екосистема власних інструментів, побудована на реальних щоденних задачах у SolidWorks: моделі, креслення, специфікації, норми та керування проєктами.",
+                macros_card1_title: "IntelliPack / інструменти для комісій",
+                macros_card1_text: "Інструменти для організації структури проєкту, стандартизації назв та автоматизації повторюваних дій, пов’язаних із кресленнями та специфікаціями.",
+                macros_card1_li_1: "Автоматичне створення папок і файлів проєкту",
+                macros_card1_li_2: "Масове оновлення властивостей моделей",
+                macros_card1_li_3: "Розумний експорт специфікацій та карт різу",
+
+                macros_card2_title: "IntelliStandards та бібліотеки приміток",
+                macros_card2_text: "Бібліотеки приміток, символів зварювання та стандартних текстів, керовані макросами та узгоджені з ISO/UNI/EN – готові до вставки в креслення.",
+                macros_card2_li_1: "Двомовні примітки (IT / EN, інші за потреби)",
+                macros_card2_li_2: "Стандартизовані примітки для зварювання та допусків",
+                macros_card2_li_3: "Швидка вставка приміток у креслення SolidWorks",
+
+                macros_card3_title: "Генератори сходів",
+                macros_card3_text: "Спеціальні інструменти для налаштування спіральних та прямих сходів із контролем зручності та ключових параметрів за обраними нормами.",
+                macros_card3_li_1: "Параметричні конфігурації спіральних сходів",
+                macros_card3_li_2: "Підтримка наборів норм EU / US / AU",
+                macros_card3_li_3: "Геометрія, готова до деталювання",
+
+                about_title: "Про мене – 369YAX &amp; Віталій",
+                about_subtitle: "Машинобудівний дизайн з реальним цеховим бекграундом – не просто «красиві CAD-картинки».",
+                about_text: "Я – <strong>Віталій Борис</strong>, інженер-конструктор і power-user SolidWorks, живу та працюю в Італії під брендом <strong>369YAX – Automation &amp; Design</strong>. До того як зосередитися на конструюванні та автоматизації, я багато років працював безпосередньо у виробництві, що дуже впливає на те, як я будую моделі та оформляю документацію.",
+                about_li_1: "8+ років у металообробці (гнуття, вальцювання, зварювання MIG/MAG, лазер TRUMPF)",
+                about_li_2: "3+ роки професійної роботи в SolidWorks (італійська версія, 3D та креслення)",
+                about_li_3: "Досвід на італійських підприємствах: Metalinox, Gortani, OFFMA",
+                about_li_4: "Програмування TRUMPF BOOST &amp; TruBend для лазерної різки та гнуття",
+                about_li_5: "Фокус на простих, надійних і зручних у виробництві рішеннях",
+
+                about_box_title: "Як я працюю",
+                about_box_li_1: "Починаю з вашої ідеї, ескізу, фото або наявних 3D/креслень",
+                about_box_li_2: "Уточнюю обмеження: норми, матеріали, процеси, бюджет",
+                about_box_li_3: "Розробляю зрозумілі 3D-моделі та технічні креслення",
+                about_box_li_4: "Передаю файли, готові до виробництва: DXF, DWG, STEP, PDF, BOM",
+                about_box_li_5: "Спілкування українською, італійською або англійською",
+
+                contact_title: "Давайте працювати разом",
+                contact_subtitle: "Розкажіть коротко про свій проєкт – сходи, листовий метал, зварну раму чи автоматизацію SolidWorks – і я запропоную зрозумілий та реалістичний варіант рішення.",
+                contact_direct_title: "Прямий контакт",
+                contact_email_label: "Email:",
+                contact_location: "Локація: Італія · Працюю віддалено по всьому світу",
+                contact_note: "Щоб швидше стартувати, напишіть: тип проєкту (сходи, рама, листовий метал, макрос), приблизні габарити, матеріал та які файли вам потрібні (3D, креслення, DXF, STEP, BOM).",
+                contact_platforms_title: "Фриланс-платформи",
+                contact_platforms_note: 'Також ви можете написати мені через фриланс-платформи – просто знайдіть <strong>“369YAX”</strong> і коротко опишіть задачу.',
+
+                contact_form_title: "Форма контакту",
+                contact_form_name_label: "Ваше ім’я",
+                contact_form_email_label: "Ваша email-адреса",
+                contact_form_subject_label: "Тип проєкту / тема",
+                contact_form_message_label: "Деталі проєкту",
+                contact_form_submit: "Надіслати повідомлення",
+                contact_form_hint: "Форма відкриє ваш поштовий клієнт із готовим листом на 369yax@gmail.com – ви зможете перевірити та надіслати його.",
+
+                footer_left: "© 369YAX – Automation &amp; Design · Віталій Борис",
+                footer_right: "SolidWorks · Металеві конструкції · Спіральні сходи · Автоматизація"
+            }
         };
 
         function setLanguage(lang) {
@@ -454,14 +812,12 @@
           } catch (e) {}
         }
 
-        // read saved theme
         let saved = "light";
         try {
           saved = localStorage.getItem("369yax_theme") || "light";
         } catch (e) {}
         setTheme(saved);
 
-        // toggle on click
         btn.addEventListener("click", function () {
           const next = document.body.classList.contains("dark-mode")
             ? "light"
@@ -470,6 +826,35 @@
         });
       })();
     </script>
+
+    <!-- =========================
+         BURGER MENU SCRIPT
+         ========================= -->
+    <script>
+      (function () {
+        const navToggle = document.getElementById("navToggle");
+        const mainNav = document.getElementById("mainNav");
+
+        if (!navToggle || !mainNav) return;
+
+        navToggle.addEventListener("click", function () {
+          document.body.classList.toggle("nav-open");
+        });
+
+        mainNav.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            document.body.classList.remove("nav-open");
+          });
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 900) {
+            document.body.classList.remove("nav-open");
+          }
+        });
+      })();
+    </script>
 </body>
 </html>
+
 
