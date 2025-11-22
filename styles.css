@@ -1,7 +1,7 @@
 /* =====================================================
    369YAX – Automation & Design
    Global styles (light + dark theme, responsive)
-   PRO – Clean static hero photos (no jumps)
+   PRO – Clean static hero photos (no jumps) + Chat widget
 ===================================================== */
 
 /* ==========
@@ -778,7 +778,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
 }
 
 /* ==========
-   FLOATING CTA
+   FLOATING CTA (CHAT LAUNCHER)
    ========== */
 
 .floating-cta {
@@ -815,6 +815,170 @@ body.nav-open .nav-toggle span:nth-child(3) {
         text-align: center;
         justify-content: center;
     }
+}
+
+/* ==========
+   CHAT WIDGET
+   ========== */
+
+.chat-widget {
+    position: fixed;
+    right: 16px;
+    bottom: 72px;
+    width: 320px;
+    max-width: calc(100% - 32px);
+    background: var(--card-bg);
+    border-radius: 18px;
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(16px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    z-index: 60;
+}
+
+.chat-widget.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #ff3b3b, #a01010);
+    color: #ffffff;
+}
+
+.chat-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.chat-title strong {
+    font-size: 0.9rem;
+}
+
+.chat-title span {
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
+
+.chat-close {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+    border: none;
+    width: 24px;
+    height: 24px;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    background: var(--card-bg);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+}
+
+.chat-message {
+    margin-bottom: 8px;
+    max-width: 90%;
+}
+
+.chat-message-bot {
+    align-self: flex-start;
+}
+
+.chat-message-user {
+    align-self: flex-end;
+    text-align: right;
+}
+
+.chat-message-bubble {
+    display: inline-block;
+    padding: 8px 10px;
+    border-radius: 12px;
+    background: #f1f2f7;
+    color: #111111;
+}
+
+.chat-message-bot .chat-message-bubble {
+    border-bottom-left-radius: 3px;
+}
+
+.chat-message-user .chat-message-bubble {
+    background: var(--accent);
+    color: #ffffff;
+    border-bottom-right-radius: 3px;
+}
+
+.chat-message-meta {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.chat-message-bubble a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.chat-input-row {
+    display: flex;
+    padding: 8px 8px 6px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    gap: 6px;
+}
+
+.chat-input-row input {
+    flex: 1;
+    border-radius: 999px;
+    border: 1px solid #c6cad6;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+.chat-input-row input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.chat-input-row button {
+    border-radius: 999px;
+    border: none;
+    background: var(--accent);
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.chat-input-row button:hover {
+    filter: brightness(1.05);
+}
+
+.chat-hint {
+    padding: 0 10px 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 /* ==========
@@ -895,6 +1059,13 @@ body.nav-open .nav-toggle span:nth-child(3) {
         flex-direction: column;
         gap: 4px;
         align-items: flex-start;
+    }
+
+    .chat-widget {
+        right: 8px;
+        bottom: 72px;
+        left: 8px;
+        width: auto;
     }
 }
 
@@ -1012,5 +1183,19 @@ body.dark-mode .contact-form input,
 body.dark-mode .contact-form textarea {
     background: #05060a;
     border-color: #272b36;
+    color: #f5f5f5;
+}
+
+body.dark-mode .chat-widget {
+    background: #10121a;
+    border-color: #272b36;
+}
+
+body.dark-mode .chat-body {
+    background: #10121a;
+}
+
+body.dark-mode .chat-message-bubble {
+    background: #181b24;
     color: #f5f5f5;
 }
