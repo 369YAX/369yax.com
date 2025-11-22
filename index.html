@@ -755,6 +755,44 @@
             });
         }
     </script>
+    <script>
+  (function () {
+    const btn = document.getElementById("themeToggle");
+    if (!btn) return; // якщо кнопки немає – просто тихо виходимо
+
+    function setTheme(theme) {
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+        btn.textContent = "🌙";
+      } else {
+        document.body.classList.remove("dark-mode");
+        btn.textContent = "🌞";
+      }
+      try {
+        localStorage.setItem("369yax_theme", theme);
+      } catch (e) {
+        // якщо браузер блокує localStorage – просто ігноруємо
+      }
+    }
+
+    // читаємо, що було збережено раніше
+    let saved = "light";
+    try {
+      saved = localStorage.getItem("369yax_theme") || "light";
+    } catch (e) {
+      saved = "light";
+    }
+    setTheme(saved);
+
+    // клік по кнопці – перемикаємо
+    btn.addEventListener("click", function () {
+      const next = document.body.classList.contains("dark-mode")
+        ? "light"
+        : "dark";
+      setTheme(next);
+    });
+  })();
+</script>
 </body>
 </html>
 
