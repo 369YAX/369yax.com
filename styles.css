@@ -2,7 +2,7 @@
    369YAX – Automation & Design
    Global styles (light + dark theme, responsive)
    PRO – Clean static hero photos (no jumps)
-   ===================================================== */
+===================================================== */
 
 /* ==========
    RESET / BASE
@@ -213,7 +213,7 @@ body {
     transform: translateY(-1px);
 }
 
-/* Active language (current lang) */
+/* Active language */
 
 .lang-btn.is-active {
     background: var(--accent-soft);
@@ -258,7 +258,7 @@ body {
     margin-top: 4px;
 }
 
-/* Transform burger into "X" when menu is open */
+/* Burger to "X" */
 
 body.nav-open .nav-toggle span:nth-child(1) {
     transform: translateY(6px) rotate(45deg);
@@ -364,7 +364,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
 }
 
 /* ==========
-   HERO CARD + PHOTOS (СТАТИЧНО)
+   HERO CARD + PHOTOS (STATIC)
    ========== */
 
 .hero-card {
@@ -373,7 +373,6 @@ body.nav-open .nav-toggle span:nth-child(3) {
     padding: 22px 20px 18px;
     border: 1px solid var(--border-soft);
     box-shadow: var(--shadow-soft);
-
     transform: translateY(0);
     opacity: 1;
     transition:
@@ -389,8 +388,6 @@ body.nav-open .nav-toggle span:nth-child(3) {
     border-color: rgba(214, 0, 0, 0.65);
 }
 
-/* Контейнер з двома фото */
-
 .hero-photos {
     position: relative;
     width: 100%;
@@ -398,8 +395,6 @@ body.nav-open .nav-toggle span:nth-child(3) {
     aspect-ratio: 4 / 3;
     margin-bottom: 16px;
 }
-
-/* Загальний стиль рамки */
 
 .hero-photo-frame {
     position: absolute;
@@ -422,16 +417,12 @@ body.nav-open .nav-toggle span:nth-child(3) {
     background: #000;
 }
 
-/* Основне фото ліворуч */
-
 .hero-photo-main {
     width: 58%;
     height: 100%;
     left: 0;
     top: 0;
 }
-
-/* Фото з майстерні – трохи нижче праворуч, без transform */
 
 .hero-photo-workshop {
     width: 52%;
@@ -440,14 +431,10 @@ body.nav-open .nav-toggle span:nth-child(3) {
     bottom: -8px;
 }
 
-/* При hover змінюємо тільки тіні, без будь-якого руху фото */
-
 .hero-card:hover .hero-photo-main,
 .hero-card:hover .hero-photo-workshop {
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
 }
-
-/* Текст в картці */
 
 .hero-card h2 {
     font-size: 1.1rem;
@@ -629,8 +616,6 @@ body.nav-open .nav-toggle span:nth-child(3) {
     font-size: 0.8rem;
 }
 
-/* Contact form */
-
 .contact-form {
     margin-top: 24px;
     background: var(--card-bg);
@@ -786,7 +771,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
 }
 
 /* ==========
-   REDUCED MOTION (опціонально, але без фанатизму)
+   REDUCED MOTION
    ========== */
 
 @media (prefers-reduced-motion: reduce) {
