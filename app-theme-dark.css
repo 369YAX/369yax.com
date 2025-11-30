@@ -1,0 +1,715 @@
+/* =====================================================
+   369YAX – Automation & Design
+   app-theme-dark.css
+   Dark mode – Red Steel PRO
+   ===================================================== */
+
+body.dark-mode {
+    /* м’якша темна палітра */
+    --bg-main: #0c1018;
+    --bg-alt: #131826;
+    --card-bg: #191f2f;
+    --border-soft: #2b3243;
+    --accent: #d60000;
+    --accent-soft: rgba(214, 0, 0, 0.16);
+    --text-main: #f3f4f6;
+    --text-muted: #aeb3c4;
+    --pill-bg: #1b2130;
+    --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.55);
+
+    background-color: #050710;
+    background: radial-gradient(circle at top, #191f2f 0, #080b13 55%, #050710 100%);
+    color: var(--text-main);
+}
+
+/* легкий «app overlay» як у професійних програм */
+body.dark-mode::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 0 0, rgba(255, 60, 60, 0.08), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(148, 163, 184, 0.08), transparent 55%),
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.02),
+            transparent 30%,
+            transparent 70%,
+            rgba(15, 23, 42, 0.2)
+        );
+    mix-blend-mode: soft-light;
+    opacity: 0.65;
+}
+
+/* базові кольори тексту/посилань по сайту */
+
+body.dark-mode a {
+    color: inherit;
+}
+
+/* ==========
+   HEADER
+   ========== */
+
+body.dark-mode .top-bar {
+    background: linear-gradient(to bottom, rgba(11, 16, 28, 0.97), rgba(11, 16, 28, 0.9));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========
+   SECTIONS
+   ========== */
+
+body.dark-mode .hero {
+    background: transparent;
+}
+
+body.dark-mode .section {
+    background: transparent;
+}
+
+body.dark-mode .section-alt {
+    background: var(--bg-alt);
+}
+
+/* акцентна смужка під заголовком в dark mode трошки світліша */
+body.dark-mode .section-title::after {
+    background: linear-gradient(90deg, #ff4d4d, #ffb4b4);
+}
+
+/* ==========
+   FOOTER
+   ========== */
+
+body.dark-mode .site-footer {
+    background: #090c15;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+}
+
+/* ==========
+   NAV
+   ========== */
+
+body.dark-mode .main-nav a {
+    color: var(--text-muted);
+}
+
+body.dark-mode .main-nav a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+body.dark-mode .main-nav .nav-cta {
+    border-color: rgba(214, 0, 0, 0.7);
+}
+
+/* бургер */
+
+body.dark-mode .nav-toggle span {
+    background: #f5f5f5;
+}
+
+/* ==========
+   HERO
+   ========== */
+
+body.dark-mode .hero-tags span {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Dark mode – CAD grid */
+body.dark-mode .hero::before {
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    opacity: 0.23;
+}
+
+/* ==========
+   CARDS & PANELS
+   ========== */
+
+body.dark-mode .hero-card {
+    background: radial-gradient(circle at top, #23293c, #141827 60%);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.7);
+}
+
+/* всі панелі виглядають як app-вікна */
+body.dark-mode .card,
+body.dark-mode .portfolio-item,
+body.dark-mode .about-box,
+body.dark-mode .contact-form {
+    background: var(--card-bg);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* трішки світліший текст в описах */
+body.dark-mode .card p,
+body.dark-mode .portfolio-item p,
+body.dark-mode .about-exp-list,
+body.dark-mode .contact-note {
+    color: var(--text-muted);
+}
+
+/* ==========
+   PILLS / LANG / THEME
+   ========== */
+
+body.dark-mode .link-pill {
+    background: var(--pill-bg);
+    color: var(--text-main);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .link-pill.is-active {
+    background: rgba(214, 0, 0, 0.24);
+    border-color: rgba(214, 0, 0, 0.9);
+    color: #ffe5e5;
+    box-shadow: 0 0 12px rgba(214, 0, 0, 0.65);
+}
+
+body.dark-mode .link-pill:hover {
+    background: rgba(214, 0, 0, 0.3);
+    border-color: rgba(214, 0, 0, 0.9);
+}
+
+/* theme toggle кнопка */
+
+body.dark-mode .theme-toggle {
+    background: var(--pill-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========
+   BUTTONS
+   ========== */
+
+body.dark-mode .btn.ghost {
+    border-color: rgba(255, 255, 255, 0.22);
+    color: var(--text-main);
+    background: transparent;
+}
+
+body.dark-mode .btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========
+   CONTACT FORM
+   ========== */
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+    background: #090c15;
+    border-color: #2b3243;
+    color: #f5f5f5;
+}
+
+body.dark-mode .contact-form input::placeholder,
+body.dark-mode .contact-form textarea::placeholder {
+    color: #6f7483;
+}
+
+/* ==========
+   TRUST STRIP
+   ========== */
+
+body.dark-mode .trust-strip {
+    background: rgba(11, 16, 28, 0.9);
+}
+
+body.dark-mode .trust-inner {
+    color: var(--text-muted);
+}
+
+body.dark-mode .trust-pill {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* ==========
+   HERO METRICS
+   ========== */
+
+body.dark-mode .hero-metric {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.09);
+}
+
+/* ==========
+   ABOUT
+   ========== */
+
+body.dark-mode .about-exp {
+    background: rgba(9, 12, 21, 0.95);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .about-exp-list {
+    color: var(--text-muted);
+}
+
+body.dark-mode .about-list li {
+    color: var(--text-main);
+}
+
+/* ==========
+   CONTACT LINKS
+   ========== */
+
+body.dark-mode .contact-line a {
+    color: var(--accent);
+    border-bottom-color: rgba(214, 0, 0, 0.6);
+}
+
+body.dark-mode .contact-line a:hover {
+    border-bottom-color: #ffffff;
+}
+
+/* ==========
+   FLOATING CTA
+   ========== */
+
+body.dark-mode .floating-cta {
+    box-shadow:
+        0 0 18px rgba(255, 70, 70, 0.65),
+        0 12px 26px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========
+   SCROLLBARS (загальні, як у IDE)
+   ========== */
+
+body.dark-mode ::-webkit-scrollbar {
+    width: 8px;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.55);
+    border-radius: 999px;
+}
+
+/* ==========
+   CHAT WIDGET – DARK PRO
+   ========== */
+
+body.dark-mode .chat-widget-inner {
+    background: radial-gradient(circle at top, #23273a, #141827 60%);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* великий режим – щоб виглядало як панель програми */
+body.dark-mode .chat-widget.is-large .chat-widget-inner {
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.85);
+}
+
+body.dark-mode .chat-close-btn {
+    color: #d1d5db;
+}
+
+body.dark-mode .chat-close-btn:hover {
+    color: #ffffff;
+}
+
+body.dark-mode .chat-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(90deg, #191f2f, #241b1b);
+}
+
+body.dark-mode .chat-title strong {
+    color: var(--text-main);
+}
+
+body.dark-mode .chat-title span {
+    color: #aeb3c4;
+}
+
+/* панель швидких підказок */
+
+body.dark-mode .chat-quick-actions {
+    background: rgba(11, 15, 26, 0.96);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .chat-quick-actions__title {
+    color: var(--text-muted);
+}
+
+body.dark-mode .chat-quick-actions__group-title {
+    color: var(--text-main);
+}
+
+body.dark-mode .chat-quick-action {
+    background: rgba(25, 29, 46, 0.96);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+}
+
+body.dark-mode .chat-quick-action:hover {
+    border-color: var(--accent);
+    background: rgba(214, 0, 0, 0.18);
+    color: var(--accent);
+}
+
+/* область повідомлень */
+
+body.dark-mode .chat-messages {
+    background: #101322;
+}
+
+/* правильні селектори згідно з основним CSS:
+   .chat-message--user / .chat-message--bot / .chat-message__bubble
+*/
+
+body.dark-mode .chat-message--bot .chat-message__bubble {
+    background: #191f2f;
+    color: #f5f5f5;
+}
+
+body.dark-mode .chat-message--user .chat-message__bubble {
+    background: linear-gradient(135deg, #ff5c5c, #c40000);
+    color: #ffffff;
+}
+
+/* якщо десь є додаткова meta-інформація в чаті */
+
+body.dark-mode .chat-message-meta {
+    color: #aeb3c4;
+}
+
+/* Footer (chat) */
+
+body.dark-mode .chat-footer {
+    border-top-color: rgba(255, 255, 255, 0.08);
+    background: #141827;
+}
+
+body.dark-mode .chat-hint {
+    color: #9ca3b8;
+}
+
+body.dark-mode .chat-hint a {
+    color: var(--accent);
+    border-bottom-color: rgba(214, 0, 0, 0.6);
+}
+
+body.dark-mode .chat-hint a:hover {
+    border-bottom-color: #ffffff;
+}
+
+/* File attach */
+
+body.dark-mode .chat-file-label {
+    background: #1b2130;
+    color: #f5f5f5;
+}
+
+body.dark-mode .chat-file-info {
+    color: #aeb3c4;
+}
+
+/* Textarea + send */
+
+body.dark-mode .chat-input {
+    background: #090c15;
+    border-color: #2b3243;
+    color: #f5f5f5;
+}
+
+body.dark-mode .chat-input::placeholder {
+    color: #6f7483;
+}
+
+/* кнопка відправки в dark mode */
+
+body.dark-mode .chat-send-btn {
+    box-shadow: 0 8px 22px rgba(214, 0, 0, 0.7);
+}
+
+/* ==========
+   STAIR WIZARD – DARK MODE
+   ========== */
+
+body.dark-mode .stair-wizard {
+    color: var(--text-main);
+}
+
+/* затемнення фону */
+body.dark-mode .stair-wizard__backdrop {
+    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(3, 7, 18, 0.98));
+}
+
+/* головна панель (як PRO-додаток) */
+body.dark-mode .stair-wizard__panel {
+    background: radial-gradient(circle at top, #23293c, #131826 60%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.9);
+    color: var(--text-main);
+    backdrop-filter: blur(16px);
+}
+
+/* хедер всередині майстра */
+body.dark-mode .stair-wizard__header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(90deg, rgba(24, 31, 55, 0.96), rgba(36, 27, 27, 0.96));
+}
+
+body.dark-mode .stair-wizard__header h2 {
+    color: #f9fafb;
+}
+
+body.dark-mode .stair-wizard__header p {
+    color: var(--text-muted);
+}
+
+/* ліва колонка зі статусом кроків */
+body.dark-mode .stair-wizard__steps {
+    background: rgba(9, 12, 21, 0.96);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .stair-wizard__step-indicator {
+    color: var(--text-muted);
+    border-color: rgba(148, 163, 184, 0.35);
+    background: rgba(15, 23, 42, 0.9);
+}
+
+body.dark-mode .stair-wizard__step-indicator.is-active {
+    border-color: rgba(214, 0, 0, 0.9);
+    background: radial-gradient(circle at top left, rgba(214, 0, 0, 0.36), rgba(15, 23, 42, 0.96));
+    color: #ffe5e5;
+    box-shadow:
+        0 0 0 1px rgba(214, 0, 0, 0.6),
+        0 0 20px rgba(214, 0, 0, 0.65);
+}
+
+/* тіло майстра */
+body.dark-mode .stair-wizard__body {
+    background: transparent;
+}
+
+/* заголовки в середині боксів */
+body.dark-mode .stair-wizard__box h3,
+body.dark-mode .stair-wizard__box h4,
+body.dark-mode .stair-wizard__summary-block h4 {
+    color: #e5e7eb;
+}
+
+/* блоки Step 2 / Step 3 */
+body.dark-mode .stair-wizard__box,
+body.dark-mode .stair-wizard__summary-block {
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+    color: var(--text-main);
+}
+
+body.dark-mode .stair-wizard__summary-block p {
+    color: var(--text-muted);
+}
+
+body.dark-mode .stair-wizard__summary-block ul li {
+    color: var(--text-main);
+}
+
+/* кнопка закриття */
+body.dark-mode .stair-wizard__close {
+    color: #d1d5db;
+    background: transparent;
+}
+
+body.dark-mode .stair-wizard__close:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* поля вводу геометрії */
+body.dark-mode .sw-field__label {
+    color: var(--text-main);
+}
+
+body.dark-mode .sw-field__note {
+    color: var(--text-muted);
+}
+
+body.dark-mode .sw-field__input,
+body.dark-mode .sw-field__input[type="number"],
+body.dark-mode .stair-wizard input[type="number"],
+body.dark-mode .stair-wizard input[type="text"],
+body.dark-mode .stair-wizard select {
+    background: #090c15;
+    border: 1px solid #2b3243;
+    color: #f9fafb;
+}
+
+body.dark-mode .sw-field__input::placeholder,
+body.dark-mode .stair-wizard input::placeholder {
+    color: #6f7483;
+}
+
+/* Auto / Manual перемикачі */
+body.dark-mode .sw-toggle-auto {
+    background: var(--pill-bg);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--text-muted);
+}
+
+body.dark-mode .sw-toggle-auto.is-auto {
+    background: rgba(148, 163, 184, 0.12);
+    color: #e5e7eb;
+}
+
+body.dark-mode .sw-toggle-auto.is-manual {
+    background: rgba(214, 0, 0, 0.24);
+    color: #ffe5e5;
+    border-color: rgba(214, 0, 0, 0.9);
+}
+
+/* live-result панель */
+body.dark-mode #swLiveResult {
+    background: radial-gradient(circle at top, rgba(35, 41, 60, 0.95), rgba(15, 23, 42, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode #swLiveResult .sw-result-header {
+    color: #e5e7eb;
+}
+
+body.dark-mode #swLiveResult .sw-result-main p {
+    color: var(--text-muted);
+}
+
+/* нормові нотатки */
+body.dark-mode #swNormNotes {
+    background: rgba(9, 12, 21, 0.96);
+    border: 1px dashed rgba(148, 163, 184, 0.4);
+    color: var(--text-muted);
+}
+
+/* ліміти під полями (як дрібний текст) */
+body.dark-mode .sw-limit {
+    color: #9ca3af;
+}
+
+/* статусні точки (OK / WARN / BAD) */
+body.dark-mode .sw-geom-status {
+    background: rgba(148, 163, 184, 0.3);
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+}
+
+body.dark-mode .sw-geom-status--ok {
+    background: #16a34a;
+    box-shadow:
+        0 0 0 1px rgba(22, 163, 74, 0.8),
+        0 0 12px rgba(22, 163, 74, 0.8);
+}
+
+body.dark-mode .sw-geom-status--warn {
+    background: #facc15;
+    box-shadow:
+        0 0 0 1px rgba(234, 179, 8, 0.85),
+        0 0 12px rgba(234, 179, 8, 0.85);
+}
+
+body.dark-mode .sw-geom-status--bad {
+    background: #dc2626;
+    box-shadow:
+        0 0 0 1px rgba(220, 38, 38, 0.9),
+        0 0 14px rgba(220, 38, 38, 0.95);
+}
+
+/* кнопки навігації внизу */
+body.dark-mode #stairWizardPrev,
+body.dark-mode #stairWizardNext,
+body.dark-mode #swResetBtn,
+body.dark-mode #swBuildMessage {
+    background: #111827;
+    border-color: rgba(148, 163, 184, 0.5);
+    color: #e5e7eb;
+}
+
+body.dark-mode #stairWizardNext {
+    background: linear-gradient(135deg, #ff5c5c, #c40000);
+    border-color: rgba(214, 0, 0, 0.95);
+    color: #ffffff;
+    box-shadow: 0 10px 26px rgba(214, 0, 0, 0.75);
+}
+
+body.dark-mode #stairWizardNext:hover {
+    filter: brightness(1.05);
+}
+
+body.dark-mode #stairWizardPrev:hover,
+body.dark-mode #swResetBtn:hover,
+body.dark-mode #swBuildMessage:hover {
+    background: rgba(31, 41, 55, 0.95);
+}
+
+/* textarea повідомлення (Step 3) */
+body.dark-mode #swMessageBox {
+    background: #050814;
+    border: 1px solid #2b3243;
+    color: #f9fafb;
+}
+
+body.dark-mode #swMessageBox::placeholder {
+    color: #6f7483;
+}
+
+/* блок з нормативами */
+body.dark-mode #stairWizardCodes {
+    background: rgba(9, 12, 21, 0.96);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+body.dark-mode #stairWizardCodes a {
+    color: #bfdbfe;
+    border-bottom: 1px dashed rgba(191, 219, 254, 0.4);
+}
+
+body.dark-mode #stairWizardCodes a:hover {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+/* дрібний хінт під нормативами */
+body.dark-mode .stair-wizard__hint-small {
+    color: #9ca3af;
+}
+/* нижня полоса / панель кнопок */
+body.dark-mode .stair-wizard__footer,
+body.dark-mode .stair-wizard__actions {
+    background: #050814;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* кнопка "Скасувати" */
+body.dark-mode #stairWizardCancel {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid rgba(148, 163, 184, 0.55);
+}
+
+/* якщо в тебе вона має клас .btn або .btn.ghost – підстрахуємось */
+body.dark-mode #stairWizardCancel.btn,
+body.dark-mode #stairWizardCancel.btn.ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border-color: rgba(148, 163, 184, 0.55);
+}
+
+body.dark-mode #stairWizardCancel:hover {
+    background: rgba(31, 41, 55, 0.95);
+    color: #e5e7eb;
+}
