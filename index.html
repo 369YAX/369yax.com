@@ -20,12 +20,17 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://369yax.com" />
+    <!-- Прев’ю з логотипом -->
+    <meta property="og:image" content="https://369yax.com/img/369yax-logo-round.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/369yax-logo-round.png" />
 
     <!-- CSS (розбитий на модулі) -->
-    <link rel="stylesheet" href="app-base.css" />
-<link rel="stylesheet" href="app-components.css" />
-<link rel="stylesheet" href="app-theme-dark.css" />
-<link rel="stylesheet" href="app-responsive.css" />
+    <link rel="stylesheet" href="css/app-base.css" />
+    <link rel="stylesheet" href="css/app-components.css" />
+    <link rel="stylesheet" href="css/app-theme-dark.css" />
+    <link rel="stylesheet" href="css/app-responsive.css" />
 </head>
 
 <body>
@@ -36,13 +41,18 @@
         <div class="container top-bar-inner">
             <!-- Logo -->
             <a href="#top" class="logo" aria-label="369YAX – Automation &amp; Design">
-                <div class="logo-hex">369</div>
-                <div class="logo-text">
-                    <span class="logo-main">369YAX</span>
-                    <span class="logo-sub">Automation &amp; Design</span>
-                </div>
-            </a>
-
+    <span class="logo-mark">
+        <img
+            src="https://raw.githubusercontent.com/369YAX/369YAX-photos/main/369yax-logo-round.png"
+            alt="369YAX – Automation &amp; Design logo"
+            loading="lazy"
+        />
+    </span>
+    <span class="logo-text">
+        <span class="logo-main">369YAX</span>
+        <span class="logo-sub">Automation &amp; Design</span>
+    </span>
+</a>
             <!-- Burger button (mobile) -->
             <button
                 class="nav-toggle"
@@ -589,639 +599,638 @@
         </section>
 
         <!-- =========================
-     STAIR WIZARD (MODAL)
-     ========================= -->
-<div id="stairWizard" class="stair-wizard" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="stair-wizard__backdrop"></div>
+             STAIR WIZARD (MODAL)
+             ========================= -->
+        <div id="stairWizard" class="stair-wizard" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="stair-wizard__backdrop"></div>
 
-    <div class="stair-wizard__panel">
-        <button
-            type="button"
-            class="stair-wizard__close"
-            id="stairWizardClose"
-            aria-label="Close stair wizard"
-        >
-            ×
-        </button>
+            <div class="stair-wizard__panel">
+                <button
+                    type="button"
+                    class="stair-wizard__close"
+                    id="stairWizardClose"
+                    aria-label="Close stair wizard"
+                >
+                    ×
+                </button>
 
-        <header class="stair-wizard__header">
-            <h2 data-i18n="wizard_title">Stair concept generator</h2>
-            <p data-i18n="wizard_intro">
-                Quick concept-level configuration for stairs according to common comfort rules and typical ranges used
-                in Europe, US and Australia. Final compliance must always be checked by a local engineer.
-            </p>
-        </header>
-
-        <div class="stair-wizard__body">
-            <!-- Sidebar steps -->
-            <aside class="stair-wizard__steps">
-                <div class="stair-wizard__step-indicator is-active" data-step="1">
-                    <span class="stair-wizard__step-num">1</span>
-                    <span class="stair-wizard__step-label" data-i18n="wizard_step1_label">
-                        Region &amp; type
-                    </span>
-                </div>
-                <div class="stair-wizard__step-indicator" data-step="2">
-                    <span class="stair-wizard__step-num">2</span>
-                    <span class="stair-wizard__step-label" data-i18n="wizard_step2_label">
-                        Geometry
-                    </span>
-                </div>
-                <div class="stair-wizard__step-indicator" data-step="3">
-                    <span class="stair-wizard__step-num">3</span>
-                    <span class="stair-wizard__step-label" data-i18n="wizard_step4_label">
-                        Result
-                    </span>
-                </div>
-            </aside>
-
-            <!-- Steps content -->
-            <div class="stair-wizard__content">
-                <!-- =====================
-                     STEP 1 – REGION / USAGE / TYPE
-                     ===================== -->
-                <section class="stair-wizard__step is-active" data-step="1">
-                    <h3 data-i18n="wizard_step1_title">
-                        1. Region, usage and stair type
-                    </h3>
-                    <p class="stair-wizard__intro" data-i18n="wizard_step1_intro">
-                        Choose where the stair will be used, its main purpose and the general stair type.
-                        These choices define comfort ranges for riser, tread and Blondel, as well as typical
-                        values for spiral stairs.
+                <header class="stair-wizard__header">
+                    <h2 data-i18n="wizard_title">Stair concept generator</h2>
+                    <p data-i18n="wizard_intro">
+                        Quick concept-level configuration for stairs according to common comfort rules and typical ranges used
+                        in Europe, US and Australia. Final compliance must always be checked by a local engineer.
                     </p>
+                </header>
 
-                    <div class="stair-wizard__grid stair-wizard__grid--two-col">
-                        <div class="stair-wizard__col">
-                            <div class="stair-wizard__field">
-                                <label for="swRegion" data-i18n="wizard_region_label">
-                                    Region / code base
-                                </label>
-                                <select id="swRegion">
-                                    <option value="eu" data-i18n="wizard_region_eu">
-                                        Europe / UK
-                                    </option>
-                                    <option value="us" data-i18n="wizard_region_us">
-                                        United States
-                                    </option>
-                                    <option value="au" data-i18n="wizard_region_au">
-                                        Australia
-                                    </option>
-                                </select>
-                                <p class="stair-wizard__hint" data-i18n="wizard_region_hint">
-                                    Used to select typical riser / tread ranges and comfort targets.
-                                </p>
-                            </div>
-
-                            <div class="stair-wizard__field">
-                                <label for="swUsage" data-i18n="wizard_usage_label">
-                                    Primary use
-                                </label>
-                                <select id="swUsage">
-                                    <option value="residential" data-i18n="wizard_usage_residential">
-                                        Residential (house, apartment)
-                                    </option>
-                                    <option value="office" data-i18n="wizard_usage_office">
-                                        Office / light commercial
-                                    </option>
-                                    <option value="industrial" data-i18n="wizard_usage_industrial">
-                                        Industrial / plant access (technical)
-                                    </option>
-                                    <option
-                                        value="external-private"
-                                        data-i18n="wizard_usage_external_private"
-                                    >
-                                        External – private use
-                                    </option>
-                                    <option
-                                        value="external-public"
-                                        data-i18n="wizard_usage_external_public"
-                                    >
-                                        External – public use
-                                    </option>
-                                </select>
-                            </div>
-
-                            <div class="stair-wizard__field">
-                                <label for="swType" data-i18n="wizard_type_label">
-                                    Stair type
-                                </label>
-                                <select id="swType">
-                                    <option value="straight" data-i18n="wizard_type_straight">
-                                        Straight, one flight
-                                    </option>
-                                    <option
-                                        value="straight-landing"
-                                        data-i18n="wizard_type_straight_landing"
-                                    >
-                                        Straight with landing
-                                    </option>
-                                    <option value="l-shaped" data-i18n="wizard_type_l">
-                                        L-shaped (quarter turn)
-                                    </option>
-                                    <option value="u-shaped" data-i18n="wizard_type_u">
-                                        U-shaped (half turn)
-                                    </option>
-                                    <option value="spiral" data-i18n="wizard_type_spiral">
-                                        Spiral / helical
-                                    </option>
-                                </select>
-                                <p class="stair-wizard__hint" data-i18n="wizard_type_hint">
-                                    In this version, geometry is calculated like a single flight. For turns / landings
-                                    I’ll summarise recommended constraints.
-                                </p>
-                            </div>
+                <div class="stair-wizard__body">
+                    <!-- Sidebar steps -->
+                    <aside class="stair-wizard__steps">
+                        <div class="stair-wizard__step-indicator is-active" data-step="1">
+                            <span class="stair-wizard__step-num">1</span>
+                            <span class="stair-wizard__step-label" data-i18n="wizard_step1_label">
+                                Region &amp; type
+                            </span>
                         </div>
-
-                        <div class="stair-wizard__col stair-wizard__col--notes">
-                            <h4 data-i18n="wizard_steps_help_title">
-                                What happens on the next steps?
-                            </h4>
-                            <ul class="sw-step1-list">
-                                <li data-i18n="wizard_steps_help_p1">
-                                    Step&nbsp;2 will suggest a complete geometry (steps, riser, tread, run/diameter,
-                                    headroom, spiral rotation, central column and walkline comfort).
-                                </li>
-                                <li data-i18n="wizard_steps_help_p2">
-                                    You can switch any parameter from <strong>Auto</strong> to
-                                    <strong>Manual</strong> if you want full control.
-                                </li>
-                                <li data-i18n="wizard_steps_help_p3">
-                                    Step&nbsp;3 collects everything into a clean summary, adds reference standards
-                                    for your region and generates a ready-to-send message to 369YAX.
-                                </li>
-                            </ul>
+                        <div class="stair-wizard__step-indicator" data-step="2">
+                            <span class="stair-wizard__step-num">2</span>
+                            <span class="stair-wizard__step-label" data-i18n="wizard_step2_label">
+                                Geometry
+                            </span>
                         </div>
+                        <div class="stair-wizard__step-indicator" data-step="3">
+                            <span class="stair-wizard__step-num">3</span>
+                            <span class="stair-wizard__step-label" data-i18n="wizard_step4_label">
+                                Result
+                            </span>
+                        </div>
+                    </aside>
+
+                    <!-- Steps content -->
+                    <div class="stair-wizard__content">
+                        <!-- =====================
+                             STEP 1 – REGION / USAGE / TYPE
+                             ===================== -->
+                        <section class="stair-wizard__step is-active" data-step="1">
+                            <h3 data-i18n="wizard_step1_title">
+                                1. Region, usage and stair type
+                            </h3>
+                            <p class="stair-wizard__intro" data-i18n="wizard_step1_intro">
+                                Choose where the stair will be used, its main purpose and the general stair type.
+                                These choices define comfort ranges for riser, tread and Blondel, as well as typical
+                                values for spiral stairs.
+                            </p>
+
+                            <div class="stair-wizard__grid stair-wizard__grid--two-col">
+                                <div class="stair-wizard__col">
+                                    <div class="stair-wizard__field">
+                                        <label for="swRegion" data-i18n="wizard_region_label">
+                                            Region / code base
+                                        </label>
+                                        <select id="swRegion">
+                                            <option value="eu" data-i18n="wizard_region_eu">
+                                                Europe / UK
+                                            </option>
+                                            <option value="us" data-i18n="wizard_region_us">
+                                                United States
+                                            </option>
+                                            <option value="au" data-i18n="wizard_region_au">
+                                                Australia
+                                            </option>
+                                        </select>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_region_hint">
+                                            Used to select typical riser / tread ranges and comfort targets.
+                                        </p>
+                                    </div>
+
+                                    <div class="stair-wizard__field">
+                                        <label for="swUsage" data-i18n="wizard_usage_label">
+                                            Primary use
+                                        </label>
+                                        <select id="swUsage">
+                                            <option value="residential" data-i18n="wizard_usage_residential">
+                                                Residential (house, apartment)
+                                            </option>
+                                            <option value="office" data-i18n="wizard_usage_office">
+                                                Office / light commercial
+                                            </option>
+                                            <option value="industrial" data-i18n="wizard_usage_industrial">
+                                                Industrial / plant access (technical)
+                                            </option>
+                                            <option
+                                                value="external-private"
+                                                data-i18n="wizard_usage_external_private"
+                                            >
+                                                External – private use
+                                            </option>
+                                            <option
+                                                value="external-public"
+                                                data-i18n="wizard_usage_external_public"
+                                            >
+                                                External – public use
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="stair-wizard__field">
+                                        <label for="swType" data-i18n="wizard_type_label">
+                                            Stair type
+                                        </label>
+                                        <select id="swType">
+                                            <option value="straight" data-i18n="wizard_type_straight">
+                                                Straight, one flight
+                                            </option>
+                                            <option
+                                                value="straight-landing"
+                                                data-i18n="wizard_type_straight_landing"
+                                            >
+                                                Straight with landing
+                                            </option>
+                                            <option value="l-shaped" data-i18n="wizard_type_l">
+                                                L-shaped (quarter turn)
+                                            </option>
+                                            <option value="u-shaped" data-i18n="wizard_type_u">
+                                                U-shaped (half turn)
+                                            </option>
+                                            <option value="spiral" data-i18n="wizard_type_spiral">
+                                                Spiral / helical
+                                            </option>
+                                        </select>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_type_hint">
+                                            In this version, geometry is calculated like a single flight. For turns / landings
+                                            I’ll summarise recommended constraints.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="stair-wizard__col stair-wizard__col--notes">
+                                    <h4 data-i18n="wizard_steps_help_title">
+                                        What happens on the next steps?
+                                    </h4>
+                                    <ul class="sw-step1-list">
+                                        <li data-i18n="wizard_steps_help_p1">
+                                            Step&nbsp;2 will suggest a complete geometry (steps, riser, tread, run/diameter,
+                                            headroom, spiral rotation, central column and walkline comfort).
+                                        </li>
+                                        <li data-i18n="wizard_steps_help_p2">
+                                            You can switch any parameter from <strong>Auto</strong> to
+                                            <strong>Manual</strong> if you want full control.
+                                        </li>
+                                        <li data-i18n="wizard_steps_help_p3">
+                                            Step&nbsp;3 collects everything into a clean summary, adds reference standards
+                                            for your region and generates a ready-to-send message to 369YAX.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- =====================
+                             STEP 2 – GEOMETRY (AUTO / MANUAL) + COMFORT
+                             ===================== -->
+                        <section class="stair-wizard__step" data-step="2">
+                            <h3 data-i18n="wizard_step2_title">
+                                2. Geometry – height and available space
+                            </h3>
+                            <p class="stair-wizard__intro" data-i18n="wizard_step2_intro">
+                                Start with floor-to-floor height. All other parameters are automatically selected from
+                                comfort profiles and can be switched to manual control when needed. Small status dots show
+                                whether each parameter is inside typical comfort ranges (green), near the limit (yellow)
+                                or clearly out of range (red).
+                            </p>
+
+                            <div class="sw-geom-header">
+                                <span class="sw-geom-note" data-i18n="wizard_geom_auto_note">
+                                    Most fields are <strong>Auto</strong> by default. Switch to <strong>Manual</strong> to override.
+                                </span>
+                                <button
+                                    type="button"
+                                    class="btn ghost btn-sm"
+                                    id="swResetBtn"
+                                    data-i18n="wizard_reset_geometry"
+                                >
+                                    Reset geometry
+                                </button>
+                            </div>
+
+                            <!-- Всі параметри в одному блоці, без внутрішнього скролу -->
+                            <div class="sw-geom-grid">
+                                <!-- Height – завжди ручний, без Auto -->
+                                <div class="sw-geom-row" id="swRowHeight">
+                                    <div class="sw-geom-label">
+                                        <div class="sw-geom-label-top">
+                                            <label for="swHeight" data-i18n="wizard_height_label">
+                                                Floor-to-floor height <span>(mm)</span>
+                                            </label>
+                                            <span
+                                                class="sw-geom-status sw-geom-status--neutral"
+                                                id="swStatusHeight"
+                                            >
+                                                ●
+                                            </span>
+                                        </div>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_height_hint">
+                                            Vertical distance between finished floors (not just clear opening).
+                                        </p>
+                                        <p class="sw-geom-limits" id="swLimitHeight" data-i18n="wizard_limit_height">
+                                            Typical residential range ≈ 2600–3200 mm (concept).
+                                        </p>
+                                    </div>
+                                    <div class="sw-geom-input">
+                                        <input
+                                            type="number"
+                                            id="swHeight"
+                                            min="2000"
+                                            max="5000"
+                                            step="10"
+                                            placeholder="2800"
+                                        />
+                                    </div>
+                                    <div class="sw-geom-toggle sw-geom-toggle--disabled">
+                                        <span class="sw-geom-toggle-label">Manual</span>
+                                    </div>
+                                </div>
+
+                                <!-- Steps -->
+                                <div class="sw-geom-row" id="swRowSteps">
+                                    <div class="sw-geom-label">
+                                        <div class="sw-geom-label-top">
+                                            <label for="swSteps" data-i18n="wizard_steps_label">
+                                                Number of steps
+                                            </label>
+                                            <span
+                                                class="sw-geom-status sw-geom-status--neutral"
+                                                id="swStatusSteps"
+                                            >
+                                                ●
+                                            </span>
+                                        </div>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_steps_hint">
+                                            Automatically derived from comfort profile; override only if you know the exact step count.
+                                        </p>
+                                        <p class="sw-geom-limits" id="swLimitSteps" data-i18n="wizard_steps_note">
+                                            Typical concept range: 10–18 steps; wizard clamps between 8 and 30 steps (EU, residential).
+                                        </p>
+                                    </div>
+                                    <div class="sw-geom-input">
+                                        <input
+                                            type="number"
+                                            id="swSteps"
+                                            min="8"
+                                            max="40"
+                                            step="1"
+                                            placeholder="auto"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="sw-geom-toggle">
+                                        <button
+                                            type="button"
+                                            class="sw-toggle-auto is-auto"
+                                            data-key="steps"
+                                            data-target="swSteps"
+                                        >
+                                            Auto
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Max run / diameter -->
+                                <div class="sw-geom-row" id="swRowRun">
+                                    <div class="sw-geom-label">
+                                        <div class="sw-geom-label-top">
+                                            <label for="swMaxRun" data-i18n="wizard_run_label">
+                                                Max. horizontal run / diameter <span>(mm)</span>
+                                            </label>
+                                            <span
+                                                class="sw-geom-status sw-geom-status--neutral"
+                                                id="swStatusRun"
+                                            >
+                                                ●
+                                            </span>
+                                        </div>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_run_hint">
+                                            For straight stairs – max available run. For spiral – max outer diameter.
+                                        </p>
+                                        <p class="sw-geom-limits" id="swLimitRun">
+                                            Straight: depends on layout. Spiral: comfort often at 1500–1900 mm diameter.
+                                        </p>
+                                    </div>
+                                    <div class="sw-geom-input">
+                                        <input
+                                            type="number"
+                                            id="swMaxRun"
+                                            min="1000"
+                                            max="8000"
+                                            step="10"
+                                            placeholder="auto / 1600 for spiral"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="sw-geom-toggle">
+                                        <button
+                                            type="button"
+                                            class="sw-toggle-auto is-auto"
+                                            data-key="maxRun"
+                                            data-target="swMaxRun"
+                                        >
+                                            Auto
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Headroom -->
+                                <div class="sw-geom-row" id="swRowHeadroom">
+                                    <div class="sw-geom-label">
+                                        <div class="sw-geom-label-top">
+                                            <label for="swHeadroom" data-i18n="wizard_headroom_label">
+                                                Target headroom <span>(mm)</span>
+                                            </label>
+                                            <span
+                                                class="sw-geom-status sw-geom-status--neutral"
+                                                id="swStatusHeadroom"
+                                            >
+                                                ●
+                                            </span>
+                                        </div>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_headroom_hint">
+                                            Typical minimum is around 2000 mm, depends on local rules.
+                                        </p>
+                                        <p class="sw-geom-limits" id="swLimitHeadroom">
+                                            Common target ≥ 2000 mm; many codes allow 1950–2000 mm in specific cases.
+                                        </p>
+                                    </div>
+                                    <div class="sw-geom-input">
+                                        <input
+                                            type="number"
+                                            id="swHeadroom"
+                                            min="1800"
+                                            max="2300"
+                                            step="10"
+                                            placeholder="2000"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="sw-geom-toggle">
+                                        <button
+                                            type="button"
+                                            class="sw-toggle-auto is-auto"
+                                            data-key="headroom"
+                                            data-target="swHeadroom"
+                                        >
+                                            Auto
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Spiral rotation -->
+                                <div class="sw-geom-row" id="swSpiralRow">
+                                    <div class="sw-geom-label">
+                                        <div class="sw-geom-label-top">
+                                            <label for="swSpiralAngle" data-i18n="wizard_spiral_angle_label">
+                                                Spiral rotation <span>(°)</span>
+                                            </label>
+                                            <span
+                                                class="sw-geom-status sw-geom-status--neutral"
+                                                id="swStatusSpiral"
+                                            >
+                                                ●
+                                            </span>
+                                        </div>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_spiral_angle_hint">
+                                            Used only for spiral stairs: total rotation between floors (e.g. 360°, 450°).
+                                        </p>
+                                        <p class="sw-geom-limits" id="swLimitSpiral">
+                                            Concept range: 270–450° (sometimes 210–540° depending on space).
+                                        </p>
+                                    </div>
+                                    <div class="sw-geom-input">
+                                        <input
+                                            type="number"
+                                            id="swSpiralAngle"
+                                            min="210"
+                                            max="630"
+                                            step="5"
+                                            placeholder="360"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="sw-geom-toggle">
+                                        <button
+                                            type="button"
+                                            class="sw-toggle-auto is-auto"
+                                            data-key="spiralAngle"
+                                            data-target="swSpiralAngle"
+                                        >
+                                            Auto
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Central column diameter (spiral only) -->
+                                <div class="sw-geom-row" id="swColumnRow">
+                                    <div class="sw-geom-label">
+                                        <div class="sw-geom-label-top">
+                                            <label for="swColumnDia" data-i18n="wizard_center_column_label">
+                                                Central column diameter <span>(mm)</span>
+                                            </label>
+                                            <span
+                                                class="sw-geom-status sw-geom-status--neutral"
+                                                id="swStatusColumn"
+                                            >
+                                                ●
+                                            </span>
+                                        </div>
+                                        <p
+                                            class="stair-wizard__hint"
+                                            data-i18n="wizard_center_column_hint"
+                                        >
+                                            Used only for spiral stairs: outside diameter of the central supporting tube.
+                                        </p>
+                                        <p class="sw-geom-limits" id="swLimitColumn">
+                                            Typical steel columns are ~114–168 mm; clear stair width often ≥ 660–700 mm depending on region.
+                                        </p>
+                                    </div>
+                                    <div class="sw-geom-input">
+                                        <input
+                                            type="number"
+                                            id="swColumnDia"
+                                            min="80"
+                                            max="273"
+                                            step="2"
+                                            placeholder="auto 140"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="sw-geom-toggle">
+                                        <button
+                                            type="button"
+                                            class="sw-toggle-auto is-auto"
+                                            data-key="columnDia"
+                                            data-target="swColumnDia"
+                                        >
+                                            Auto
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Preferred minimum tread -->
+                                <div class="sw-geom-row" id="swRowTread">
+                                    <div class="sw-geom-label">
+                                        <div class="sw-geom-label-top">
+                                            <label for="swMinTread" data-i18n="wizard_min_tread_label">
+                                                Preferred minimum tread at walkline (mm)
+                                            </label>
+                                            <span
+                                                class="sw-geom-status sw-geom-status--neutral"
+                                                id="swStatusTread"
+                                            >
+                                                ●
+                                            </span>
+                                        </div>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_min_tread_hint">
+                                            Many comfort ranges use 240–280 mm at the walkline for residential stairs.
+                                        </p>
+                                        <p class="sw-geom-limits" id="swLimitMinTread">
+                                            Comfort range: – mm (updated by region and usage).
+                                        </p>
+                                    </div>
+                                    <div class="sw-geom-input">
+                                        <input
+                                            type="number"
+                                            id="swMinTread"
+                                            min="210"
+                                            max="290"
+                                            step="5"
+                                            placeholder="auto from region"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="sw-geom-toggle">
+                                        <button
+                                            type="button"
+                                            class="sw-toggle-auto is-auto"
+                                            data-key="minTread"
+                                            data-target="swMinTread"
+                                        >
+                                            Auto
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Preferred maximum riser -->
+                                <div class="sw-geom-row" id="swRowRiser">
+                                    <div class="sw-geom-label">
+                                        <div class="sw-geom-label-top">
+                                            <label for="swMaxRiser" data-i18n="wizard_max_riser_label">
+                                                Preferred maximum riser (mm)
+                                            </label>
+                                            <span
+                                                class="sw-geom-status sw-geom-status--neutral"
+                                                id="swStatusRiser"
+                                            >
+                                                ●
+                                            </span>
+                                        </div>
+                                        <p class="stair-wizard__hint" data-i18n="wizard_max_riser_hint">
+                                            The wizard will try to keep the riser below this value where possible.
+                                        </p>
+                                        <p class="sw-geom-limits" id="swLimitMaxRiser">
+                                            Comfort range: – mm (updated by region and usage).
+                                        </p>
+                                    </div>
+                                    <div class="sw-geom-input">
+                                        <input
+                                            type="number"
+                                            id="swMaxRiser"
+                                            min="160"
+                                            max="220"
+                                            step="5"
+                                            placeholder="auto from region"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="sw-geom-toggle">
+                                        <button
+                                            type="button"
+                                            class="sw-toggle-auto is-auto"
+                                            data-key="maxRiser"
+                                            data-target="swMaxRiser"
+                                        >
+                                            Auto
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Нотатки по діапазонах -->
+                            <div class="stair-wizard__notes-wrap">
+                                <h4 data-i18n="wizard_norm_box_title">
+                                    Typical comfort ranges for this configuration
+                                </h4>
+                                <div id="swNormNotes" class="stair-wizard__notes-box"></div>
+                            </div>
+
+                            <!-- Live короткий результат -->
+                            <div class="stair-wizard__result">
+                                <div id="swLiveResult"></div>
+                            </div>
+                        </section>
+
+                        <!-- =====================
+                             STEP 3 – SUMMARY, CODES, MESSAGE
+                             ===================== -->
+                        <section class="stair-wizard__step" data-step="3">
+                            <h3 data-i18n="wizard_step4_title">
+                                3. Suggested configuration (concept only)
+                            </h3>
+
+                            <div id="stairWizardSummary" class="stair-wizard__summary">
+                                <!-- заповнюється JS -->
+                            </div>
+
+                            <div id="stairWizardCodes" class="stair-wizard__summary">
+                                <!-- заповнюється JS -->
+                            </div>
+
+                            <div class="stair-wizard__summary">
+                                <h4 data-i18n="wizard_message_title">
+                                    Generate a message for 369YAX
+                                </h4>
+                                <p class="stair-wizard__hint" data-i18n="wizard_message_hint">
+                                    Click the button to generate a short technical description with all key parameters.
+                                    You can copy-paste it into an email or the contact form.
+                                </p>
+                                <button
+                                    type="button"
+                                    class="btn ghost btn-sm"
+                                    id="swBuildMessage"
+                                    data-i18n="wizard_message_btn"
+                                >
+                                    Build message from current concept
+                                </button>
+                                <textarea
+                                    id="swMessageBox"
+                                    rows="7"
+                                    class="sw-message-box"
+                                    data-i18n-placeholder="wizard_message_placeholder"
+                                    placeholder="The message will appear here…"
+                                ></textarea>
+                            </div>
+                        </section>
                     </div>
-                </section>
+                </div>
 
-                <!-- =====================
-                     STEP 2 – GEOMETRY (AUTO / MANUAL) + COMFORT
-                     ===================== -->
-                <section class="stair-wizard__step" data-step="2">
-                    <h3 data-i18n="wizard_step2_title">
-                        2. Geometry – height and available space
-                    </h3>
-                    <p class="stair-wizard__intro" data-i18n="wizard_step2_intro">
-                        Start with floor-to-floor height. All other parameters are automatically selected from
-                        comfort profiles and can be switched to manual control when needed. Small status dots show
-                        whether each parameter is inside typical comfort ranges (green), near the limit (yellow)
-                        or clearly out of range (red).
-                    </p>
-
-                    <div class="sw-geom-header">
-                        <span class="sw-geom-note" data-i18n="wizard_geom_auto_note">
-                            Most fields are <strong>Auto</strong> by default. Switch to <strong>Manual</strong> to override.
-                        </span>
-                        <button
-                            type="button"
-                            class="btn ghost btn-sm"
-                            id="swResetBtn"
-                            data-i18n="wizard_reset_geometry"
-                        >
-                            Reset geometry
-                        </button>
-                    </div>
-
-                    <!-- Всі параметри в одному блоці, без внутрішнього скролу -->
-                    <div class="sw-geom-grid">
-                        <!-- Height – завжди ручний, без Auto -->
-                        <div class="sw-geom-row" id="swRowHeight">
-                            <div class="sw-geom-label">
-                                <div class="sw-geom-label-top">
-                                    <label for="swHeight" data-i18n="wizard_height_label">
-                                        Floor-to-floor height <span>(mm)</span>
-                                    </label>
-                                    <span
-                                        class="sw-geom-status sw-geom-status--neutral"
-                                        id="swStatusHeight"
-                                    >
-                                        ●
-                                    </span>
-                                </div>
-                                <p class="stair-wizard__hint" data-i18n="wizard_height_hint">
-                                    Vertical distance between finished floors (not just clear opening).
-                                </p>
-                                <p class="sw-geom-limits" id="swLimitHeight" data-i18n="wizard_limit_height">
-                                    Typical residential range ≈ 2600–3200 mm (concept).
-                                </p>
-                            </div>
-                            <div class="sw-geom-input">
-                                <input
-                                    type="number"
-                                    id="swHeight"
-                                    min="2000"
-                                    max="5000"
-                                    step="10"
-                                    placeholder="2800"
-                                />
-                            </div>
-                            <div class="sw-geom-toggle sw-geom-toggle--disabled">
-                                <span class="sw-geom-toggle-label">Manual</span>
-                            </div>
-                        </div>
-
-                        <!-- Steps -->
-                        <div class="sw-geom-row" id="swRowSteps">
-                            <div class="sw-geom-label">
-                                <div class="sw-geom-label-top">
-                                    <label for="swSteps" data-i18n="wizard_steps_label">
-                                        Number of steps
-                                    </label>
-                                    <span
-                                        class="sw-geom-status sw-geom-status--neutral"
-                                        id="swStatusSteps"
-                                    >
-                                        ●
-                                    </span>
-                                </div>
-                                <p class="stair-wizard__hint" data-i18n="wizard_steps_hint">
-                                    Automatically derived from comfort profile; override only if you know the exact step count.
-                                </p>
-                                <p class="sw-geom-limits" id="swLimitSteps" data-i18n="wizard_steps_note">
-                                    Typical concept range: 10–18 steps; wizard clamps between 8 and 30 steps (EU, residential).
-                                </p>
-                            </div>
-                            <div class="sw-geom-input">
-                                <input
-                                    type="number"
-                                    id="swSteps"
-                                    min="8"
-                                    max="40"
-                                    step="1"
-                                    placeholder="auto"
-                                    disabled
-                                />
-                            </div>
-                            <div class="sw-geom-toggle">
-                                <button
-                                    type="button"
-                                    class="sw-toggle-auto is-auto"
-                                    data-key="steps"
-                                    data-target="swSteps"
-                                >
-                                    Auto
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Max run / diameter -->
-                        <div class="sw-geom-row" id="swRowRun">
-                            <div class="sw-geom-label">
-                                <div class="sw-geom-label-top">
-                                    <label for="swMaxRun" data-i18n="wizard_run_label">
-                                        Max. horizontal run / diameter <span>(mm)</span>
-                                    </label>
-                                    <span
-                                        class="sw-geom-status sw-geom-status--neutral"
-                                        id="swStatusRun"
-                                    >
-                                        ●
-                                    </span>
-                                </div>
-                                <p class="stair-wizard__hint" data-i18n="wizard_run_hint">
-                                    For straight stairs – max available run. For spiral – max outer diameter.
-                                </p>
-                                <p class="sw-geom-limits" id="swLimitRun">
-                                    Straight: depends on layout. Spiral: comfort often at 1500–1900 mm diameter.
-                                </p>
-                            </div>
-                            <div class="sw-geom-input">
-                                <input
-                                    type="number"
-                                    id="swMaxRun"
-                                    min="1000"
-                                    max="8000"
-                                    step="10"
-                                    placeholder="auto / 1600 for spiral"
-                                    disabled
-                                />
-                            </div>
-                            <div class="sw-geom-toggle">
-                                <button
-                                    type="button"
-                                    class="sw-toggle-auto is-auto"
-                                    data-key="maxRun"
-                                    data-target="swMaxRun"
-                                >
-                                    Auto
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Headroom -->
-                        <div class="sw-geom-row" id="swRowHeadroom">
-                            <div class="sw-geom-label">
-                                <div class="sw-geom-label-top">
-                                    <label for="swHeadroom" data-i18n="wizard_headroom_label">
-                                        Target headroom <span>(mm)</span>
-                                    </label>
-                                    <span
-                                        class="sw-geom-status sw-geom-status--neutral"
-                                        id="swStatusHeadroom"
-                                    >
-                                        ●
-                                    </span>
-                                </div>
-                                <p class="stair-wizard__hint" data-i18n="wizard_headroom_hint">
-                                    Typical minimum is around 2000 mm, depends on local rules.
-                                </p>
-                                <p class="sw-geom-limits" id="swLimitHeadroom">
-                                    Common target ≥ 2000 mm; many codes allow 1950–2000 mm in specific cases.
-                                </p>
-                            </div>
-                            <div class="sw-geom-input">
-                                <input
-                                    type="number"
-                                    id="swHeadroom"
-                                    min="1800"
-                                    max="2300"
-                                    step="10"
-                                    placeholder="2000"
-                                    disabled
-                                />
-                            </div>
-                            <div class="sw-geom-toggle">
-                                <button
-                                    type="button"
-                                    class="sw-toggle-auto is-auto"
-                                    data-key="headroom"
-                                    data-target="swHeadroom"
-                                >
-                                    Auto
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Spiral rotation -->
-                        <div class="sw-geom-row" id="swSpiralRow">
-                            <div class="sw-geom-label">
-                                <div class="sw-geom-label-top">
-                                    <label for="swSpiralAngle" data-i18n="wizard_spiral_angle_label">
-                                        Spiral rotation <span>(°)</span>
-                                    </label>
-                                    <span
-                                        class="sw-geom-status sw-geom-status--neutral"
-                                        id="swStatusSpiral"
-                                    >
-                                        ●
-                                    </span>
-                                </div>
-                                <p class="stair-wizard__hint" data-i18n="wizard_spiral_angle_hint">
-                                    Used only for spiral stairs: total rotation between floors (e.g. 360°, 450°).
-                                </p>
-                                <p class="sw-geom-limits" id="swLimitSpiral">
-                                    Concept range: 270–450° (sometimes 210–540° depending on space).
-                                </p>
-                            </div>
-                            <div class="sw-geom-input">
-                                <input
-                                    type="number"
-                                    id="swSpiralAngle"
-                                    min="210"
-                                    max="630"
-                                    step="5"
-                                    placeholder="360"
-                                    disabled
-                                />
-                            </div>
-                            <div class="sw-geom-toggle">
-                                <button
-                                    type="button"
-                                    class="sw-toggle-auto is-auto"
-                                    data-key="spiralAngle"
-                                    data-target="swSpiralAngle"
-                                >
-                                    Auto
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Central column diameter (spiral only) -->
-                        <div class="sw-geom-row" id="swColumnRow">
-                            <div class="sw-geom-label">
-                                <div class="sw-geom-label-top">
-                                    <label for="swColumnDia" data-i18n="wizard_center_column_label">
-                                        Central column diameter <span>(mm)</span>
-                                    </label>
-                                    <span
-                                        class="sw-geom-status sw-geom-status--neutral"
-                                        id="swStatusColumn"
-                                    >
-                                        ●
-                                    </span>
-                                </div>
-                                <p
-                                    class="stair-wizard__hint"
-                                    data-i18n="wizard_center_column_hint"
-                                >
-                                    Used only for spiral stairs: outside diameter of the central supporting tube.
-                                </p>
-                                <p class="sw-geom-limits" id="swLimitColumn">
-                                    Typical steel columns are ~114–168 mm; clear stair width often ≥ 660–700 mm depending on region.
-                                </p>
-                            </div>
-                            <div class="sw-geom-input">
-                                <input
-                                    type="number"
-                                    id="swColumnDia"
-                                    min="80"
-                                    max="273"
-                                    step="2"
-                                    placeholder="auto 140"
-                                    disabled
-                                />
-                            </div>
-                            <div class="sw-geom-toggle">
-                                <button
-                                    type="button"
-                                    class="sw-toggle-auto is-auto"
-                                    data-key="columnDia"
-                                    data-target="swColumnDia"
-                                >
-                                    Auto
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Preferred minimum tread -->
-                        <div class="sw-geom-row" id="swRowTread">
-                            <div class="sw-geom-label">
-                                <div class="sw-geom-label-top">
-                                    <label for="swMinTread" data-i18n="wizard_min_tread_label">
-                                        Preferred minimum tread at walkline (mm)
-                                    </label>
-                                    <span
-                                        class="sw-geom-status sw-geom-status--neutral"
-                                        id="swStatusTread"
-                                    >
-                                        ●
-                                    </span>
-                                </div>
-                                <p class="stair-wizard__hint" data-i18n="wizard_min_tread_hint">
-                                    Many comfort ranges use 240–280 mm at the walkline for residential stairs.
-                                </p>
-                                <p class="sw-geom-limits" id="swLimitMinTread">
-                                    Comfort range: – mm (updated by region and usage).
-                                </p>
-                            </div>
-                            <div class="sw-geom-input">
-                                <input
-                                    type="number"
-                                    id="swMinTread"
-                                    min="210"
-                                    max="290"
-                                    step="5"
-                                    placeholder="auto from region"
-                                    disabled
-                                />
-                            </div>
-                            <div class="sw-geom-toggle">
-                                <button
-                                    type="button"
-                                    class="sw-toggle-auto is-auto"
-                                    data-key="minTread"
-                                    data-target="swMinTread"
-                                >
-                                    Auto
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Preferred maximum riser -->
-                        <div class="sw-geom-row" id="swRowRiser">
-                            <div class="sw-geom-label">
-                                <div class="sw-geom-label-top">
-                                    <label for="swMaxRiser" data-i18n="wizard_max_riser_label">
-                                        Preferred maximum riser (mm)
-                                    </label>
-                                    <span
-                                        class="sw-geom-status sw-geom-status--neutral"
-                                        id="swStatusRiser"
-                                    >
-                                        ●
-                                    </span>
-                                </div>
-                                <p class="stair-wizard__hint" data-i18n="wizard_max_riser_hint">
-                                    The wizard will try to keep the riser below this value where possible.
-                                </p>
-                                <p class="sw-geom-limits" id="swLimitMaxRiser">
-                                    Comfort range: – mm (updated by region and usage).
-                                </p>
-                            </div>
-                            <div class="sw-geom-input">
-                                <input
-                                    type="number"
-                                    id="swMaxRiser"
-                                    min="160"
-                                    max="220"
-                                    step="5"
-                                    placeholder="auto from region"
-                                    disabled
-                                />
-                            </div>
-                            <div class="sw-geom-toggle">
-                                <button
-                                    type="button"
-                                    class="sw-toggle-auto is-auto"
-                                    data-key="maxRiser"
-                                    data-target="swMaxRiser"
-                                >
-                                    Auto
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Нотатки по діапазонах -->
-                    <div class="stair-wizard__notes-wrap">
-                        <h4 data-i18n="wizard_norm_box_title">
-                            Typical comfort ranges for this configuration
-                        </h4>
-                        <div id="swNormNotes" class="stair-wizard__notes-box"></div>
-                    </div>
-
-                    <!-- Live короткий результат -->
-                    <div class="stair-wizard__result">
-                        <div id="swLiveResult"></div>
-                    </div>
-                </section>
-
-                <!-- =====================
-                     STEP 3 – SUMMARY, CODES, MESSAGE
-                     ===================== -->
-                <section class="stair-wizard__step" data-step="3">
-                    <h3 data-i18n="wizard_step4_title">
-                        3. Suggested configuration (concept only)
-                    </h3>
-
-                    <div id="stairWizardSummary" class="stair-wizard__summary">
-                        <!-- заповнюється JS -->
-                    </div>
-
-                    <div id="stairWizardCodes" class="stair-wizard__summary">
-                        <!-- заповнюється JS -->
-                    </div />
-
-                    <div class="stair-wizard__summary">
-    <h4 data-i18n="wizard_message_title">
-        Generate a message for 369YAX
-    </h4>
-    <p class="stair-wizard__hint" data-i18n="wizard_message_hint">
-        Click the button to generate a short technical description with all key parameters.
-        You can copy-paste it into an email or the contact form.
-    </p>
-    <button
-        type="button"
-        class="btn ghost btn-sm"
-        id="swBuildMessage"
-        data-i18n="wizard_message_btn"
-    >
-        Build message from current concept
-    </button>
-    <textarea
-        id="swMessageBox"
-        rows="7"
-        class="sw-message-box"
-        data-i18n-placeholder="wizard_message_placeholder"
-        placeholder="The message will appear here…"
-    ></textarea>
-</div>
-
-                </section>
+                <!-- Footer buttons -->
+                <footer class="stair-wizard__footer">
+                    <button
+                        type="button"
+                        class="btn ghost"
+                        id="stairWizardPrev"
+                        data-i18n="wizard_btn_back"
+                    >
+                        ← Back
+                    </button>
+                    <div class="stair-wizard__footer-spacer"></div>
+                    <button
+                        type="button"
+                        class="btn ghost"
+                        id="stairWizardCancel"
+                        data-i18n="wizard_btn_cancel"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="button"
+                        class="btn primary"
+                        id="stairWizardNext"
+                        data-i18n="wizard_btn_next"
+                    >
+                        Next →
+                    </button>
+                </footer>
             </div>
         </div>
-
-        <!-- Footer buttons -->
-        <footer class="stair-wizard__footer">
-            <button
-                type="button"
-                class="btn ghost"
-                id="stairWizardPrev"
-                data-i18n="wizard_btn_back"
-            >
-                ← Back
-            </button>
-            <div class="stair-wizard__footer-spacer"></div>
-            <button
-                type="button"
-                class="btn ghost"
-                id="stairWizardCancel"
-                data-i18n="wizard_btn_cancel"
-            >
-                Cancel
-            </button>
-            <button
-                type="button"
-                class="btn primary"
-                id="stairWizardNext"
-                data-i18n="wizard_btn_next"
-            >
-                Next →
-            </button>
-        </footer>
-    </div>
-</div>
-</main>
+    </main>
 
     <!-- =========================
          FOOTER
@@ -1320,11 +1329,12 @@
     <!-- =========================
          SCRIPTS
          ========================= -->
-    <script src="translations.js" defer></script>
-<script src="contact-form.js" defer></script>
-<script src="theme-toggle.js" defer></script>
-<script src="nav.js" defer></script>
-<script src="stair-wizard.js" defer></script>
-<script src="chat-widget.js" defer></script>
+    <script src="js/translations.js" defer></script>
+    <script src="js/contact-form.js" defer></script>
+    <script src="js/theme-toggle.js" defer></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/stair-wizard.js" defer></script>
+    <!-- Чистий логічний шар для чату (без старих баз даних) -->
+    <script src="js/chat-widget.js" defer></script>
 </body>
 </html>
