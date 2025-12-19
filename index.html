@@ -47,11 +47,13 @@
     <!-- ==========================
          CSS MODULES
          ========================== -->
-    <link rel="stylesheet" href="app-base.css" />
-    <link rel="stylesheet" href="app-components.css" />
-    <link rel="stylesheet" href="app-theme-dark.css" />
-    <link rel="stylesheet" href="app-responsive.css" />
+    <link rel="stylesheet" href="css/app-base.css" />
+    <link rel="stylesheet" href="css/app-components.css" />
+    <link rel="stylesheet" href="css/app-theme-dark.css" />
+    <link rel="stylesheet" href="css/app-responsive.css" />
 </head>
+
+
 
 <body>
     <!-- =========================
@@ -798,19 +800,32 @@
                                 or clearly out of range (red).
                             </p>
 
-                            <div class="sw-geom-header">
-                                <span class="sw-geom-note" data-i18n="wizard_geom_auto_note">
-                                    Most fields are <strong>Auto</strong> by default. Switch to <strong>Manual</strong> to override.
-                                </span>
-                                <button
-                                    type="button"
-                                    class="btn ghost btn-sm"
-                                    id="swResetBtn"
-                                    data-i18n="wizard_reset_geometry"
-                                >
-                                    Reset geometry
-                                </button>
-                            </div>
+                           <div class="sw-geom-header">
+    <span class="sw-geom-note" data-i18n="wizard_geom_auto_note">
+        Most fields are <strong>Auto</strong> by default. Switch to <strong>Manual</strong> to override.
+    </span>
+
+    <div class="sw-geom-header-actions">
+        <button
+            type="button"
+            class="btn ghost btn-sm"
+            id="swResetBtn"
+            data-i18n="wizard_reset_geometry"
+        >
+            Reset geometry
+        </button>
+
+        <button
+            type="button"
+            class="btn ghost btn-sm"
+            id="swRecalcBtn"
+            data-i18n="wizard_recalc_geometry"
+        >
+            Recalculate
+        </button>
+    </div>
+</div>
+
 
                             <!-- Всі параметри в одному блоці, без внутрішнього скролу -->
                             <div class="sw-geom-grid">
@@ -1349,12 +1364,12 @@
     <!-- =========================
          SCRIPTS
          ========================= -->
-<script src="translations.js" defer></script>
-<script src="contact-form.js" defer></script>
-<script src="theme-toggle.js" defer></script>
-<script src="nav.js" defer></script>
-<script src="stair-wizard.js" defer></script>
-<script src="chat-widget.js" defer></script>
-
+    <script src="js/translations.js" defer></script>
+    <script src="js/contact-form.js" defer></script>
+    <script src="js/theme-toggle.js" defer></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/stair-wizard.js" defer></script>
+    <!-- Чистий логічний шар для чату (без старих баз даних) -->
+    <script src="js/chat-widget.js" defer></script>
 </body>
 </html>
