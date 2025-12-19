@@ -11,10 +11,13 @@
 //   * EU/UK: Approved Document K, BS 5395-2 (spiral)
 //   * US: IRC / IBC (residential / public)
 //   * AU: NCC + AS 1657
-// - Діаметр центральної труби для спіралей впливає на:
-//   * внутрішній радіус,
-//   * чисту ширину маршу,
-//   * положення walkline і комфорт по треду.
+// - Спіралі:
+//   * EU/UK: going по СЕРЕДНІЙ ЛІНІЇ чистої ширини (centre going – chord)
+//   * US: going на лінії 305 mm від внутрішнього краю
+//   * AU: лінія ходу на 70% чистої ширини
+// - Для спіралей використовується going як ДОВЖИНА ХОРДИ
+//   між носиками двох послідовних сходинок на референсному
+//   радіусі.
 // - Це інструмент concept / comfort, а не сертифікований code-checker.
 // =====================================================
 
@@ -40,8 +43,21 @@
         return Math.min(Math.max(v, min), max);
     }
 
+    // Формат для тексту (display)
     function fmt(v, d) {
+        if (!Number.isFinite(v)) return "–";
         return Number(v).toFixed(d ?? 1);
+    }
+
+    // Формат для інпутів – різна точність
+    function setInputValue(id, value) {
+        const el = document.getElementById(id);
+        if (!el || !Number.isFinite(value)) return;
+
+        let digits = 1;
+        if (id === "swHeight" || id === "swSteps") digits = 0; // висота і кількість сходинок – цілі
+
+        el.value = Number(value).toFixed(digits);
     }
 
     // Поточна мова з APP_I18N або <html lang>
@@ -79,10 +95,10 @@
             live_core:
                 "Height {height} mm → {steps} steps, riser ≈ {riser} mm, tread ≈ {tread} mm (Blondel ≈ {blondel} mm).",
             live_spiral:
-                "Spiral: outer diameter ≈ {dia} mm{column}{clear}, rotation ≈ {angle}°, ≈ {stepAngle}° per step; walkline tread ≈ {walkTread}{walkBlondel}.",
+                "Spiral: outer diameter ≈ {dia} mm{column}{clear}, rotation ≈ {angle}°, ≈ {stepAngle}° per step; tread at reference line ≈ {walkTread}{walkBlondel}.",
             live_spiral_column_part: ", central column ≈ Ø{columnDia} mm",
             live_spiral_clear_part: ", clear stair width ≈ {clearWidth} mm",
-            live_spiral_walk_blondel_part: " (2R + T_walk ≈ {walkBlondel} mm)",
+            live_spiral_walk_blondel_part: " (2R + T ≈ {walkBlondel} mm)",
             live_straight_run:
                 "Approx. run ≈ {run} mm{runLimit}.",
             live_run_limit_part: " vs max run ≈ {maxRun} mm",
@@ -123,12 +139,10 @@
             summary_riser_label: "Riser height",
             summary_riser_typical_suffix: " (typical {rMin}–{rMax} mm)",
             summary_tread_label_straight: "Tread depth",
-            summary_tread_label_spiral: "Nominal tread (straight-equivalent)",
+            summary_tread_label_spiral: "Tread at reference line",
             summary_tread_typical_suffix: " (typical {tMin}–{tMax} mm)",
             summary_blondel_label: "Blondel (2R + T)",
             summary_blondel_target_suffix: " (target {bMin}–{bMax} mm)",
-            summary_walk_tread_label: "Tread at walkline",
-            summary_walk_tread_suffix: " (Blondel ≈ {walkBlondel} mm)",
 
             comfort_block_bad:
                 "One or more parameters are clearly outside typical comfort ranges. Adjustment of riser, tread, diameter, column or rotation is strongly recommended before detailed design.",
@@ -164,10 +178,10 @@
             live_core:
                 "Altezza {height} mm → {steps} alzate, alzata ≈ {riser} mm, pedata ≈ {tread} mm (Blondel ≈ {blondel} mm).",
             live_spiral:
-                "Chiocciola: diametro esterno ≈ {dia} mm{column}{clear}, rotazione ≈ {angle}°, ≈ {stepAngle}° per gradino; pedata sulla linea di cammino ≈ {walkTread}{walkBlondel}.",
+                "Chiocciola: diametro esterno ≈ {dia} mm{column}{clear}, rotazione ≈ {angle}°, ≈ {stepAngle}° per gradino; pedata sulla linea di riferimento ≈ {walkTread}{walkBlondel}.",
             live_spiral_column_part: ", colonna centrale ≈ Ø{columnDia} mm",
             live_spiral_clear_part: ", larghezza utile ≈ {clearWidth} mm",
-            live_spiral_walk_blondel_part: " (2R + T_walk ≈ {walkBlondel} mm)",
+            live_spiral_walk_blondel_part: " (2R + T ≈ {walkBlondel} mm)",
             live_straight_run:
                 "Corsa approssimativa ≈ {run} mm{runLimit}.",
             live_run_limit_part:
@@ -212,15 +226,12 @@
                 " (tipico {rMin}–{rMax} mm)",
             summary_tread_label_straight: "Pedata",
             summary_tread_label_spiral:
-                "Pedata nominale (equivalente rettilinea)",
+                "Pedata sulla linea di riferimento",
             summary_tread_typical_suffix:
                 " (tipico {tMin}–{tMax} mm)",
             summary_blondel_label: "Blondel (2R + T)",
             summary_blondel_target_suffix:
                 " (target {bMin}–{bMax} mm)",
-            summary_walk_tread_label: "Pedata sulla linea di cammino",
-            summary_walk_tread_suffix:
-                " (Blondel ≈ {walkBlondel} mm)",
 
             comfort_block_bad:
                 "Uno o più parametri sono chiaramente fuori dai range di comfort tipici. Prima del dettaglio è fortemente consigliato modificare alzata, pedata, diametro, colonna o rotazione.",
@@ -256,13 +267,13 @@
             live_core:
                 "Висота {height} мм → {steps} сходинок, підйом ≈ {riser} мм, проступ ≈ {tread} мм (Блондель ≈ {blondel} мм).",
             live_spiral:
-                "Спіраль: зовнішній діаметр ≈ {dia} мм{column}{clear}, поворот ≈ {angle}°, ≈ {stepAngle}° на сходинку; проступ по лінії ходу ≈ {walkTread}{walkBlondel}.",
+                "Спіраль: зовнішній діаметр ≈ {dia} мм{column}{clear}, поворот ≈ {angle}°, ≈ {stepAngle}° на сходинку; проступ на референсній лінії ≈ {walkTread}{walkBlondel}.",
             live_spiral_column_part:
                 ", центральна труба ≈ Ø{columnDia} мм",
             live_spiral_clear_part:
                 ", корисна ширина маршу ≈ {clearWidth} мм",
             live_spiral_walk_blondel_part:
-                " (2R + T_walk ≈ {walkBlondel} мм)",
+                " (2R + T ≈ {walkBlondel} мм)",
             live_straight_run:
                 "Орієнтовна довжина маршу ≈ {run} мм{runLimit}.",
             live_run_limit_part:
@@ -308,21 +319,17 @@
                 " (типово {rMin}–{rMax} мм)",
             summary_tread_label_straight: "Проступ сходинки",
             summary_tread_label_spiral:
-                "Номінальний проступ (еквівалент прямої)",
+                "Проступ на референсній лінії",
             summary_tread_typical_suffix:
                 " (типово {tMin}–{tMax} мм)",
             summary_blondel_label: "Блондель (2R + T)",
             summary_blondel_target_suffix:
                 " (ціль {bMin}–{bMax} мм)",
-            summary_walk_tread_label:
-                "Проступ по лінії ходу",
-            summary_walk_tread_suffix:
-                " (Блондель ≈ {walkBlondel} мм)",
 
             comfort_block_bad:
-                "Один або кілька параметрів явно виходять за межі комфортних діапазонів. Перед детальним опрацюванням strongly рекомендовано скоригувати підйом, проступ, діаметр, колону чи кут повороту.",
+                "Один або кілька параметрів явно виходять за межі комфортних діапазонів. Перед детальним опрацюванням рекомендовано скоригувати підйом, проступ, діаметр, колону чи кут повороту.",
             comfort_block_warn:
-                "Деякі параметри близькі до граничних. Сходи можуть здаватися крутими або дещо тісними. Розгляньте можливість тонкого налаштування підйому, проступу, діаметра, колони чи кута.",
+                "Деякі параметри близькі до граничних. Сходи можуть здаватися крутими або дещо тісними. Розгляньте можливість підстроїти підйом, проступ, діаметр, колону чи кут.",
             comfort_block_ok:
                 "Запропонована геометрія загалом відповідає типовим комфортним діапазонам для вибраного регіону та призначення. Остаточну відповідність нормам потрібно перевірити окремо.",
 
@@ -377,9 +384,9 @@
         switch (type) {
             case "straight-landing":
                 return L.type_straight_landing;
-            case "l":
+            case "l-shaped":
                 return L.type_l;
-            case "u":
+            case "u-shaped":
                 return L.type_u;
             case "spiral":
                 return L.type_spiral;
@@ -400,6 +407,17 @@
         columnDia: true,
         minTread: true,
         maxRiser: true
+    };
+
+    // Мапа: input.id → ключ AUTO_STATE
+    const AUTO_KEY_BY_INPUT = {
+        swSteps: "steps",
+        swMaxRun: "maxRun",
+        swHeadroom: "headroom",
+        swSpiralAngle: "spiralAngle",
+        swColumnDia: "columnDia",
+        swMinTread: "minTread",
+        swMaxRiser: "maxRiser"
     };
 
     // -----------------------------
@@ -456,7 +474,7 @@
                     residential: {
                         riserMin: 170,
                         riserMax: 200,
-                        treadMin: 200,
+                        treadMin: 200, // centre going (chord)
                         treadMax: 260,
                         blondelMin: 580,
                         blondelMax: 640
@@ -687,11 +705,12 @@
         default: { minOk: 700, minWarn: 660 }
     };
 
-    const SPIRAL_WIDTH_TEXT = {
-        eu: "Spiral clear width often 700–800 mm for private use (check BS 5395-2 & Approved Document K).",
-        us: "IRC spiral stairs require around 660 mm minimum clear width; comfort is usually 700+ mm.",
-        au: "NCC and AS 1657 often target ~700 mm or more clear width for comfortable use.",
-        default: "Clear width for spiral stairs is typically ≥ 660–700 mm, depending on local codes."
+    // eu: centre line, us: 305 mm від внутрішнього краю, au: 70% ширини
+    const SPIRAL_REF_LINE = {
+        eu: { mode: "centre" },
+        us: { mode: "offset", offset: 305 },
+        au: { mode: "fraction", fraction: 0.7 },
+        default: { mode: "fraction", fraction: 2 / 3 }
     };
 
     const NORMATIVE_INFO = {
@@ -749,190 +768,206 @@
     };
 
     // -----------------------------
-// Профіль для конкретної конфігурації
-// -----------------------------
-function getProfile(region, usage, stairType, minTreadPref, maxRiserPref) {
-    // Безпечні ключі
-    const regKey = GEOM_PROFILES[region] ? region : "eu";
-    const typeKey = stairType === "spiral" ? "spiral" : "straight";
+    // Профіль для конкретної конфігурації
+    // -----------------------------
+    function getProfile(region, usage, stairType, minTreadPref, maxRiserPref) {
+        const regKey = GEOM_PROFILES[region] ? region : "eu";
+        const typeKey = stairType === "spiral" ? "spiral" : "straight";
 
-    const reg = GEOM_PROFILES[regKey][typeKey];
-    const usageMap = reg.usage;
-    const useKey = usageMap[usage] ? usage : "residential";
+        const reg = GEOM_PROFILES[regKey][typeKey];
+        const usageMap = reg.usage;
+        const useKey = usageMap[usage] ? usage : "residential";
 
-    const base = usageMap[useKey];
+        const base = usageMap[useKey];
 
-    let riserMin = base.riserMin;
-    let riserMax = base.riserMax;
-    let treadMin = base.treadMin;
-    let treadMax = base.treadMax;
-    const blondelMin = base.blondelMin;
-    const blondelMax = base.blondelMax;
+        let riserMin = base.riserMin;
+        let riserMax = base.riserMax;
+        let treadMin = base.treadMin;
+        let treadMax = base.treadMax;
+        const blondelMin = base.blondelMin;
+        const blondelMax = base.blondelMax;
 
-    // Враховуємо побажання користувача
-    if (Number.isFinite(maxRiserPref) && maxRiserPref > 0) {
-        riserMax = Math.min(riserMax, maxRiserPref);
-    }
-    if (Number.isFinite(minTreadPref) && minTreadPref > 0) {
-        treadMin = Math.max(treadMin, minTreadPref);
-    }
-
-    // Мінімальна ширина діапазону, щоб не вийшло 180–180
-    if (riserMax < riserMin + 5) riserMax = riserMin + 5;
-    if (treadMax < treadMin + 10) treadMax = treadMin + 10;
-
-    return { riserMin, riserMax, treadMin, treadMax, blondelMin, blondelMax };
-}
-
-// -----------------------------
-// Нормативні нотатки (Step 2 box)
-// -----------------------------
-function updateNormNotes(region, usage, stairType, profile) {
-    const box = $("#swNormNotes");
-    if (!box) return;
-
-    const isSpiral = stairType === "spiral";
-
-    // короткий alias для перекладу
-    const tt = (key, fb) =>
-        (window.APP_I18N && typeof APP_I18N.t === "function")
-            ? APP_I18N.t(key, fb)
-            : (fb || key);
-
-    const treadLabel = isSpiral
-        ? tt("wizard_norm_tread_spiral_label", "Tread at walkline")
-        : tt("wizard_norm_tread_straight_label", "Tread / going");
-
-    const runText = isSpiral
-        ? tt(
-              "wizard_norm_run_spiral",
-              "Spiral rotation: typically around 270–450° between floors, depending on layout."
-          )
-        : tt(
-              "wizard_norm_run_straight",
-              "Max run: stair projection must fit within available length and headroom constraints."
-          );
-
-    const walklineText = isSpiral
-        ? tt(
-              "wizard_norm_walkline_radius",
-              "Walkline radius: measured between inner column and outer edge, typically ≈ 2/3 of clear width from the inner side."
-          )
-        : "";
-
-    const headroomText = tt(
-        "wizard_norm_headroom",
-        "Headroom: usually ≥ 2000 mm (check local codes)."
-    );
-
-    const html =
-        `<ul>` +
-        `<li><strong>${tt("wizard_norm_riser_label", "Riser (typical)")}:` +
-        `</strong> ${profile.riserMin}–${profile.riserMax} mm</li>` +
-        `<li><strong>${treadLabel}:</strong> ${profile.treadMin}–${profile.treadMax} mm</li>` +
-        `<li><strong>${tt("wizard_norm_blondel_label", "Blondel (2R + T)")}:` +
-        `</strong> ${profile.blondelMin}–${profile.blondelMax} mm</li>` +
-        (isSpiral
-            ? `<li>${runText}</li>` +
-              (walklineText ? `<li>${walklineText}</li>` : "")
-            : `<li>${runText}</li>`) +
-        `<li>${headroomText}</li>` +
-        `</ul>`;
-
-    box.innerHTML = html;
-}
-
-// -----------------------------
-// Ліміти / підказки під полями (Step 2)
-// -----------------------------
-function updateGeomLimits(profile, region, usage, stairType) {
-    const suffix = `(${region.toUpperCase()}, ${usage})`;
-    const isSpiral = stairType === "spiral";
-
-    // Мінімальний tread (комфорт)
-    const limitMinTread = $("#swLimitMinTread");
-    if (limitMinTread) {
-        const treadKey = "wizard_limit_tread_comfort";
-        const fbTread = isSpiral
-            ? "Tread at walkline comfort"
-            : "Tread / going comfort";
-
-        const txtTread = (window.APP_I18N && typeof APP_I18N.t === "function")
-            ? APP_I18N.t(treadKey, fbTread)
-            : fbTread;
-
-        limitMinTread.textContent =
-            `${txtTread}: ${profile.treadMin}–${profile.treadMax} mm ${suffix}.`;
-    }
-
-    // Максимальний riser (комфорт)
-    const limitMaxRiser = $("#swLimitMaxRiser");
-    if (limitMaxRiser) {
-        const fbRiser = "Riser comfort range";
-        const txtRiser = (window.APP_I18N && typeof APP_I18N.t === "function")
-            ? APP_I18N.t("wizard_limit_riser_comfort", fbRiser)
-            : fbRiser;
-
-        limitMaxRiser.textContent =
-            `${txtRiser}: ${profile.riserMin}–${profile.riserMax} mm ${suffix}.`;
-    }
-
-    // Кількість сходинок
-    const limitSteps = $("#swLimitSteps");
-    if (limitSteps) {
-        const fallbackSteps =
-            "Typical concept range: 10–18 steps; wizard clamps between 8 and 30 steps";
-
-        let txtSteps = fallbackSteps;
-        if (window.APP_I18N && typeof APP_I18N.t === "function") {
-            txtSteps = APP_I18N.t("wizard_limit_steps", fallbackSteps);
+        if (Number.isFinite(maxRiserPref) && maxRiserPref > 0) {
+            riserMax = Math.min(riserMax, maxRiserPref);
+        }
+        if (Number.isFinite(minTreadPref) && minTreadPref > 0) {
+            treadMin = Math.max(treadMin, minTreadPref);
         }
 
-        limitSteps.textContent = `${txtSteps} ${suffix}.`;
+        if (riserMax < riserMin + 5) riserMax = riserMin + 5;
+        if (treadMax < treadMin + 10) treadMax = treadMin + 10;
+
+        return { riserMin, riserMax, treadMin, treadMax, blondelMin, blondelMax };
     }
 
-    // Max run / діаметр
-    const limitRun = $("#swLimitRun");
-    if (limitRun) {
+    // -----------------------------
+    // Нормативні нотатки (Step 2 box)
+    // -----------------------------
+    function updateNormNotes(region, usage, stairType, profile) {
+        const box = $("#swNormNotes");
+        if (!box) return;
+
+        const isSpiral = stairType === "spiral";
+
+        const tt = (key, fb) =>
+            (window.APP_I18N && typeof APP_I18N.t === "function")
+                ? APP_I18N.t(key, fb)
+                : (fb || key);
+
+        const treadLabel = isSpiral
+            ? tt("wizard_norm_tread_spiral_label", "Tread at reference line")
+            : tt("wizard_norm_tread_straight_label", "Tread / going");
+
+        let refLineInfo = "";
         if (isSpiral) {
-            // можна теж завести через I18N, але це вже текст більш вільний
-            limitRun.textContent =
-                `Spiral comfort often at 1500–1900 mm outer diameter ${suffix}.`;
-        } else {
-            const fb = "Straight stairs: max run must respect available space and headroom";
+            if (region === "eu") {
+                refLineInfo = tt(
+                    "wizard_norm_ref_eu",
+                    "Reference line (EU/UK): centre line of the clear width between inner column and outer guard."
+                );
+            } else if (region === "us") {
+                refLineInfo = tt(
+                    "wizard_norm_ref_us",
+                    "Reference line (US): 305 mm from the narrow (inner) edge of the tread."
+                );
+            } else if (region === "au") {
+                refLineInfo = tt(
+                    "wizard_norm_ref_au",
+                    "Reference line (AU): approximately at 70% of clear width from the inner side."
+                );
+            }
+        }
+
+        const runText = isSpiral
+            ? tt(
+                  "wizard_norm_run_spiral",
+                  "Total rotation is usually 270–450° between floors; in constrained cases 210–540°."
+              )
+            : tt(
+                  "wizard_norm_run_straight",
+                  "Max run: stair projection must fit within available length and headroom constraints."
+              );
+
+        const headroomText = tt(
+            "wizard_norm_headroom",
+            "Headroom: usually ≥ 2000 mm (check local codes)."
+        );
+
+        const html =
+            `<ul>` +
+            `<li><strong>${tt("wizard_norm_riser_label", "Riser (typical)")}:` +
+            `</strong> ${profile.riserMin}–${profile.riserMax} mm</li>` +
+            `<li><strong>${treadLabel}:</strong> ${profile.treadMin}–${profile.treadMax} mm</li>` +
+            `<li><strong>${tt("wizard_norm_blondel_label", "Blondel (2R + T)")}:` +
+            `</strong> ${profile.blondelMin}–${profile.blondelMax} mm</li>` +
+            (isSpiral && refLineInfo ? `<li>${refLineInfo}</li>` : "") +
+            `<li>${runText}</li>` +
+            `<li>${headroomText}</li>` +
+            `</ul>`;
+
+        box.innerHTML = html;
+    }
+
+    // -----------------------------
+    // Ліміти / підказки під полями (Step 2)
+    // -----------------------------
+    function updateGeomLimits(profile, region, usage, stairType) {
+        const regionStr = regionLabel(region);
+        const usageStr = usageLabel(usage);
+        const suffix = `(${regionStr}, ${usageStr})`;
+        const isSpiral = stairType === "spiral";
+
+        const limitMinTread = $("#swLimitMinTread");
+        if (limitMinTread) {
+            const treadKey = "wizard_limit_tread_comfort";
+            const fbTread = isSpiral
+                ? "Tread at reference line comfort"
+                : "Tread / going comfort";
+
+            const txtTread = (window.APP_I18N && typeof APP_I18N.t === "function")
+                ? APP_I18N.t(treadKey, fbTread)
+                : fbTread;
+
+            limitMinTread.textContent =
+                `${txtTread}: ${profile.treadMin}–${profile.treadMax} mm ${suffix}.`;
+        }
+
+        const limitMaxRiser = $("#swLimitMaxRiser");
+        if (limitMaxRiser) {
+            const fbRiser = "Riser comfort range";
+            const txtRiser = (window.APP_I18N && typeof APP_I18N.t === "function")
+                ? APP_I18N.t("wizard_limit_riser_comfort", fbRiser)
+                : fbRiser;
+
+            limitMaxRiser.textContent =
+                `${txtRiser}: ${profile.riserMin}–${profile.riserMax} mm ${suffix}.`;
+        }
+
+        const limitSteps = $("#swLimitSteps");
+        if (limitSteps) {
+            const fallbackSteps =
+                "Typical concept range: 10–18 steps; wizard clamps between 8 and 30 steps";
+
+            let txtSteps = fallbackSteps;
+            if (window.APP_I18N && typeof APP_I18N.t === "function") {
+                txtSteps = APP_I18N.t("wizard_limit_steps", fallbackSteps);
+            }
+
+            limitSteps.textContent = `${txtSteps} ${suffix}.`;
+        }
+
+        const limitRun = $("#swLimitRun");
+        if (limitRun) {
+            if (isSpiral) {
+                limitRun.textContent =
+                    `Spiral comfort often at 1500–1900 mm outer diameter ${suffix}.`;
+            } else {
+                const fb = "Straight stairs: max run must respect available space and headroom";
+                const txt = (window.APP_I18N && typeof APP_I18N.t === "function")
+                    ? APP_I18N.t("wizard_limit_run_straight_full", fb)
+                    : fb;
+                limitRun.textContent = `${txt} ${suffix}.`;
+            }
+        }
+
+        const limitHeadroom = $("#swLimitHeadroom");
+        if (limitHeadroom) {
+            const fb = "Common target ≥ 2000 mm; many codes accept 1950–2000 mm in specific cases";
             const txt = (window.APP_I18N && typeof APP_I18N.t === "function")
-                ? APP_I18N.t("wizard_limit_run_straight_full", fb)
+                ? APP_I18N.t("wizard_limit_headroom", fb)
                 : fb;
-            limitRun.textContent = `${txt} ${suffix}.`;
+            limitHeadroom.textContent = `${txt} ${suffix}.`;
+        }
+
+        const limitSpiral = $("#swLimitSpiral");
+        if (limitSpiral) {
+            if (isSpiral) {
+                limitSpiral.textContent =
+                    `Concept range for total rotation: 270–450°; in constrained layouts 210–540° may be seen ${suffix}.`;
+            } else {
+                limitSpiral.textContent = "";
+            }
+        }
+
+        const limitColumn = $("#swLimitColumn");
+        if (limitColumn) {
+            if (isSpiral) {
+                const txtWidth =
+                    region === "eu"
+                        ? "Spiral clear width often 700–800 mm for private use (check BS 5395-2 & Approved Document K)."
+                        : region === "us"
+                            ? "IRC spiral stairs require around 660 mm minimum clear width; comfort is usually 700+ mm."
+                            : region === "au"
+                                ? "NCC and AS 1657 often target ~700 mm or more clear width for comfortable use."
+                                : "Clear width for spiral stairs is typically ≥ 660–700 mm, depending on local codes.";
+
+                limitColumn.textContent =
+                    `Typical central columns ~114–168 mm; ${txtWidth} ${suffix}.`;
+            } else {
+                limitColumn.textContent = "";
+            }
         }
     }
-
-    // Headroom
-    const limitHeadroom = $("#swLimitHeadroom");
-    if (limitHeadroom) {
-        const fb = "Common target ≥ 2000 mm; many codes accept 1950–2000 mm in specific cases";
-        const txt = (window.APP_I18N && typeof APP_I18N.t === "function")
-            ? APP_I18N.t("wizard_limit_headroom", fb)
-            : fb;
-        limitHeadroom.textContent = `${txt} ${suffix}.`;
-    }
-
-    // Кут повороту спіралі
-    const limitSpiral = $("#swLimitSpiral");
-    if (limitSpiral) {
-        limitSpiral.textContent =
-            `Concept range for total rotation: 270–450°; in constrained layouts 210–540° may be seen ${suffix}.`;
-    }
-
-    // Колона та ширина маршу
-    const limitColumn = $("#swLimitColumn");
-    if (limitColumn) {
-        const txt = SPIRAL_WIDTH_TEXT[region] || SPIRAL_WIDTH_TEXT.default;
-        limitColumn.textContent =
-            `Typical central columns ~114–168 mm; ` + txt;
-    }
-}
-
 
     // -----------------------------
     // Статусні точки
@@ -962,10 +997,16 @@ function updateGeomLimits(profile, region, usage, stairType) {
         const targetId = toggle ? toggle.getAttribute("data-target") : null;
         const input = targetId ? document.getElementById(targetId) : null;
 
+        const I18N = window.APP_I18N || null;
+        const t = (k, fb) =>
+            (I18N && typeof I18N.t === "function") ? I18N.t(k, fb) : (fb || k);
+
         if (toggle) {
             toggle.classList.toggle("is-auto", isAuto);
             toggle.classList.toggle("is-manual", !isAuto);
-            toggle.textContent = isAuto ? "Auto" : "Manual";
+            toggle.textContent = isAuto
+                ? t("wizard_auto_label", "Auto")
+                : t("wizard_manual_label", "Manual");
         }
         if (input) {
             input.disabled = isAuto;
@@ -980,6 +1021,18 @@ function updateGeomLimits(profile, region, usage, stairType) {
         setAutoState("columnDia", true);
         setAutoState("minTread", true);
         setAutoState("maxRiser", true);
+    }
+
+    // -----------------------------
+    // Проста функція "штрафу" за вихід за діапазон
+    // -----------------------------
+    function rangePenalty(value, min, max) {
+        if (!Number.isFinite(value)) return 1e9;
+        if (value < min) return (min - value) * (min - value);
+        if (value > max) return (value - max) * (value - max);
+        // всередині – маленький штраф, щоб віддавати перевагу центру
+        const mid = (min + max) / 2;
+        return 0.1 * (value - mid) * (value - mid);
     }
 
     // -----------------------------
@@ -1011,7 +1064,7 @@ function updateGeomLimits(profile, region, usage, stairType) {
         updateNormNotes(region, usage, stairType, profile);
         updateGeomLimits(profile, region, usage, stairType);
 
-        // Немає висоти – тільки пояснення
+        // Без висоти
         if (!height || height < 2000) {
             lastSummaryData = null;
 
@@ -1041,62 +1094,37 @@ function updateGeomLimits(profile, region, usage, stairType) {
             height >= 2200 && height <= 3600 ? "ok" : "warning"
         );
 
-        // Авто minTread / maxRiser
-        if (AUTO_STATE.minTread) {
-            const el = $("#swMinTread");
-            if (el) el.value = fmt(profile.treadMin, 0);
-        }
-        if (AUTO_STATE.maxRiser) {
-            const el = $("#swMaxRiser");
-            if (el) el.value = fmt(profile.riserMax, 0);
-        }
-
-        const targetRiser = (profile.riserMin + profile.riserMax) / 2;
-
-        // Steps
-        let steps;
-        if (
-            !AUTO_STATE.steps &&
-            Number.isFinite(stepsInputRaw) &&
-            stepsInputRaw >= 8 &&
-            stepsInputRaw <= 40
-        ) {
-            steps = Math.round(stepsInputRaw);
-        } else {
-            steps = clamp(Math.round(height / targetRiser), 8, 30);
-            const elSteps = $("#swSteps");
-            if (elSteps && AUTO_STATE.steps) elSteps.value = fmt(steps, 0);
-        }
-
-        const riser = height / steps;
-
         // Headroom
         let headroom;
-        if (AUTO_STATE.headroom) {
+        if (AUTO_STATE.headroom || !Number.isFinite(headroomInput)) {
             headroom = 2000;
-            const el = $("#swHeadroom");
-            if (el) el.value = fmt(headroom, 0);
+            setInputValue("swHeadroom", headroom);
         } else {
             headroom = headroomInput;
         }
 
-        // Max run / diameter
+        // Max run / outer diameter
         let maxRunOrDia = maxRunInput;
-
-        if (isSpiral && AUTO_STATE.maxRun) {
-            maxRunOrDia = 1600;
-            const el = $("#swMaxRun");
-            if (el) el.value = fmt(maxRunOrDia, 0);
+        if (isSpiral) {
+            if (AUTO_STATE.maxRun || !Number.isFinite(maxRunInput) || maxRunInput <= 0) {
+                maxRunOrDia = 1600;
+                setInputValue("swMaxRun", maxRunOrDia);
+            }
+        } else {
+            // для прямих сходів maxRun не обов'язково, але якщо AUTO і користувач не задав – не чіпаємо
+            if (AUTO_STATE.maxRun && !Number.isFinite(maxRunInput)) {
+                maxRunOrDia = NaN;
+            }
         }
 
         // Spiral angle
         let spiralAngle = spiralAngleInput;
-        if (isSpiral && AUTO_STATE.spiralAngle) {
-            spiralAngle = 360;
-            const el = $("#swSpiralAngle");
-            if (el) el.value = fmt(spiralAngle, 0);
-        }
-        if (!isSpiral) {
+        if (isSpiral) {
+            if (AUTO_STATE.spiralAngle || !Number.isFinite(spiralAngleInput)) {
+                spiralAngle = 360;
+                setInputValue("swSpiralAngle", spiralAngle);
+            }
+        } else {
             spiralAngle = 0;
         }
 
@@ -1104,32 +1132,123 @@ function updateGeomLimits(profile, region, usage, stairType) {
         let columnDia = columnDiaInput;
         if (!isSpiral) {
             columnDia = NaN;
-            setStatusDot("swStatusColumn", "neutral");
         } else {
-            if (AUTO_STATE.columnDia || !Number.isFinite(columnDia) || columnDia <= 0) {
+            if (AUTO_STATE.columnDia || !Number.isFinite(columnDiaInput) || columnDiaInput <= 0) {
                 columnDia = 140;
-                const el = $("#swColumnDia");
-                if (el) el.value = fmt(columnDia, 0);
+                setInputValue("swColumnDia", columnDia);
             }
         }
 
-        // Blondel / tread
-        const blondelTarget = (profile.blondelMin + profile.blondelMax) / 2;
-        let tread = blondelTarget - 2 * riser;
-        tread = clamp(tread, profile.treadMin, profile.treadMax);
-        const blondel = 2 * riser + tread;
-
-        // Статуси core
-        let statusBlondel = "warning";
-        if (blondel >= profile.blondelMin && blondel <= profile.blondelMax) {
-            statusBlondel = "ok";
-        } else if (
-            blondel < profile.blondelMin - 10 ||
-            blondel > profile.blondelMax + 10
-        ) {
-            statusBlondel = "bad";
+        // ---------- Пошук к-ті сходинок (тільки для Auto steps) ----------
+        let steps;
+        if (!AUTO_STATE.steps && Number.isFinite(stepsInputRaw) &&
+            stepsInputRaw >= 8 && stepsInputRaw <= 40) {
+            steps = Math.round(stepsInputRaw);
+        } else {
+            // шукаємо такі steps, щоб riser був в комфортному діапазоні
+            let bestSteps = 12;
+            let bestScore = 1e12;
+            for (let n = 8; n <= 40; n++) {
+                const r = height / n;
+                // якщо задано manual maxRiser – не перевищувати
+                if (Number.isFinite(maxRiserPref) && r > maxRiserPref * 1.02) continue;
+                const score = rangePenalty(r, profile.riserMin, profile.riserMax);
+                if (score < bestScore) {
+                    bestScore = score;
+                    bestSteps = n;
+                }
+            }
+            steps = bestSteps;
+            setInputValue("swSteps", steps);
         }
 
+        const riser = height / steps; // ніякого округлення!
+        const blondelTarget = (profile.blondelMin + profile.blondelMax) / 2;
+
+        // Tread: намагаємось попасти в Blonдел + comfort
+        let treadIdealFromBlondel = blondelTarget - 2 * riser;
+        let tread = clamp(
+            treadIdealFromBlondel,
+            profile.treadMin,
+            profile.treadMax
+        );
+
+        // Якщо manual minTread – поважаємо, але лише як мінімум
+        if (Number.isFinite(minTreadPref)) {
+            tread = Math.max(tread, minTreadPref);
+        }
+
+        let blondel = 2 * riser + tread;
+
+        // Прямі / спіралі – геометрія
+        let approxRun = null;
+        let refTread = null;
+        let refBlondel = null;
+        let stepAngleDeg = 0;
+        let clearWidth = null;
+
+        if (!isSpiral) {
+            approxRun = tread * (steps - 1);
+        } else if (maxRunOrDia && maxRunOrDia > 0) {
+            // Спіраль – пов'язуємо ширину з діаметром колони
+            const widthTargets =
+                SPIRAL_WIDTH_TARGETS[region] || SPIRAL_WIDTH_TARGETS.default;
+
+            const outerRadius = maxRunOrDia / 2;
+            const innerStructRadius = (columnDia || 140) / 2;
+            const clearanceInner = 50; // зазор між колоною і внутрішнім краєм проступу
+            const innerRadius = innerStructRadius + clearanceInner;
+
+            clearWidth = Math.max(outerRadius - innerRadius, 0);
+
+            const refCfg = SPIRAL_REF_LINE[region] || SPIRAL_REF_LINE.default;
+            let refRadius;
+
+            if (clearWidth <= 0) {
+                refRadius = NaN;
+            } else if (refCfg.mode === "centre") {
+                // EU/UK: середня лінія чистої ширини
+                refRadius = innerRadius + clearWidth / 2;
+            } else if (refCfg.mode === "offset") {
+                // US: 305 mm від внутрішнього краю, але не більше ширини
+                const offset = Math.min(refCfg.offset || 305, clearWidth);
+                refRadius = innerRadius + offset;
+            } else if (refCfg.mode === "fraction") {
+                const fraction = refCfg.fraction || (2 / 3);
+                refRadius = innerRadius + clearWidth * fraction;
+            } else {
+                refRadius = innerRadius + clearWidth * (2 / 3);
+            }
+
+            const stepAngleRad = (spiralAngle / steps) * (Math.PI / 180);
+            stepAngleDeg = spiralAngle / steps;
+
+            if (Number.isFinite(refRadius) && refRadius > 0 && stepAngleRad > 0) {
+                // going як chord на референсній лінії
+                refTread = 2 * refRadius * Math.sin(stepAngleRad / 2);
+                refBlondel = 2 * riser + refTread;
+
+                tread = refTread;
+                blondel = refBlondel;
+            }
+
+            // Статус колони (clear width)
+            let statusColumn = "neutral";
+            if (!clearWidth || clearWidth <= 0) {
+                statusColumn = "bad";
+            } else if (clearWidth >= widthTargets.minOk) {
+                statusColumn = "ok";
+            } else if (clearWidth >= widthTargets.minWarn) {
+                statusColumn = "warning";
+            } else {
+                statusColumn = "bad";
+            }
+            setStatusDot("swStatusColumn", statusColumn);
+        } else {
+            setStatusDot("swStatusColumn", isSpiral ? "warning" : "neutral");
+        }
+
+        // -------- Статуси по параметрам --------
         let statusRiser = "ok";
         if (riser < profile.riserMin - 5 || riser > profile.riserMax + 5) {
             statusRiser = "bad";
@@ -1144,22 +1263,19 @@ function updateGeomLimits(profile, region, usage, stairType) {
             statusTread = "warning";
         }
 
-        setStatusDot("swStatusSteps", statusRiser);
-        setStatusDot("swStatusRiser", statusRiser);
-        setStatusDot("swStatusTread", statusTread);
+        let statusBlondel = "warning";
+        if (blondel >= profile.blondelMin && blondel <= profile.blondelMax) {
+            statusBlondel = "ok";
+        } else if (
+            blondel < profile.blondelMin - 10 ||
+            blondel > profile.blondelMax + 10
+        ) {
+            statusBlondel = "bad";
+        }
 
-        // Run / walkline / clear width
-        let approxRun = null;
-        let statusRun = null;
-        let walkTread = null;
-        let walkBlondel = null;
-        let statusWalk = null;
-        let stepAngle = 0;
-        let clearWidth = null;
-
+        // Run / spiral status
         if (!isSpiral) {
-            approxRun = tread * (steps - 1);
-            statusRun = "ok";
+            let statusRun = "ok";
             if (maxRunOrDia) {
                 if (approxRun <= maxRunOrDia * 1.02) statusRun = "ok";
                 else if (approxRun <= maxRunOrDia * 1.2) statusRun = "warning";
@@ -1167,57 +1283,11 @@ function updateGeomLimits(profile, region, usage, stairType) {
             } else {
                 statusRun = "warning";
             }
-
             setStatusDot("swStatusRun", statusRun);
             setStatusDot("swStatusSpiral", "neutral");
-            setStatusDot("swStatusColumn", "neutral");
-        } else if (maxRunOrDia && maxRunOrDia > 0) {
-            const widthTargets =
-                SPIRAL_WIDTH_TARGETS[region] || SPIRAL_WIDTH_TARGETS.default;
-
-            const outerRadius = maxRunOrDia / 2;
-            const innerStructRadius = (columnDia || 140) / 2;
-            const clearanceInner = 50;
-            const innerRadius = innerStructRadius + clearanceInner;
-
-            clearWidth = Math.max(outerRadius - innerRadius, 0);
-
-            const walkRadius = innerRadius + (clearWidth * 2) / 3;
-            const walkCirc = 2 * Math.PI * walkRadius;
-            const walkLen = walkCirc * (spiralAngle / 360);
-            walkTread = walkLen / steps;
-            walkBlondel = 2 * riser + walkTread;
-            stepAngle = spiralAngle / steps;
-
-            if (walkTread >= profile.treadMin && walkTread <= profile.treadMax) {
-                statusWalk = "ok";
-            } else if (
-                walkTread >= profile.treadMin - 10 &&
-                walkTread <= profile.treadMax + 10
-            ) {
-                statusWalk = "warning";
-            } else {
-                statusWalk = "bad";
-            }
-
-            let statusColumn = "neutral";
-            if (!clearWidth || clearWidth <= 0) {
-                statusColumn = "bad";
-            } else if (clearWidth >= widthTargets.minOk) {
-                statusColumn = "ok";
-            } else if (clearWidth >= widthTargets.minWarn) {
-                statusColumn = "warning";
-            } else {
-                statusColumn = "bad";
-            }
-
-            setStatusDot("swStatusRun", statusWalk || "warning");
-            setStatusDot("swStatusSpiral", statusWalk || "warning");
-            setStatusDot("swStatusColumn", statusColumn);
         } else {
-            setStatusDot("swStatusRun", "warning");
-            setStatusDot("swStatusSpiral", isSpiral ? "warning" : "neutral");
-            setStatusDot("swStatusColumn", isSpiral ? "warning" : "neutral");
+            setStatusDot("swStatusRun", statusTread || "warning");
+            setStatusDot("swStatusSpiral", statusTread || "warning");
         }
 
         // Headroom
@@ -1226,6 +1296,10 @@ function updateGeomLimits(profile, region, usage, stairType) {
         else if (headroom >= 2000) statusHead = "ok";
         else if (headroom < 1900) statusHead = "bad";
         setStatusDot("swStatusHeadroom", statusHead);
+
+        setStatusDot("swStatusSteps", statusRiser);
+        setStatusDot("swStatusRiser", statusRiser);
+        setStatusDot("swStatusTread", statusTread);
 
         // Comfort evaluation
         const keyStatuses = [statusRiser, statusTread, statusBlondel].filter(Boolean);
@@ -1246,7 +1320,7 @@ function updateGeomLimits(profile, region, usage, stairType) {
             comfortNote = L.live_comfort_warn_note;
         }
 
-        // Live overview (локалізовано)
+        // -------- Live overview --------
         if (liveBox) {
             const header = tpl(L.live_header, {
                 region: regionLabel(region),
@@ -1275,9 +1349,9 @@ function updateGeomLimits(profile, region, usage, stairType) {
                           clearWidth: fmt(clearWidth, 0)
                       })
                     : "";
-                const walkBlondelPart = walkBlondel
+                const walkBlondelPart = refBlondel
                     ? tpl(L.live_spiral_walk_blondel_part, {
-                          walkBlondel: fmt(walkBlondel, 0)
+                          walkBlondel: fmt(refBlondel, 0)
                       })
                     : "";
 
@@ -1288,8 +1362,8 @@ function updateGeomLimits(profile, region, usage, stairType) {
                         column: columnPart,
                         clear: clearPart,
                         angle: fmt(spiralAngle, 0),
-                        stepAngle: fmt(stepAngle, 2),
-                        walkTread: walkTread ? fmt(walkTread, 1) + " mm" : "–",
+                        stepAngle: fmt(stepAngleDeg || (spiralAngle / steps), 2),
+                        walkTread: refTread ? fmt(refTread, 1) + " mm" : "–",
                         walkBlondel: walkBlondelPart
                     }) +
                     `</p>`;
@@ -1327,14 +1401,15 @@ function updateGeomLimits(profile, region, usage, stairType) {
             maxRunOrDia,
             headroom,
             spiralAngle,
-            stepAngle,
+            stepAngle: stepAngleDeg || (spiralAngle && steps ? spiralAngle / steps : 0),
             columnDia,
             clearWidth,
             riser,
-            tread,
+            tread,           // для спіралі – tread на референсній лінії
             blondel,
-            walkTread,
-            walkBlondel,
+            refTread,
+            refBlondel,
+            approxRun,
             profile,
             comfortStatus
         };
@@ -1378,8 +1453,7 @@ function updateGeomLimits(profile, region, usage, stairType) {
             riser,
             tread,
             blondel,
-            walkTread,
-            walkBlondel,
+            approxRun,
             profile,
             comfortStatus
         } = data;
@@ -1402,43 +1476,66 @@ function updateGeomLimits(profile, region, usage, stairType) {
             (Number.isFinite(stepsInput)
                 ? L.summary_steps_manual_suffix
                 : L.summary_steps_auto_suffix) +
-            `</li>` +
-            (maxRunOrDia
-                ? `<li><strong>${isSpiral ? L.summary_outer_dia_label : L.summary_max_run_label}:</strong> ${fmt(
-                      maxRunOrDia,
-                      0
-                  )} mm</li>`
-                : "") +
-            (isSpiral && Number.isFinite(columnDia)
-                ? `<li><strong>${L.summary_column_label}:</strong> Ø${fmt(
-                      columnDia,
-                      0
-                  )} mm` +
-                  (Number.isFinite(clearWidth)
-                      ? tpl(L.summary_column_clear_suffix, {
-                            clearWidth: fmt(clearWidth, 0)
-                        })
-                      : "") +
-                  `</li>`
-                : "") +
-            (headroom
-                ? `<li><strong>${L.summary_headroom_label}:</strong> ${fmt(
-                      headroom,
-                      0
-                  )} mm</li>`
-                : "") +
-            (isSpiral && spiralAngle
-                ? `<li><strong>${L.summary_spiral_rot_label}:</strong> ${fmt(
-                      spiralAngle,
-                      0
-                  )}${L.summary_spiral_rot_unit}${tpl(
-                      L.summary_spiral_step_angle_suffix,
-                      { stepAngle: fmt(stepAngle, 2) }
-                  )}</li>`
-                : "") +
-            `</ul>` +
-            `</div>`;
+            `</li>`;
 
+        if (maxRunOrDia) {
+            if (isSpiral) {
+                html += `<li><strong>${L.summary_outer_dia_label}:</strong> ${fmt(
+                    maxRunOrDia,
+                    0
+                )} mm</li>`;
+            } else {
+                html += `<li><strong>${L.summary_max_run_label}:</strong> ${fmt(
+                    maxRunOrDia,
+                    0
+                )} mm</li>`;
+            }
+        }
+
+        if (isSpiral && Number.isFinite(columnDia)) {
+            html +=
+                `<li><strong>${L.summary_column_label}:</strong> Ø${fmt(
+                    columnDia,
+                    0
+                )} mm` +
+                (Number.isFinite(clearWidth)
+                    ? tpl(L.summary_column_clear_suffix, {
+                          clearWidth: fmt(clearWidth, 0)
+                      })
+                    : "") +
+                `</li>`;
+        }
+
+        if (!isSpiral && approxRun) {
+            html +=
+                `<li><strong>${L.summary_max_run_label} (approx):</strong> ${fmt(
+                    approxRun,
+                    0
+                )} mm</li>`;
+        }
+
+        if (headroom) {
+            html +=
+                `<li><strong>${L.summary_headroom_label}:</strong> ${fmt(
+                    headroom,
+                    0
+                )} mm</li>`;
+        }
+
+        if (isSpiral && spiralAngle) {
+            html +=
+                `<li><strong>${L.summary_spiral_rot_label}:</strong> ${fmt(
+                    spiralAngle,
+                    0
+                )}${L.summary_spiral_rot_unit}${tpl(
+                    L.summary_spiral_step_angle_suffix,
+                    { stepAngle: fmt(stepAngle || spiralAngle / steps, 2) }
+                )}</li>`;
+        }
+
+        html += `</ul></div>`;
+
+        // Блок геометрії
         html +=
             `<div class="stair-wizard__summary-block">` +
             `<h4>${L.summary_geom_title}</h4>` +
@@ -1448,21 +1545,33 @@ function updateGeomLimits(profile, region, usage, stairType) {
                 rMin: profile.riserMin,
                 rMax: profile.riserMax
             }) +
-            `</li>` +
-            (isSpiral
-                ? `<li><strong>${L.summary_tread_label_spiral}:</strong> ${fmt(
-                      tread,
-                      1
-                  )} mm</li>`
-                : `<li><strong>${L.summary_tread_label_straight}:</strong> ${fmt(
-                      tread,
-                      1
-                  )} mm` +
-                  tpl(L.summary_tread_typical_suffix, {
-                      tMin: profile.treadMin,
-                      tMax: profile.treadMax
-                  }) +
-                  `</li>`) +
+            `</li>`;
+
+        if (!isSpiral) {
+            html +=
+                `<li><strong>${L.summary_tread_label_straight}:</strong> ${fmt(
+                    tread,
+                    1
+                )} mm` +
+                tpl(L.summary_tread_typical_suffix, {
+                    tMin: profile.treadMin,
+                    tMax: profile.treadMax
+                }) +
+                `</li>`;
+        } else {
+            html +=
+                `<li><strong>${L.summary_tread_label_spiral}:</strong> ${fmt(
+                    tread,
+                    1
+                )} mm` +
+                tpl(L.summary_tread_typical_suffix, {
+                    tMin: profile.treadMin,
+                    tMax: profile.treadMax
+                }) +
+                `</li>`;
+        }
+
+        html +=
             `<li><strong>${L.summary_blondel_label}:</strong> ${fmt(
                 blondel,
                 0
@@ -1472,16 +1581,6 @@ function updateGeomLimits(profile, region, usage, stairType) {
                 bMax: profile.blondelMax
             }) +
             `</li>` +
-            (isSpiral && walkTread
-                ? `<li><strong>${L.summary_walk_tread_label}:</strong> ${fmt(
-                      walkTread,
-                      1
-                  )} mm` +
-                  tpl(L.summary_walk_tread_suffix, {
-                      walkBlondel: fmt(walkBlondel, 0)
-                  }) +
-                  `</li>`
-                : "") +
             `</ul>` +
             `</div>`;
 
@@ -1505,211 +1604,210 @@ function updateGeomLimits(profile, region, usage, stairType) {
     // Normative links (Step 3)
     // -----------------------------
     function updateCodes(region) {
-    const box = $("#stairWizardCodes");
-    if (!box) return;
+        const box = $("#stairWizardCodes");
+        if (!box) return;
 
-    const info = NORMATIVE_INFO[region] || NORMATIVE_INFO.eu;
+        const info = NORMATIVE_INFO[region] || NORMATIVE_INFO.eu;
 
-    // локальний alias для перекладів
-    const tt = (key, fb) =>
-        (window.APP_I18N && typeof APP_I18N.t === "function")
-            ? APP_I18N.t(key, fb)
-            : (fb || key);
+        const tt = (key, fb) =>
+            (window.APP_I18N && typeof APP_I18N.t === "function")
+                ? APP_I18N.t(key, fb)
+                : (fb || key);
 
-    const hintText = tt(
-        "wizard_codes_hint",
-        "These references summarise typical stair geometry requirements. Local amendments or additional regulations may apply – final compliance must always be checked by a local engineer or building authority."
-    );
-
-    let html =
-        `<div class="stair-wizard__summary-block">` +
-        `<h4>${info.title}</h4>` +
-        `<ul>`;
-
-    info.items.forEach((item) => {
-        html +=
-            `<li>` +
-            `<a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.label}</a>` +
-            `</li>`;
-    });
-
-    html +=
-        `</ul>` +
-        `<p class="stair-wizard__hint-small">${hintText}</p>` +
-        `</div>`;
-
-    box.innerHTML = html;
-}
-   // -----------------------------
-// Message builder (локалізований)
-// -----------------------------
-function buildMessage() {
-    const textArea = $("#swMessageBox");
-    if (!textArea) return;
-
-    const I18N = window.APP_I18N || null;
-    const t = (key, fb) =>
-        (I18N && typeof I18N.t === "function")
-            ? I18N.t(key, fb)
-            : (fb || key);
-
-    // Якщо немає розрахованих даних – показуємо локалізоване попередження
-    if (!lastSummaryData) {
-        textArea.value = t(
-            "wizard_msg_no_data",
-            "Please set at least floor-to-floor height and geometry on Step 2 so the wizard can generate a message."
+        const hintText = tt(
+            "wizard_codes_hint",
+            "These references summarise typical stair geometry requirements. Local amendments or additional regulations may apply – final compliance must always be checked by a local engineer or building authority."
         );
-        textArea.focus();
-        textArea.select();
-        return;
+
+        let html =
+            `<div class="stair-wizard__summary-block">` +
+            `<h4>${info.title}</h4>` +
+            `<ul>`;
+
+        info.items.forEach((item) => {
+            html +=
+                `<li>` +
+                `<a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.label}</a>` +
+                `</li>`;
+        });
+
+        html +=
+            `</ul>` +
+            `<p class="stair-wizard__hint-small">${hintText}</p>` +
+            `</div>`;
+
+        box.innerHTML = html;
     }
 
-    const d = lastSummaryData;
-    const isSpiral = d.stairType === "spiral";
+    // -----------------------------
+    // Message builder (локалізований)
+    // -----------------------------
+    function buildMessage() {
+        const textArea = $("#swMessageBox");
+        if (!textArea) return;
 
-    // Локалізовані назви регіону / призначення / типу
-    const regionStr = regionLabel(d.region);
-    const usageStr = usageLabel(d.usage);
-    const typeStr = typeLabel(d.stairType);
+        const I18N = window.APP_I18N || null;
+        const t = (key, fb) =>
+            (I18N && typeof I18N.t === "function")
+                ? I18N.t(key, fb)
+                : (fb || key);
 
-    // Сuffix для “manual / auto” беремо з WIZARD_I18N (ті ж, що й у summary)
-    const L = getWizardStrings();
-    const stepsSuffix = Number.isFinite(d.stepsInput)
-        ? (L.summary_steps_manual_suffix || " (manual)")
-        : (L.summary_steps_auto_suffix || " (auto from profile)");
-
-    const lines = [];
-
-    // Привітання + вступ (локалізовано)
-    lines.push(
-        t("wizard_msg_greeting", "Hello Vitalii,")
-    );
-    lines.push("");
-    lines.push(
-        t(
-            "wizard_msg_intro",
-            "Here is a stair concept I would like you to review:"
-        )
-    );
-    lines.push("");
-
-    // Параметри (мітки також з i18n)
-    lines.push(
-        `• ${t("wizard_msg_label_region", "Region / code base")}: ${regionStr}`
-    );
-    lines.push(
-        `• ${t("wizard_msg_label_usage", "Usage")}: ${usageStr}`
-    );
-    lines.push(
-        `• ${t("wizard_msg_label_type", "Stair type")}: ${typeStr}`
-    );
-    lines.push(
-        `• ${t("wizard_msg_label_height", "Floor-to-floor height")}: ${fmt(
-            d.height,
-            0
-        )} mm`
-    );
-    lines.push(
-        `• ${t("wizard_msg_label_steps", "Number of steps")}: ${d.steps}${stepsSuffix}`
-    );
-
-    if (d.maxRunOrDia) {
-        if (isSpiral) {
-            lines.push(
-                `• ${t("wizard_msg_label_outer_dia", "Outer diameter")}: ${fmt(
-                    d.maxRunOrDia,
-                    0
-                )} mm`
+        if (!lastSummaryData) {
+            textArea.value = t(
+                "wizard_msg_no_data",
+                "Please set at least floor-to-floor height and geometry on Step 2 so the wizard can generate a message."
             );
-        } else {
-            lines.push(
-                `• ${t("wizard_msg_label_max_run", "Max run")}: ${fmt(
-                    d.maxRunOrDia,
-                    0
-                )} mm`
-            );
+            textArea.focus();
+            textArea.select();
+            return;
         }
-    }
 
-    if (isSpiral && Number.isFinite(d.columnDia)) {
-        let colLine =
-            `• ${t("wizard_msg_label_column", "Central column")}: Ø${fmt(
-                d.columnDia,
-                0
-            )} mm`;
-        if (Number.isFinite(d.clearWidth)) {
-            colLine += ` (${t(
-                "wizard_summary_clear_width_suffix",
-                "clear stair width"
-            )} ≈ ${fmt(d.clearWidth, 0)} mm)`;
-        }
-        lines.push(colLine);
-    }
+        const d = lastSummaryData;
+        const isSpiral = d.stairType === "spiral";
 
-    if (d.headroom) {
+        const regionStr = regionLabel(d.region);
+        const usageStr = usageLabel(d.usage);
+        const typeStr = typeLabel(d.stairType);
+
+        const L = getWizardStrings();
+        const stepsSuffix = Number.isFinite(d.stepsInput)
+            ? (L.summary_steps_manual_suffix || " (manual)")
+            : (L.summary_steps_auto_suffix || " (auto from profile)");
+
+        const lines = [];
+
         lines.push(
-            `• ${t("wizard_msg_label_headroom", "Target headroom")}: ${fmt(
-                d.headroom,
+            t("wizard_msg_greeting", "Hello Vitalii,")
+        );
+        lines.push("");
+        lines.push(
+            t(
+                "wizard_msg_intro",
+                "Here is a stair concept I would like you to review:"
+            )
+        );
+        lines.push("");
+
+        lines.push(
+            `• ${t("wizard_msg_label_region", "Region / code base")}: ${regionStr}`
+        );
+        lines.push(
+            `• ${t("wizard_msg_label_usage", "Usage")}: ${usageStr}`
+        );
+        lines.push(
+            `• ${t("wizard_msg_label_type", "Stair type")}: ${typeStr}`
+        );
+        lines.push(
+            `• ${t("wizard_msg_label_height", "Floor-to-floor height")}: ${fmt(
+                d.height,
                 0
             )} mm`
         );
-    }
-
-    if (isSpiral && d.spiralAngle) {
         lines.push(
-            `• ${t("wizard_msg_label_spiral_angle", "Spiral rotation")}: ${fmt(
-                d.spiralAngle,
-                0
-            )}° (≈ ${fmt(d.stepAngle, 2)}° per step)`
+            `• ${t("wizard_msg_label_steps", "Number of steps")}: ${d.steps}${stepsSuffix}`
         );
-    }
 
-    lines.push(
-        `• ${t("wizard_msg_label_riser", "Riser")}: ≈ ${fmt(
-            d.riser,
-            1
-        )} mm (typical ${d.profile.riserMin}–${d.profile.riserMax} mm)`
-    );
+        if (d.maxRunOrDia) {
+            if (isSpiral) {
+                lines.push(
+                    `• ${t("wizard_msg_label_outer_dia", "Outer diameter")}: ${fmt(
+                        d.maxRunOrDia,
+                        0
+                    )} mm`
+                );
+            } else {
+                lines.push(
+                    `• ${t("wizard_msg_label_max_run", "Max run")}: ${fmt(
+                        d.maxRunOrDia,
+                        0
+                    )} mm`
+                );
+            }
+        }
 
-    lines.push(
-        `• ${t("wizard_msg_label_tread", "Tread / going")}: ≈ ${fmt(
-            d.tread,
-            1
-        )} mm (typical ${d.profile.treadMin}–${d.profile.treadMax} mm)`
-    );
+        if (isSpiral && Number.isFinite(d.columnDia)) {
+            let colLine =
+                `• ${t("wizard_msg_label_column", "Central column")}: Ø${fmt(
+                    d.columnDia,
+                    0
+                )} mm`;
+            if (Number.isFinite(d.clearWidth)) {
+                colLine += ` (${t(
+                    "wizard_summary_clear_width_suffix",
+                    "clear stair width"
+                )} ≈ ${fmt(d.clearWidth, 0)} mm)`;
+            }
+            lines.push(colLine);
+        }
 
-    lines.push(
-        `• ${t("wizard_msg_label_blondel", "Blondel 2R + T")}: ≈ ${fmt(
-            d.blondel,
-            0
-        )} mm (target ${d.profile.blondelMin}–${d.profile.blondelMax} mm)`
-    );
+        if (!isSpiral && d.approxRun) {
+            lines.push(
+                `• ${t("wizard_msg_label_approx_run", "Approximate run")}: ${fmt(
+                    d.approxRun,
+                    0
+                )} mm`
+            );
+        }
 
-    if (isSpiral && d.walkTread) {
+        if (d.headroom) {
+            lines.push(
+                `• ${t("wizard_msg_label_headroom", "Target headroom")}: ${fmt(
+                    d.headroom,
+                    0
+                )} mm`
+            );
+        }
+
+        if (isSpiral && d.spiralAngle) {
+            lines.push(
+                `• ${t("wizard_msg_label_spiral_angle", "Spiral rotation")}: ${fmt(
+                    d.spiralAngle,
+                    0
+                )}° (≈ ${fmt(d.stepAngle || d.spiralAngle / d.steps, 2)}° per step)`
+            );
+        }
+
+        const treadLabel = isSpiral
+            ? t("wizard_msg_label_tread_spiral", "Tread at reference line")
+            : t("wizard_msg_label_tread", "Tread / going");
+
         lines.push(
-            `• ${t("wizard_msg_label_walkline", "Tread at walkline")}: ≈ ${fmt(
-                d.walkTread,
+            `• ${t("wizard_msg_label_riser", "Riser")}: ≈ ${fmt(
+                d.riser,
                 1
-            )} mm (Blondel ≈ ${fmt(d.walkBlondel, 0)} mm)`
+            )} mm (typical ${d.profile.riserMin}–${d.profile.riserMax} mm)`
         );
+
+        lines.push(
+            `• ${treadLabel}: ≈ ${fmt(
+                d.tread,
+                1
+            )} mm (typical ${d.profile.treadMin}–${d.profile.treadMax} mm)`
+        );
+
+        lines.push(
+            `• ${t("wizard_msg_label_blondel", "Blondel 2R + T")}: ≈ ${fmt(
+                d.blondel,
+                0
+            )} mm (target ${d.profile.blondelMin}–${d.profile.blondelMax} mm)`
+        );
+
+        lines.push("");
+        lines.push(
+            t(
+                "wizard_msg_outro",
+                "Please check this configuration against the relevant local codes and, if it is viable, refine the geometry and prepare a full production-ready design (3D model, drawings, DXF, STEP, BOM)."
+            )
+        );
+        lines.push("");
+        lines.push(
+            t("wizard_msg_thanks", "Thank you!")
+        );
+
+        textArea.value = lines.join("\n");
+        textArea.focus();
+        textArea.select();
     }
-
-    lines.push("");
-    lines.push(
-        t(
-            "wizard_msg_outro",
-            "Please check this configuration against the relevant local codes and, if it is viable, refine the geometry and prepare a full production-ready design (3D model, drawings, DXF, STEP, BOM)."
-        )
-    );
-    lines.push("");
-    lines.push(
-        t("wizard_msg_thanks", "Thank you!")
-    );
-
-    textArea.value = lines.join("\n");
-    textArea.focus();
-    textArea.select();
-}
 
     // -----------------------------
     // Step navigation
@@ -1739,8 +1837,16 @@ function buildMessage() {
         if (prevBtn) prevBtn.disabled = currentStep === 1;
 
         if (nextBtn) {
-            nextBtn.textContent = "Next →";
-            nextBtn.style.display = currentStep === 3 ? "none" : "";
+            const I18N = window.APP_I18N || null;
+            const t = (k, fb) =>
+                (I18N && typeof I18N.t === "function") ? I18N.t(k, fb) : (fb || k);
+
+            if (currentStep === 3) {
+                nextBtn.style.display = "none";
+            } else {
+                nextBtn.style.display = "";
+                nextBtn.textContent = t("wizard_next_label", "Next →");
+            }
         }
     }
 
@@ -1826,7 +1932,29 @@ function buildMessage() {
         const nextBtn = $("#stairWizardNext");
         const backdrop = $("#stairWizard .stair-wizard__backdrop");
         const resetBtn = $("#swResetBtn");
+        const recalcBtn = $("#swRecalcBtn");
         const msgBtn = $("#swBuildMessage");
+
+        if (resetBtn) {
+            resetBtn.addEventListener("click", function () {
+                resetGeometry();
+                computeConcept();
+            });
+        }
+
+        if (recalcBtn) {
+            recalcBtn.addEventListener("click", function () {
+                computeConcept();
+                const liveBox = $("#swLiveResult");
+                if (liveBox) {
+                    liveBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                }
+            });
+        }
+
+        if (msgBtn) {
+            msgBtn.addEventListener("click", buildMessage);
+        }
 
         if (openBtn) openBtn.addEventListener("click", openWizard);
         if (closeBtn) closeBtn.addEventListener("click", closeWizard);
@@ -1844,17 +1972,6 @@ function buildMessage() {
                     setStep(currentStep + 1);
                 }
             });
-        }
-
-        if (resetBtn) {
-            resetBtn.addEventListener("click", function () {
-                resetGeometry();
-                computeConcept();
-            });
-        }
-
-        if (msgBtn) {
-            msgBtn.addEventListener("click", buildMessage);
         }
 
         document.addEventListener("keydown", function (ev) {
@@ -1877,19 +1994,52 @@ function buildMessage() {
             });
         });
 
-        // Live-оновлення
+        // Live-оновлення в реальному часі
         const wizard = $("#stairWizard");
         if (wizard) {
             const inputs = $all("input, select", wizard);
             inputs.forEach((el) => {
                 const evt =
-                    el.tagName === "SELECT" || el.type === "number"
+                    el.tagName === "SELECT"
                         ? "change"
                         : "input";
+
                 el.addEventListener(evt, function () {
-                    if (el.id === "swType") {
+                    const id = el.id || "";
+                    const autoKey = AUTO_KEY_BY_INPUT[id] || null;
+
+                    // якщо змінюємо поле, яке має Auto/Manual → переводимо в Manual
+                    if (autoKey) {
+                        setAutoState(autoKey, false);
+                    }
+
+                    // Зміна типу сходів
+                    if (id === "swType") {
                         toggleSpiralVisibility();
                     }
+
+                    // Зміна регіону / призначення / типу → оновити норми (але computeConcept все одно це робить)
+                    if (id === "swRegion" || id === "swUsage" || id === "swType") {
+                        const region = $("#swRegion")?.value || "eu";
+                        const usage = $("#swUsage")?.value || "residential";
+                        const stairType = $("#swType")?.value || "straight";
+
+                        const minTreadInput = parseNum($("#swMinTread")?.value, NaN);
+                        const maxRiserInput = parseNum($("#swMaxRiser")?.value, NaN);
+                        const minTreadPref = AUTO_STATE.minTread ? NaN : minTreadInput;
+                        const maxRiserPref = AUTO_STATE.maxRiser ? NaN : maxRiserInput;
+
+                        const profile = getProfile(
+                            region,
+                            usage,
+                            stairType,
+                            minTreadPref,
+                            maxRiserPref
+                        );
+                        updateNormNotes(region, usage, stairType, profile);
+                        updateGeomLimits(profile, region, usage, stairType);
+                    }
+
                     computeConcept();
                 });
             });
