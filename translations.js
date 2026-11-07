@@ -7,6 +7,41 @@
     // Ключ для збереження мови
     const LANG_STORAGE_KEY = "369yax_lang";
 
+    // Localized chat interface text
+    window.CHAT_TRANSLATIONS = {
+        en: {
+            title: "369YAX – Technical chat",
+            subtitle: "Ask about engineering design, fabrication and automation",
+            placeholder: "Type your question about engineering design or manufacturing...",
+            hint: "Tip: briefly describe your project (stairs, sheet metal, frame or engineering automation) and the deliverables you need.",
+            initial: "👋 Hi! This is the 369YAX knowledge chat.<br><br>I can help with spiral/straight stairs, sheet metal, welded frames and engineering automation.<br>You can type a free question, or use the quick buttons below.",
+            launcher: "💬 Chat",
+            email_btn: "📧 Prepare email to Vitalii",
+            email_subject: "Project from 369YAX website chat"
+        },
+        it: {
+            title: "369YAX – Chat tecnico",
+            subtitle: "Progettazione meccanica, produzione e automazione",
+            placeholder: "Scrivi la tua domanda su progettazione o produzione...",
+            hint: "Suggerimento: descrivi brevemente il progetto (scale, lamiera, carpenteria o automazione) e i risultati di cui hai bisogno.",
+            initial: "👋 Ciao! Questo è il chat tecnico di 369YAX.<br><br>Posso aiutarti con scale a chiocciola o dritte, lamiera, strutture saldate e automazione tecnica.<br>Scrivi una domanda oppure usa i pulsanti rapidi qui sotto.",
+            launcher: "💬 Chat",
+            email_btn: "📧 Prepara un’email per Vitalii",
+            email_subject: "Progetto dal chat del sito 369YAX"
+        },
+        uk: {
+            title: "369YAX – Технічний чат",
+            subtitle: "Інженерне проєктування, виробництво й автоматизація",
+            placeholder: "Напишіть запитання про проєктування або виробництво...",
+            hint: "Порада: коротко опишіть проєкт (сходи, листовий метал, зварна конструкція або автоматизація) та потрібні результати.",
+            initial: "👋 Вітаю! Це технічний чат 369YAX.<br><br>Допоможу з гвинтовими й прямими сходами, листовим металом, зварними конструкціями та інженерною автоматизацією.<br>Напишіть запитання або скористайтеся кнопками швидкого вибору нижче.",
+            launcher: "💬 Чат",
+            email_btn: "📧 Підготувати лист для Vitalii",
+            email_subject: "Проєкт із чату сайту 369YAX"
+        }
+    };
+
+
     // -----------------------------
     // UI-тексти (data-i18n)
     // -----------------------------
