@@ -207,6 +207,7 @@
 
             footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys",
             footer_right: "Mechanical design · Metal structures · Spiral &amp; straight stairs · Automation",
+            footer_disclaimer: "This website is a personal portfolio for educational and informational purposes only. It presents professional experience and illustrative project examples; it is not operated as a business and does not constitute an offer of paid services.",
 
             // -----------------------------
 // STAIR WIZARD (EN)
@@ -560,6 +561,7 @@ wizard_btn_generate: "🧮 Generate concept",
 
             footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys",
             footer_right: "Progettazione meccanica · Carpenteria metallica · Scale a chiocciola · Automazione",
+            footer_disclaimer: "Questo sito è un portfolio personale a fini esclusivamente informativi e didattici. Presenta esperienze professionali ed esempi illustrativi di progetto; non è gestito come attività d’impresa e non costituisce un’offerta di servizi a pagamento.",
 
             // -----------------------------
 // STAIR WIZARD (IT)
@@ -930,6 +932,7 @@ wizard_btn_generate: "🧮 Genera concetto",
             footer_left: "© 369YAX – Automation &amp; Design · Віталій Борис",
             footer_right:
                 "Механічне проєктування · Металеві конструкції · Спіральні та прямі сходи · Автоматизація",
+            footer_disclaimer: "Цей сайт є особистим портфоліо, створеним виключно з інформаційною та навчальною метою. Він демонструє професійний досвід і приклади проєктів; сайт не ведеться як підприємницька діяльність і не є пропозицією платних послуг.",
 
             //// -----------------------------
 // STAIR WIZARD (UK)
@@ -1155,7 +1158,7 @@ wizard_btn_generate: "🧮 Згенерувати концепт",
         contact_title: "Travaillons ensemble", contact_subtitle: "Présentez brièvement votre projet – escaliers, tôlerie, structure soudée ou automatisation – et je vous proposerai une approche claire et concrète.",
         contact_direct_title: "Contact direct", contact_email_label: "E-mail :", contact_location: "Lieu : Italie · Travail à distance avec des clients dans le monde entier",
         contact_form_title: "Formulaire de contact", contact_form_name_label: "Votre nom", contact_form_email_label: "Votre e-mail", contact_form_subject_label: "Type de projet / objet", contact_form_message_label: "Détails du projet", contact_form_submit: "Envoyer le message",
-        footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys", footer_right: "Conception mécanique · Structures métalliques · Escaliers · Automatisation",
+        footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys", footer_right: "Conception mécanique · Structures métalliques · Escaliers · Automatisation", footer_disclaimer: "Ce site est un portfolio personnel à des fins exclusivement informatives et pédagogiques. Il présente une expérience professionnelle et des exemples de projets illustratifs ; il n’est pas exploité comme une entreprise et ne constitue pas une offre de services rémunérés.",
         wizard_title: "Générateur de concept d’escalier", wizard_step1_label: "Région et type", wizard_step2_label: "Géométrie", wizard_step3_label: "Préférences", wizard_step4_label: "Résultat",
         wizard_region_label: "Région / référentiel", wizard_region_eu: "Europe / Royaume-Uni", wizard_region_us: "États-Unis", wizard_region_au: "Australie",
         wizard_usage_label: "Usage principal", wizard_type_label: "Type d’escalier", wizard_height_label: "Hauteur entre les niveaux (mm)", wizard_run_label: "Développement horizontal max. / diamètre (mm)", wizard_headroom_label: "Échappée souhaitée (mm)",
@@ -1187,7 +1190,7 @@ wizard_btn_generate: "🧮 Згенерувати концепт",
         contact_title: "Lassen Sie uns zusammenarbeiten", contact_subtitle: "Beschreiben Sie kurz Ihr Projekt – Treppen, Blech, Schweißkonstruktionen oder technische Automatisierung – und ich schlage Ihnen einen klaren, praxisnahen Weg vor.",
         contact_direct_title: "Direkter Kontakt", contact_email_label: "E-Mail:", contact_location: "Standort: Italien · Remote-Arbeit mit Kunden weltweit",
         contact_form_title: "Kontaktformular", contact_form_name_label: "Ihr Name", contact_form_email_label: "Ihre E-Mail", contact_form_subject_label: "Projekttyp / Betreff", contact_form_message_label: "Projektdetails", contact_form_submit: "Nachricht senden",
-        footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys", footer_right: "Maschinenbau · Metallkonstruktionen · Treppen · Automatisierung",
+        footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys", footer_right: "Maschinenbau · Metallkonstruktionen · Treppen · Automatisierung", footer_disclaimer: "Diese Website ist ein persönliches Portfolio und dient ausschließlich Informations- und Bildungszwecken. Sie zeigt berufliche Erfahrung und beispielhafte Projekte; sie wird nicht als Unternehmen betrieben und stellt kein Angebot kostenpflichtiger Dienstleistungen dar.",
         wizard_title: "Treppenkonzept-Generator", wizard_step1_label: "Region und Typ", wizard_step2_label: "Geometrie", wizard_step3_label: "Einstellungen", wizard_step4_label: "Ergebnis",
         wizard_region_label: "Region / Regelwerk", wizard_region_eu: "Europa / UK", wizard_region_us: "Vereinigte Staaten", wizard_region_au: "Australien",
         wizard_usage_label: "Hauptnutzung", wizard_type_label: "Treppentyp", wizard_height_label: "Geschosshöhe (mm)", wizard_run_label: "Max. Lauflänge / Durchmesser (mm)", wizard_headroom_label: "Gewünschte Durchgangshöhe (mm)",
