@@ -2223,3 +2223,15 @@ body.dark-mode .btn.ghost:hover {
 body.dark-mode .btn.primary {
     box-shadow: 0 10px 26px rgba(239, 68, 68, 0.7);
 }
+
+
+/* Discreet but readable legal / portfolio clarification */
+.footer-disclaimer {
+    flex-basis: 100%;
+    width: 100%;
+    margin: 10px 0 0;
+    font-size: 11px;
+    line-height: 1.5;
+    opacity: 0.72;
+    text-align: center;
+}
