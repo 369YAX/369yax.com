@@ -37,13 +37,13 @@
     let chatTexts = {
         // fallback на випадок, якщо APP_I18N недоступний
         title: "369YAX – Technical chat",
-        subtitle: "Ask about stairs, sheet metal, frames & macros",
-        placeholder: "Type your question about stairs, sheet metal or SolidWorks...",
+        subtitle: "Ask about engineering design, fabrication and automation",
+        placeholder: "Type your question about engineering design or manufacturing...",
         hint:
-            'Tip: briefly describe your project (stairs, sheet metal, frame or SolidWorks macro) and what deliverables you need.',
+            'Tip: briefly describe your project (stairs, sheet metal, frame or engineering automation) and what deliverables you need.',
         initial:
             "👋 Hi! This is the 369YAX knowledge chat.<br><br>" +
-            "I can help with spiral/straight stairs (EU / US / AU), sheet metal, welded frames and SolidWorks automation.<br>" +
+            "I can help with spiral/straight stairs (EU / US / AU), sheet metal, welded frames and engineering automation.<br>" +
             "You can type a free question, or use the quick buttons below.",
         launcher: "💬 Chat",
         email_btn: "📧 Prepare email to Vitalii",
@@ -53,7 +53,8 @@
     function loadChatTexts(lang) {
         try {
             if (window.APP_I18N && typeof window.APP_I18N.getChatTexts === "function") {
-                chatTexts = window.APP_I18N.getChatTexts(lang) || chatTexts;
+                const localized = window.APP_I18N.getChatTexts(lang);
+                if (localized && Object.keys(localized).length) chatTexts = localized;
             }
         } catch (e) {
             // якщо щось пішло не так – просто залишаємо fallback
@@ -189,7 +190,7 @@
 
         const isMacro =
             lower.includes("macro") ||
-            lower.includes("solidworks") ||
+            lower.includes("engineering") || lower.includes("workflow") ||
             lower.includes("automat") ||
             lower.includes("vba");
 
@@ -228,11 +229,11 @@
 
         if (isMacro) {
             return (
-                "For SolidWorks macros and automation, please describe:\n" +
+                "For engineering automation, please describe:\n" +
                 "• Your current workflow (parts, assemblies, drawings, PDM or simple folders)\n" +
                 "• What is repetitive or slow today (naming, templates, BOM, properties, exports)\n" +
-                "• SolidWorks version and language (e.g. 2025 ITA).\n\n" +
-                "Then I can propose a macro or small set of tools that fits your daily work."
+                "• The tools and systems involved, if relevant.\n\n" +
+                "Then I can propose an automation solution or a focused set of tools for your workflow."
             );
         }
 
@@ -240,7 +241,7 @@
         return (
             "Thank you for the details.\n\n" +
             "To give you a clear proposal, please specify:\n" +
-            "• Project type: stairs, sheet metal, welded frame, or SolidWorks macro\n" +
+            "• Project type: stairs, sheet metal, welded frame, or engineering automation\n" +
             "• Approximate dimensions and material\n" +
             "• Which deliverables you need: 3D, drawings, DXF, STEP, BOM.\n\n" +
             "If it’s easier, you can also contact me directly at 369yax@gmail.com or via Fiverr / Upwork / LinkedIn (search for “369YAX”)."
