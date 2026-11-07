@@ -43,7 +43,7 @@
             'Tip: briefly describe your project (stairs, sheet metal, frame or engineering automation) and what deliverables you need.',
         initial:
             "👋 Hi! This is the 369YAX knowledge chat.<br><br>" +
-            "I can help with spiral/straight stairs (EU / US / AU), sheet metal, welded frames and SolidWorks automation.<br>" +
+            "I can help with spiral/straight stairs (EU / US / AU), sheet metal, welded frames and engineering automation.<br>" +
             "You can type a free question, or use the quick buttons below.",
         launcher: "💬 Chat",
         email_btn: "📧 Prepare email to Vitalii",
