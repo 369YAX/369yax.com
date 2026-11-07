@@ -53,7 +53,8 @@
     function loadChatTexts(lang) {
         try {
             if (window.APP_I18N && typeof window.APP_I18N.getChatTexts === "function") {
-                const localized = window.APP_I18N.getChatTexts(lang);\n                if (localized && Object.keys(localized).length) chatTexts = localized;
+                const localized = window.APP_I18N.getChatTexts(lang);
+                if (localized && Object.keys(localized).length) chatTexts = localized;
             }
         } catch (e) {
             // якщо щось пішло не так – просто залишаємо fallback
