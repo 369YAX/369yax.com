@@ -38,6 +38,26 @@
             launcher: "💬 Чат",
             email_btn: "📧 Підготувати лист для Vitalii",
             email_subject: "Проєкт із чату сайту 369YAX"
+        },
+        fr: {
+            title: "369YAX – Chat technique",
+            subtitle: "Conception mécanique, fabrication et automatisation",
+            placeholder: "Posez votre question sur la conception ou la fabrication...",
+            hint: "Conseil : décrivez brièvement votre projet (escaliers, tôlerie, structure soudée ou automatisation) et les livrables souhaités.",
+            initial: "👋 Bonjour ! Voici le chat technique de 369YAX.<br><br>Je peux vous aider pour les escaliers hélicoïdaux ou droits, la tôlerie, les structures soudées et l’automatisation technique.<br>Posez votre question ou utilisez les raccourcis ci-dessous.",
+            launcher: "💬 Chat",
+            email_btn: "📧 Préparer un e-mail pour Vitalii",
+            email_subject: "Projet depuis le chat du site 369YAX"
+        },
+        de: {
+            title: "369YAX – Technischer Chat",
+            subtitle: "Konstruktion, Fertigung und Automatisierung",
+            placeholder: "Stellen Sie Ihre Frage zu Konstruktion oder Fertigung...",
+            hint: "Tipp: Beschreiben Sie kurz Ihr Projekt (Treppen, Blech, Schweißkonstruktion oder Automatisierung) und die gewünschten Ergebnisse.",
+            initial: "👋 Hallo! Dies ist der technische Chat von 369YAX.<br><br>Ich unterstütze Sie bei Wendeltreppen und geraden Treppen, Blechbearbeitung, Schweißkonstruktionen und technischer Automatisierung.<br>Stellen Sie eine Frage oder nutzen Sie die Schnellwahl unten.",
+            launcher: "💬 Chat",
+            email_btn: "📧 E-Mail an Vitalii vorbereiten",
+            email_subject: "Projekt aus dem 369YAX-Website-Chat"
         }
     };
 
@@ -1104,6 +1124,74 @@ wizard_btn_next: "Далі →",
 wizard_btn_generate: "🧮 Згенерувати концепт",
 
         }
+    };
+
+
+    // French and German: retain every existing UI key; translate the main site
+    // and wizard labels here. Any remaining detailed wizard help uses English fallback.
+    UI_TRANSLATIONS.fr = {
+        ...UI_TRANSLATIONS.en,
+        nav_services: "Services", nav_portfolio: "Réalisations", nav_macros: "Outils techniques", nav_about: "À propos", nav_contact: "Contact",
+        hero_title: 'Conception prête pour la production<br /><span class="accent">structures métalliques et escaliers</span>',
+        hero_sub: "Je suis <strong>Vitalii Borys</strong>, concepteur mécanique basé en Italie. Sous la marque <strong>369YAX – Automation &amp; Design</strong>, j’aide les ateliers et les entreprises de fabrication à transformer leurs idées en <strong>modèles 3D professionnels, plans techniques, DXF, STEP et nomenclatures</strong>, prêts pour la production, avec une spécialisation dans les escaliers hélicoïdaux, la tôlerie et les structures métalliques soudées.",
+        hero_btn_primary: "Parler de votre projet", hero_btn_secondary: "Voir les réalisations", wizard_btn_open: "Générer un concept d’escalier",
+        hero_tag_1: "Escaliers hélicoïdaux (UE / US / AU)", hero_tag_2: "Tôlerie et structures soudées", hero_tag_3: "Automatisation technique",
+        hero_card_title: "Ce que 369YAX vous apporte", hero_card_li_1: "Modèles 3D (formats natifs, STEP)", hero_card_li_2: "Plans de fabrication (PDF, DWG, DXF)", hero_card_li_3: "Nomenclatures et listes de découpe", hero_card_li_4: "Pièces de tôlerie prêtes pour la découpe et le pliage", hero_card_li_5: "Outils techniques adaptés à vos méthodes de travail",
+        hero_note: "Basé en Italie · Travail à distance dans le monde entier · Anglais / italien / ukrainien / français / allemand",
+        services_title: "Services", services_subtitle: "Conception pratique orientée atelier, axée sur la fabricabilité, les normes et une documentation claire.",
+        services_card1_title: "Conception d’escaliers hélicoïdaux et droits", services_card1_text: "Conception d’escaliers hélicoïdaux et droits avec vérification des exigences applicables (UE / Royaume-Uni, États-Unis, Australie), géométrie claire et confort d’utilisation.",
+        services_card1_li_1: "Escaliers hélicoïdaux avec contrôle de la ligne de foulée et de l’échappée", services_card1_li_2: "Escaliers droits, paliers, mains courantes et garde-corps", services_card1_li_3: "Ensemble complet : modèle 3D, plans, DXF et nomenclature",
+        services_card2_title: "Tôlerie et structures soudées", services_card2_text: "Conception et optimisation de pièces en tôle, éléments en acier inoxydable, châssis et supports industriels prêts pour la découpe laser et le pliage.",
+        services_card2_li_1: "Développés (DXF, DWG) avec déductions de pliage adaptées", services_card2_li_2: "Châssis soudés, plateformes, supports et équerres", services_card2_li_3: "Symboles de soudage, notes et listes de découpe pour l’atelier",
+        services_card3_title: "Automatisation technique et outils personnalisés", services_card3_text: "Outils techniques personnalisés de l’écosystème 369YAX pour accélérer les tâches répétitives et standardiser les modèles et la documentation.",
+        services_card3_li_1: "Création automatique de pièces et de plans à partir de modèles", services_card3_li_2: "Export des nomenclatures et listes de découpe vers Excel", services_card3_li_3: "Bibliothèques de projets et automatisation des propriétés",
+        portfolio_title: "Projets sélectionnés", portfolio_subtitle: "Quelques exemples associant conception technique, normes applicables et expérience réelle du travail des métaux. Références détaillées sur demande.",
+        portfolio_item1_title: "Escalier hélicoïdal intérieur – configuration conforme", portfolio_item1_tag: "Escaliers hélicoïdaux",
+        portfolio_item2_title: "Étagère en acier inoxydable A4", portfolio_item2_tag: "Tôlerie", portfolio_item3_title: "Châssis de support industriel", portfolio_item3_tag: "Structure soudée",
+        portfolio_item4_title: "Outils d’automatisation personnalisés – 369YAX", portfolio_item4_tag: "Automatisation",
+        macros_title: "369YAX – Automatisation technique", macros_subtitle: "Un écosystème d’outils personnalisés conçu pour les besoins réels de la production : modèles 3D, plans techniques, nomenclatures, normes et gestion de projets.",
+        macros_card1_title: "IntelliPack / outils de projet", macros_card2_title: "IntelliStandards et bibliothèques de notes", macros_card3_title: "Générateurs d’escaliers",
+        about_title: "À propos de 369YAX et Vitalii", about_subtitle: "Conception mécanique fondée sur une véritable expérience en atelier.",
+        contact_title: "Travaillons ensemble", contact_subtitle: "Présentez brièvement votre projet – escaliers, tôlerie, structure soudée ou automatisation – et je vous proposerai une approche claire et concrète.",
+        contact_direct_title: "Contact direct", contact_email_label: "E-mail :", contact_location: "Lieu : Italie · Travail à distance avec des clients dans le monde entier",
+        contact_form_title: "Formulaire de contact", contact_form_name_label: "Votre nom", contact_form_email_label: "Votre e-mail", contact_form_subject_label: "Type de projet / objet", contact_form_message_label: "Détails du projet", contact_form_submit: "Envoyer le message",
+        footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys", footer_right: "Conception mécanique · Structures métalliques · Escaliers · Automatisation",
+        wizard_title: "Générateur de concept d’escalier", wizard_step1_label: "Région et type", wizard_step2_label: "Géométrie", wizard_step3_label: "Préférences", wizard_step4_label: "Résultat",
+        wizard_region_label: "Région / référentiel", wizard_region_eu: "Europe / Royaume-Uni", wizard_region_us: "États-Unis", wizard_region_au: "Australie",
+        wizard_usage_label: "Usage principal", wizard_type_label: "Type d’escalier", wizard_height_label: "Hauteur entre les niveaux (mm)", wizard_run_label: "Développement horizontal max. / diamètre (mm)", wizard_headroom_label: "Échappée souhaitée (mm)",
+        wizard_comfort_label: "Niveau de confort", wizard_step4_title: "4. Configuration suggérée (concept uniquement)", wizard_btn_back: "← Retour", wizard_btn_cancel: "Annuler", wizard_btn_next: "Suivant →", wizard_btn_generate: "🧮 Générer le concept"
+    };
+    UI_TRANSLATIONS.de = {
+        ...UI_TRANSLATIONS.en,
+        nav_services: "Leistungen", nav_portfolio: "Portfolio", nav_macros: "Technische Werkzeuge", nav_about: "Über mich", nav_contact: "Kontakt",
+        hero_title: 'Fertigungsgerechte Konstruktion<br /><span class="accent">Metallkonstruktionen und Treppen</span>',
+        hero_sub: "Ich bin <strong>Vitalii Borys</strong>, Maschinenbaukonstrukteur mit Sitz in Italien. Unter der Marke <strong>369YAX – Automation &amp; Design</strong> unterstütze ich Werkstätten und Fertigungsunternehmen dabei, Ideen in <strong>professionelle 3D-Modelle, technische Zeichnungen, DXF, STEP und Stücklisten</strong> für die reale Fertigung umzusetzen. Mein Schwerpunkt liegt auf Wendeltreppen, Blechbearbeitung und geschweißten Metallkonstruktionen.",
+        hero_btn_primary: "Projekt anfragen", hero_btn_secondary: "Portfolio ansehen", wizard_btn_open: "Treppenkonzept erstellen",
+        hero_tag_1: "Wendeltreppen (EU / US / AU)", hero_tag_2: "Blech und Schweißkonstruktionen", hero_tag_3: "Technische Automatisierung",
+        hero_card_title: "Das erhalten Sie mit 369YAX", hero_card_li_1: "3D-Modelle (native Formate, STEP)", hero_card_li_2: "Fertigungszeichnungen (PDF, DWG, DXF)", hero_card_li_3: "Stücklisten und Zuschnittlisten", hero_card_li_4: "Blechbauteile für Laserzuschnitt und Biegen", hero_card_li_5: "Individuelle technische Werkzeuge für Ihre Arbeitsabläufe",
+        hero_note: "In Italien ansässig · Weltweit remote tätig · Englisch / Italienisch / Ukrainisch / Französisch / Deutsch",
+        services_title: "Leistungen", services_subtitle: "Praxisorientierte Konstruktion mit Fokus auf Fertigbarkeit, Normen und klare Dokumentation.",
+        services_card1_title: "Konstruktion von Wendel- und geraden Treppen", services_card1_text: "Konstruktion von Wendel- und geraden Treppen mit Prüfung relevanter Anforderungen (EU / UK, USA, Australien), klarer Geometrie und sicherem Begehkomfort.",
+        services_card1_li_1: "Wendeltreppen mit Kontrolle von Lauflinie und Durchgangshöhe", services_card1_li_2: "Gerade Treppen, Podeste, Handläufe und Geländer", services_card1_li_3: "Komplettpaket: 3D-Modell, Zeichnungen, DXF und Stückliste",
+        services_card2_title: "Blechbearbeitung und Schweißkonstruktionen", services_card2_text: "Konstruktion und Optimierung von Blechteilen, Edelstahlelementen, Tragrahmen und Industriehalterungen für Laserzuschnitt und Biegen.",
+        services_card2_li_1: "Abwicklungen (DXF, DWG) mit korrekten Biegezugaben", services_card2_li_2: "Geschweißte Rahmen, Plattformen, Halterungen und Träger", services_card2_li_3: "Schweißsymbole, Hinweise und Zuschnittlisten für die Werkstatt",
+        services_card3_title: "Technische Automatisierung und individuelle Werkzeuge", services_card3_text: "Individuelle technische Werkzeuge aus dem 369YAX-Ökosystem zur Beschleunigung wiederkehrender Aufgaben und Standardisierung von Modellen und Dokumentation.",
+        services_card3_li_1: "Automatische Erstellung von Bauteilen und Zeichnungen aus Vorlagen", services_card3_li_2: "Export von Stücklisten und Zuschnittlisten nach Excel", services_card3_li_3: "Projektbibliotheken und automatische Eigenschaftspflege",
+        portfolio_title: "Ausgewählte Projekte", portfolio_subtitle: "Beispiele für die Verbindung von Konstruktion, geltenden Normen und praktischer Erfahrung in der Metallbearbeitung. Weitere Referenzen auf Anfrage.",
+        portfolio_item1_title: "Innenliegende Wendeltreppe – normgerechte Ausführung", portfolio_item1_tag: "Wendeltreppen",
+        portfolio_item2_title: "Edelstahl-A4-Ablage", portfolio_item2_tag: "Blechbearbeitung", portfolio_item3_title: "Industrieller Tragrahmen", portfolio_item3_tag: "Schweißkonstruktion",
+        portfolio_item4_title: "Individuelle Automatisierungswerkzeuge – 369YAX", portfolio_item4_tag: "Automatisierung",
+        macros_title: "369YAX – Technische Automatisierung", macros_subtitle: "Ein wachsendes Ökosystem individueller Werkzeuge für reale Fertigungsanforderungen: 3D-Modelle, technische Zeichnungen, Stücklisten, Normen und Projektverwaltung.",
+        macros_card1_title: "IntelliPack / Projektwerkzeuge", macros_card2_title: "IntelliStandards und Hinweisbibliotheken", macros_card3_title: "Treppengeneratoren",
+        about_title: "Über 369YAX und Vitalii", about_subtitle: "Maschinenbaukonstruktion mit echter Werkstatterfahrung.",
+        contact_title: "Lassen Sie uns zusammenarbeiten", contact_subtitle: "Beschreiben Sie kurz Ihr Projekt – Treppen, Blech, Schweißkonstruktionen oder technische Automatisierung – und ich schlage Ihnen einen klaren, praxisnahen Weg vor.",
+        contact_direct_title: "Direkter Kontakt", contact_email_label: "E-Mail:", contact_location: "Standort: Italien · Remote-Arbeit mit Kunden weltweit",
+        contact_form_title: "Kontaktformular", contact_form_name_label: "Ihr Name", contact_form_email_label: "Ihre E-Mail", contact_form_subject_label: "Projekttyp / Betreff", contact_form_message_label: "Projektdetails", contact_form_submit: "Nachricht senden",
+        footer_left: "© 369YAX – Automation &amp; Design · Vitalii Borys", footer_right: "Maschinenbau · Metallkonstruktionen · Treppen · Automatisierung",
+        wizard_title: "Treppenkonzept-Generator", wizard_step1_label: "Region und Typ", wizard_step2_label: "Geometrie", wizard_step3_label: "Einstellungen", wizard_step4_label: "Ergebnis",
+        wizard_region_label: "Region / Regelwerk", wizard_region_eu: "Europa / UK", wizard_region_us: "Vereinigte Staaten", wizard_region_au: "Australien",
+        wizard_usage_label: "Hauptnutzung", wizard_type_label: "Treppentyp", wizard_height_label: "Geschosshöhe (mm)", wizard_run_label: "Max. Lauflänge / Durchmesser (mm)", wizard_headroom_label: "Gewünschte Durchgangshöhe (mm)",
+        wizard_comfort_label: "Komfortniveau", wizard_step4_title: "4. Vorgeschlagene Konfiguration (nur Konzept)", wizard_btn_back: "← Zurück", wizard_btn_cancel: "Abbrechen", wizard_btn_next: "Weiter →", wizard_btn_generate: "🧮 Konzept erstellen"
     };
 
     // -----------------------------
